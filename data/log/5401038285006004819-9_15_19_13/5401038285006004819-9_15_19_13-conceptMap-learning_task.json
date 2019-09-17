@@ -1,0 +1,5 @@
+{"participantID":"5401038285006004819-9_15_19_13","stage":"learning_task",
+"timeElapsed":1658,
+"edges":[],
+"nodes":[],
+"textInput":"not in 600 AM SS: Ocean, hyp, aero, veg, cpr\nnot in 800 SS DD: same\nno in 800 PM: ocean, aero, sar, cpr\nseparate aero and SAR\nseparate sounder (hires) and aero \nseparate CPR aero and sar\n\n\n\nin \nSS-800-PM: Chem Hyp Hires\nas i go down in specificity, i get fewer of these instruments \n\n"}

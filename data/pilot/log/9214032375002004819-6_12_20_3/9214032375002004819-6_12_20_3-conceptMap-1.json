@@ -1,0 +1,28 @@
+{"participantID":"9214032375002004819-6_12_20_3","stage":1,"timeElapsed":1997,
+	"edges":[
+		{"from":"1TJD9VRX2-1RVGV94-6DP","to":"1TJFRJB1X-28YNV6Q-775","label":"positive (100)","weight":"100","width":8,"id":"07ceed89-537e-42d1-a289-e16419803aab","fromLabel":"CHEM_UVSPEC","toLabel":"SSO-800-PM"},
+		{"from":"1TJD9VRX2-26JCWRT-6DW","to":"1TJFRJB1X-28YNV6Q-775","label":"positive (100)","weight":"100","width":8,"id":"c45074e4-310e-4166-a218-604a88901451","fromLabel":"HYP_IMAG","toLabel":"SSO-800-PM"},
+		{"from":"1TJD9VRX2-1JPT5X7-6F2","to":"1TJD9VRX2-1JPT5X7-6F2","label":"positive (100)","weight":"100","width":8,"id":"82feacd8-1071-4dbc-9660-dbde2bd7e679","fromLabel":"SAR_ALTIM","toLabel":"SAR_ALTIM"},
+		{"from":"1TJFRJB1X-1WQP41X-76C","to":"1TJFRJB1X-1WQP41X-76C","label":"negative (100)","weight":"100","width":8,"id":"b0497437-7e8a-49c7-baab-05d1ed1f39d2","fromLabel":"SSO-600-DD","toLabel":"SSO-600-DD"},
+		{"from":"1TJD9VRX2-R9MLGY-6DH","to":"1TJD9VRX2-R9MLGY-6DH","label":"negative (100)","weight":"100","width":8,"id":"35d198f7-ced3-4546-945a-a9dac2b5d796","fromLabel":"AERO_LID","toLabel":"AERO_LID"},
+		{"from":"1TJD9VRX2-R9MLGY-6DH","to":"1TJD9VRX2-26JCWRT-6DW","label":"negative (100)","weight":"100","width":8,"id":"877dfd3f-33f7-4df2-a9ef-7b58316a3031","fromLabel":"AERO_LID","toLabel":"HYP_IMAG"},
+		{"from":"1TJD9VRX2-26JCWRT-6DW","to":"1TJD9VRX2-1JPT5X7-6F2","label":"negative (100)","weight":"100","width":8,"id":"3afc77f8-a06f-4205-91a8-3b394f46c591","fromLabel":"HYP_IMAG","toLabel":"SAR_ALTIM"},
+		{"from":"1TJD9VRX2-1JPT5X7-6F2","to":"1TJD9VRX2-R9MLGY-6DH","label":"negative (100)","weight":"100","width":8,"id":"9906462c-dae7-4520-8e3d-46d073313898","fromLabel":"SAR_ALTIM","toLabel":"AERO_LID"},
+		{"from":"1TJD9VRX2-1M93BL1-6DS","to":"1TJD9VRX2-1JPT5X7-6F2","label":"negative (100)","weight":"100","width":8,"id":"8af4ecd2-86d9-4696-a16f-197234b1e344","fromLabel":"CHEM_SWIRSPEC","toLabel":"SAR_ALTIM"},
+		{"from":"1TJD9VRX2-TTGC5M-6DD","to":"57432399389112890885","label":"negative (100)","weight":"100","width":8,"id":"cb47d1c3-d642-4a03-98b4-407c3d439238","fromLabel":"VEG_LID","toLabel":"Orbit that has altitude 600km AND is sun-synchronousOrbit"},
+		{"from":"1TJD9VRX2-WSWBFC-6CZ","to":"1TJFRJB1X-1LPJCKV-76G","label":"positive (100)","weight":"100","width":8,"id":"0acbbccf-29f2-49f8-8a86-f1cc48f43a05","fromLabel":"AERO_POL","toLabel":"600km"},
+		{"from":"1TJFRJB1X-28YNV6Q-775","to":"1TJFRJB1X-28YNV6Q-775","label":"positive (20)","weight":"20","width":2.4000000000000004,"id":"39391802-e25b-4a50-ad42-b4d164102036","fromLabel":"SSO-800-PM","toLabel":"SSO-800-PM"},
+		{"from":"1TJD9VRX2-TTGC5M-6DD","to":"1TJFRJB1W-1H623R2-765","label":"negative (100)","weight":"100","width":8,"id":"d5b8db0f-0fa9-473d-af7b-a35a09406d99","fromLabel":"VEG_LID","toLabel":"SSO-600-AM"},
+		{"from":"1TJD9VRX2-2BZCBG-6D6","to":"1TJFRJB1W-1H623R2-765","label":"negative (100)","weight":"100","width":8,"id":"a67b4faf-b0ac-4c50-8d6c-8d16802f58c2","fromLabel":"VEG_INSAR","toLabel":"SSO-600-AM"},
+		{"from":"1TJD9VRX2-1RVGV94-6DP","to":"1TJD9VRX2-1RVGV94-6DP","label":"positive (50)","weight":"50","width":4.5,"id":"f227a73d-a8bf-452f-b7b3-138a1d1453a2","fromLabel":"CHEM_UVSPEC","toLabel":"CHEM_UVSPEC"},
+		{"from":"1TJD9VRX2-WSWBFC-6CZ","to":"1TJD9VRX2-R9MLGY-6DH","label":"negative (50)","weight":"50","width":4.5,"id":"b28257e3-6eea-4578-b4d4-c778c72ad4d3","fromLabel":"AERO_POL","toLabel":"AERO_LID"},
+		{"from":"1TJD9VRX2-13Q3VGK-6D3","to":"1TJD9VRX2-WSWBFC-6CZ","label":"negative (50)","weight":"50","width":4.5,"id":"76525a4e-9509-4495-be40-71e1ca97245e","fromLabel":"OCE_SPEC","toLabel":"AERO_POL"},
+		{"from":"1TJFS946N-ZV5LJK-8JZ","to":"1TJFS946N-ZV5LJK-8JZ","label":"negative (100)","weight":"100","width":8,"id":"76a96bd4-b949-4de0-bc60-090e5c6188ef","fromLabel":"active","toLabel":"active"},
+		{"from":"1TJD9VRX2-1XJ0FD5-6DZ","to":"1TJFRJB1W-1H623R2-765","label":"positive (70)","weight":"70","width":5.8999999999999995,"id":"129534b3-ead7-4e57-9e1a-6877f3d9e748","fromLabel":"HIRES_SOUND","toLabel":"SSO-600-AM"},
+		{"from":"1TJD9VRX2-1M93BL1-6DS","to":"1TJD9VRX2-1M93BL1-6DS","label":"positive (30)","weight":"30","width":3.1,"id":"fa839f95-53c5-4499-b324-e234fe457455","fromLabel":"CHEM_SWIRSPEC","toLabel":"CHEM_SWIRSPEC"}],
+	"nodes":[
+		{"id":"57432399389112890885","group":10,"label":null,"title":"Orbit that has altitude 600km AND is sun-synchronousOrbit",
+			"connectedNodes":[
+				{"id":"1TJFRJB1X-1LPJCKV-76G","label":"600km","group":7},
+				{"id":"1TJFRJB1X-1Y72SD9-76P","label":"sun-synchronousOrbit","group":9},
+				{"id":"1TJD9VRX2-TTGC5M-6DD","label":"VEG_LID","group":0,"title":"Instrument: SWIR nadir spectrometer"}]}]}

@@ -1,0 +1,10 @@
+{"participantID":"5401038285006004819-9_15_19_13","stage":"prior_knowledge_task",
+	"timeElapsed":422,
+	"edges":[
+		{"id":"95845493751121657087","from":"1TJFRJB1X-15Z9BHX-772","to":"1TJH9N9L1-274ZTYJ-BLH","font":{"size":14.212007504690432},"label":"positive (85)","weight":"85","fromLabel":"PM","toLabel":"soilMoisture"},
+		{"id":"09887400041422076284","from":"1TJFS946N-ZV5LJK-8JZ","to":"1TJFRJB1X-Z79GFM-778","font":{"size":14.212007504690432},"label":"negative (70)","weight":"70","fromLabel":"active","toLabel":"passive"},
+		{"id":"09989552044591742817","from":"1TQF81HDD-1FY28GN-154","to":"1TJH9N9L1-274ZTYJ-BLH","font":{"size":14.212007504690432},"label":"positive (70)","weight":"70","fromLabel":"LWIR","toLabel":"soilMoisture"},
+		{"id":"18021554420383985144","from":"1TJH1XWY2-24P36X2-PCW","to":"1TJH95VGF-1FW5H4D-8XB","font":{"size":14.212007504690432},"label":"positive (90)","weight":"90","fromLabel":"imager","toLabel":"landCover"},
+		{"id":"86617843479408052497","from":"1TJJ86ZVY-L4JJ4S-574","to":"1TQF7S3K8-QNSMHF-XM","font":{"size":14.212007504690432},"label":"positive (70)","weight":"70","fromLabel":"seaSurfaceProp","toLabel":"MW"},
+		{"id":"89954707001139785274","from":"1TQF7S3K8-QNSMHF-XM","to":"1TJJS8W3H-B0XHWT-B5J","font":{"size":14.212007504690432},"label":"positive (70)","weight":"70","fromLabel":"MW","toLabel":"cloud"},
+		{"id":"22271148781324867305","from":"1TJD9VRX2-1YZN3HV-6DL","to":"1TJH2KFK2-7XMJPP-QLT","font":{"size":14.212007504690432},"label":"positive (70)","weight":"70","fromLabel":"HYP_ERB","toLabel":"radiationBudget"}],"nodes":[],"textInput":""}

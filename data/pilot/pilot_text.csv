@@ -1,0 +1,146 @@
+StartDate,EndDate,Status,IPAddress,Progress,Duration (in seconds),Finished,RecordedDate,ResponseId,RecipientLastName,RecipientFirstName,RecipientEmail,ExternalReference,LocationLatitude,LocationLongitude,DistributionChannel,UserLanguage,Q4,Q8,Q88_4,Q10,Q90_4,Q11,Q91_4,Q12,Q92_4,Q120,Q121_4,Q115,Q116_4,Q9,Q89_4,Q13,Q93_4,Q14,Q94_4,Q7,Q87_4,Q15,Q95_4,Q16,Q96_4,Q17,Q97_4,Q18,Q98_4,Q19,Q99_4,Q20,Q100_4,Q21,Q101_4,Q22,Q102_4,Q23,Q103_4,Q24,Q104_4,Q26,Q105_4,Q30,Q106_4,Q32,Q107_4,Q34,Q108_4,Q36,Q109_4,Q38,Q110_4,Q40,Q111_4,Q42,Q112_4,Q44,Q113_4,Q46,Q114_4,Q64_1,Q64_2,Q64_3,Q64_4,Q64_5,Q64_6,Q64_7,Q64_8,Q64_9,Q64_10,Q64_11,Q64_12,Q64_13,Q64_14,Q64_15,Q64_16,Q64_17,Q64_18,Q64_19,Q64_20,Q64_21,Q64_22,Q64_23,Q64_24,Q64_25,Q64_26,Q65_1,Q65_2,Q65_3,Q65_4,Q65_5,Q65_6,Q67,Q68,Q69,Q70,Q71,Q72,Q73,Q74,Q75,Q76,Q77,Q78,Q79,Q80,Q81,Q50,Q51,Q61,Q53,Q54,Q62,Q58,Q55,Q56,Q57
+Start Date,End Date,Response Type,IP Address,Progress,Duration (in seconds),Finished,Recorded Date,Response ID,Recipient Last Name,Recipient First Name,Recipient Email,External Data Reference,Location Latitude,Location Longitude,Distribution Channel,User Language,Copy and paste your participant ID (shown on the top-right corner of either iFEED or the interactive graph window),"Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+
+ 
+
+	AERO_POL and SAR_ALTIM should not be assigned to the same orbit","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+
+ 
+
+	SAR_ALTIM is not assigned to dawn/dusk orbits","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+
+ 
+
+	SSO-600-DD is empty","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+
+ 
+
+	CHEM_UVSPEC, CHEM_SWIRSPEC, HYP_IMAG, HIRES_SOUND are all assigned to SSO-800-PM","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+
+ 
+
+	CPR_RAD is not used in the design","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+
+ 
+
+	HIRES_SOUND is assigned to SSO-800-PM","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+
+ 
+
+	High-power instruments should not be assigned to dawn/dusk orbits","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+
+ 
+
+	VEG_LID is assigned to LEO-600-polar","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+
+ 
+
+	AERO_POL and HIRES_SOUND are assigned together","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Do you think the following feature is shared by more than 90% of the designs in the target region considered in this experiment?
+ 
+
+
+	  Both CHEM_UVSPEC  and SAR_ALTIM should be used","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Which of the two features better describes the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Which of the two features better describes the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Which of the two features better describes the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Which of the two features better describes the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Which of the two features better describes the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Which of the two features better describes the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident","Which of the two features has lower coverage, but higher specificity?","On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Which of the two features better describes the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Which of the two features better describes the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Which of the two features better describes the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Do you think the above design is located within the target region?,"On a scale of 0 to 100, how confident do you feel about your answer? - 0: Not confident, 100: Fully confident",Please assess your experience now by ticking one circle per line. - Annoying:Enjoyable,Please assess your experience now by ticking one circle per line. - Not Understandable:Understandable,Please assess your experience now by ticking one circle per line. - Creative:Dull,Please assess your experience now by ticking one circle per line. - Easy to Learn:Difficult to Learn,Please assess your experience now by ticking one circle per line. - Valuable:Inferior,Please assess your experience now by ticking one circle per line. - Boring:Exciting,Please assess your experience now by ticking one circle per line. - Not Interesting:Interesting,Please assess your experience now by ticking one circle per line. - Unpredictable:Predictable,Please assess your experience now by ticking one circle per line. - Fast:Slow,Please assess your experience now by ticking one circle per line. - Inventive:Conventional,Please assess your experience now by ticking one circle per line. - Obstructive:Supportive,Please assess your experience now by ticking one circle per line. - Good:Bad,Please assess your experience now by ticking one circle per line. - Complicated:Easy,Please assess your experience now by ticking one circle per line. - Unlikable:Pleasing,Please assess your experience now by ticking one circle per line. - Usual:Leading Edge,Please assess your experience now by ticking one circle per line. - Unpleasant:Pleasant,Please assess your experience now by ticking one circle per line. - Secure:Not Secure,Please assess your experience now by ticking one circle per line. - Motivating:Demotivating,Please assess your experience now by ticking one circle per line. - Meets Expectations:Does Not Meet Expectations,Please assess your experience now by ticking one circle per line. - Inefficient:Efficient,Please assess your experience now by ticking one circle per line. - Clear:Confusing,Please assess your experience now by ticking one circle per line. - Impractical:Practical,Please assess your experience now by ticking one circle per line. - Organized:Cluttered,Please assess your experience now by ticking one circle per line. - Attractive:Unattractive,Please assess your experience now by ticking one circle per line. - Friendly:Unfriendly,Please assess your experience now by ticking one circle per line. - Conservative:Innovative,"Here, we want to examine the ""workload"" you experienced. The factors that influence your experience of workload may come from the task itself, your feelings about your own performance, how much effort you put in, or the stress and frustration you felt.
+
+
+The evaluation you are about to perform is a technique that has been developed by NASA to assess the relative importance of six factors in determining how much workload you experienced.
+
+ 
+
+The definition of the six scales
+
+ 
+
+
+	Mental demand: How much metnal and perceptual activity was required (e.g. thinking, deciding, calculating, etc)?
+	Physical demand: How much physical activity was required (e.g. pushing, pulling, turning, controlling)?
+	Temporal demand: How much time pressure did you feel due to the rate or pace at which the tasks or task elements occurred?
+	Performance: How successful do you think you were in accomplishing the goals of the task set by the experimenter?
+	Effort: How hard did you have to work to accomplish your level of performance?
+	Frustration: How insecure, discouraged, irritated, stressed and annoyyed verses secure, content, and relaxed did you feel during the task? - Mental Demand: How mentally demanding was the task?","Here, we want to examine the ""workload"" you experienced. The factors that influence your experience of workload may come from the task itself, your feelings about your own performance, how much effort you put in, or the stress and frustration you felt.
+
+
+The evaluation you are about to perform is a technique that has been developed by NASA to assess the relative importance of six factors in determining how much workload you experienced.
+
+ 
+
+The definition of the six scales
+
+ 
+
+
+	Mental demand: How much metnal and perceptual activity was required (e.g. thinking, deciding, calculating, etc)?
+	Physical demand: How much physical activity was required (e.g. pushing, pulling, turning, controlling)?
+	Temporal demand: How much time pressure did you feel due to the rate or pace at which the tasks or task elements occurred?
+	Performance: How successful do you think you were in accomplishing the goals of the task set by the experimenter?
+	Effort: How hard did you have to work to accomplish your level of performance?
+	Frustration: How insecure, discouraged, irritated, stressed and annoyyed verses secure, content, and relaxed did you feel during the task? - Physical Demand: How physically demanding was the task?","Here, we want to examine the ""workload"" you experienced. The factors that influence your experience of workload may come from the task itself, your feelings about your own performance, how much effort you put in, or the stress and frustration you felt.
+
+
+The evaluation you are about to perform is a technique that has been developed by NASA to assess the relative importance of six factors in determining how much workload you experienced.
+
+ 
+
+The definition of the six scales
+
+ 
+
+
+	Mental demand: How much metnal and perceptual activity was required (e.g. thinking, deciding, calculating, etc)?
+	Physical demand: How much physical activity was required (e.g. pushing, pulling, turning, controlling)?
+	Temporal demand: How much time pressure did you feel due to the rate or pace at which the tasks or task elements occurred?
+	Performance: How successful do you think you were in accomplishing the goals of the task set by the experimenter?
+	Effort: How hard did you have to work to accomplish your level of performance?
+	Frustration: How insecure, discouraged, irritated, stressed and annoyyed verses secure, content, and relaxed did you feel during the task? - Temporal Demand: How hurried or rushed was the pace of the task?","Here, we want to examine the ""workload"" you experienced. The factors that influence your experience of workload may come from the task itself, your feelings about your own performance, how much effort you put in, or the stress and frustration you felt.
+
+
+The evaluation you are about to perform is a technique that has been developed by NASA to assess the relative importance of six factors in determining how much workload you experienced.
+
+ 
+
+The definition of the six scales
+
+ 
+
+
+	Mental demand: How much metnal and perceptual activity was required (e.g. thinking, deciding, calculating, etc)?
+	Physical demand: How much physical activity was required (e.g. pushing, pulling, turning, controlling)?
+	Temporal demand: How much time pressure did you feel due to the rate or pace at which the tasks or task elements occurred?
+	Performance: How successful do you think you were in accomplishing the goals of the task set by the experimenter?
+	Effort: How hard did you have to work to accomplish your level of performance?
+	Frustration: How insecure, discouraged, irritated, stressed and annoyyed verses secure, content, and relaxed did you feel during the task? - Performance: How successful were you in accomplishing what you were asked to do?","Here, we want to examine the ""workload"" you experienced. The factors that influence your experience of workload may come from the task itself, your feelings about your own performance, how much effort you put in, or the stress and frustration you felt.
+
+
+The evaluation you are about to perform is a technique that has been developed by NASA to assess the relative importance of six factors in determining how much workload you experienced.
+
+ 
+
+The definition of the six scales
+
+ 
+
+
+	Mental demand: How much metnal and perceptual activity was required (e.g. thinking, deciding, calculating, etc)?
+	Physical demand: How much physical activity was required (e.g. pushing, pulling, turning, controlling)?
+	Temporal demand: How much time pressure did you feel due to the rate or pace at which the tasks or task elements occurred?
+	Performance: How successful do you think you were in accomplishing the goals of the task set by the experimenter?
+	Effort: How hard did you have to work to accomplish your level of performance?
+	Frustration: How insecure, discouraged, irritated, stressed and annoyyed verses secure, content, and relaxed did you feel during the task? - Effort: How hard did you have to work to accomplish your level of performance?","Here, we want to examine the ""workload"" you experienced. The factors that influence your experience of workload may come from the task itself, your feelings about your own performance, how much effort you put in, or the stress and frustration you felt.
+
+
+The evaluation you are about to perform is a technique that has been developed by NASA to assess the relative importance of six factors in determining how much workload you experienced.
+
+ 
+
+The definition of the six scales
+
+ 
+
+
+	Mental demand: How much metnal and perceptual activity was required (e.g. thinking, deciding, calculating, etc)?
+	Physical demand: How much physical activity was required (e.g. pushing, pulling, turning, controlling)?
+	Temporal demand: How much time pressure did you feel due to the rate or pace at which the tasks or task elements occurred?
+	Performance: How successful do you think you were in accomplishing the goals of the task set by the experimenter?
+	Effort: How hard did you have to work to accomplish your level of performance?
+	Frustration: How insecure, discouraged, irritated, stressed and annoyyed verses secure, content, and relaxed did you feel during the task? - Frustration: How insecure, discouraged, irritated, stressed, and annoyed were you?",Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,Source of Workload,What is your age?,What is your gender?,What is the highest level of school you have completed or the highest degree you have received?,Which of these fields best describes your major? (You may choose multiple),Do you have prior experience or education in satellite system design?,Please indicate your level of experience in satellite system design,How many years of experience do you have in satellite system design?,Did you understand the concepts and the task you had to perform? Please comment below.,Did you use all the tools that were provided? Briefly explain the strategy you used to extract useful patterns from the data.,How did you feel about the level of difficulty of the tasks?
+"{""ImportId"":""startDate"",""timeZone"":""America/Denver""}","{""ImportId"":""endDate"",""timeZone"":""America/Denver""}","{""ImportId"":""status""}","{""ImportId"":""ipAddress""}","{""ImportId"":""progress""}","{""ImportId"":""duration""}","{""ImportId"":""finished""}","{""ImportId"":""recordedDate"",""timeZone"":""America/Denver""}","{""ImportId"":""_recordId""}","{""ImportId"":""recipientLastName""}","{""ImportId"":""recipientFirstName""}","{""ImportId"":""recipientEmail""}","{""ImportId"":""externalDataReference""}","{""ImportId"":""locationLatitude""}","{""ImportId"":""locationLongitude""}","{""ImportId"":""distributionChannel""}","{""ImportId"":""userLanguage""}","{""ImportId"":""QID4_TEXT""}","{""ImportId"":""QID8""}","{""ImportId"":""QID88_4""}","{""ImportId"":""QID10""}","{""ImportId"":""QID90_4""}","{""ImportId"":""QID11""}","{""ImportId"":""QID91_4""}","{""ImportId"":""QID12""}","{""ImportId"":""QID92_4""}","{""ImportId"":""QID120""}","{""ImportId"":""QID121_4""}","{""ImportId"":""QID115""}","{""ImportId"":""QID116_4""}","{""ImportId"":""QID9""}","{""ImportId"":""QID89_4""}","{""ImportId"":""QID13""}","{""ImportId"":""QID93_4""}","{""ImportId"":""QID14""}","{""ImportId"":""QID94_4""}","{""ImportId"":""QID7""}","{""ImportId"":""QID87_4""}","{""ImportId"":""QID15""}","{""ImportId"":""QID95_4""}","{""ImportId"":""QID16""}","{""ImportId"":""QID96_4""}","{""ImportId"":""QID17""}","{""ImportId"":""QID97_4""}","{""ImportId"":""QID18""}","{""ImportId"":""QID98_4""}","{""ImportId"":""QID19""}","{""ImportId"":""QID99_4""}","{""ImportId"":""QID20""}","{""ImportId"":""QID100_4""}","{""ImportId"":""QID21""}","{""ImportId"":""QID101_4""}","{""ImportId"":""QID22""}","{""ImportId"":""QID102_4""}","{""ImportId"":""QID23""}","{""ImportId"":""QID103_4""}","{""ImportId"":""QID24""}","{""ImportId"":""QID104_4""}","{""ImportId"":""QID26""}","{""ImportId"":""QID105_4""}","{""ImportId"":""QID30""}","{""ImportId"":""QID106_4""}","{""ImportId"":""QID32""}","{""ImportId"":""QID107_4""}","{""ImportId"":""QID34""}","{""ImportId"":""QID108_4""}","{""ImportId"":""QID36""}","{""ImportId"":""QID109_4""}","{""ImportId"":""QID38""}","{""ImportId"":""QID110_4""}","{""ImportId"":""QID40""}","{""ImportId"":""QID111_4""}","{""ImportId"":""QID42""}","{""ImportId"":""QID112_4""}","{""ImportId"":""QID44""}","{""ImportId"":""QID113_4""}","{""ImportId"":""QID46""}","{""ImportId"":""QID114_4""}","{""ImportId"":""QID62_1""}","{""ImportId"":""QID62_11""}","{""ImportId"":""QID62_4""}","{""ImportId"":""QID62_5""}","{""ImportId"":""QID62_6""}","{""ImportId"":""QID62_7""}","{""ImportId"":""QID62_8""}","{""ImportId"":""QID62_10""}","{""ImportId"":""QID62_12""}","{""ImportId"":""QID62_13""}","{""ImportId"":""QID62_14""}","{""ImportId"":""QID62_15""}","{""ImportId"":""QID62_16""}","{""ImportId"":""QID62_17""}","{""ImportId"":""QID62_18""}","{""ImportId"":""QID62_19""}","{""ImportId"":""QID62_20""}","{""ImportId"":""QID62_21""}","{""ImportId"":""QID62_22""}","{""ImportId"":""QID62_23""}","{""ImportId"":""QID62_24""}","{""ImportId"":""QID62_25""}","{""ImportId"":""QID62_26""}","{""ImportId"":""QID62_27""}","{""ImportId"":""QID62_28""}","{""ImportId"":""QID62_29""}","{""ImportId"":""QID65_1""}","{""ImportId"":""QID65_2""}","{""ImportId"":""QID65_3""}","{""ImportId"":""QID65_4""}","{""ImportId"":""QID65_5""}","{""ImportId"":""QID65_6""}","{""ImportId"":""QID67""}","{""ImportId"":""QID68""}","{""ImportId"":""QID69""}","{""ImportId"":""QID70""}","{""ImportId"":""QID71""}","{""ImportId"":""QID72""}","{""ImportId"":""QID73""}","{""ImportId"":""QID74""}","{""ImportId"":""QID75""}","{""ImportId"":""QID76""}","{""ImportId"":""QID77""}","{""ImportId"":""QID78""}","{""ImportId"":""QID79""}","{""ImportId"":""QID80""}","{""ImportId"":""QID81""}","{""ImportId"":""QID50_TEXT""}","{""ImportId"":""QID51""}","{""ImportId"":""QID60""}","{""ImportId"":""QID53""}","{""ImportId"":""QID54""}","{""ImportId"":""QID61""}","{""ImportId"":""QID58""}","{""ImportId"":""QID55_TEXT""}","{""ImportId"":""QID56_TEXT""}","{""ImportId"":""QID57_TEXT""}"
+2019-07-22 11:28:37,2019-07-22 12:11:37,IP Address,*******,100,2580,True,2019-07-22 12:11:39,R_1KwEXZNgZA9SKW8,*******,*******,*******,*******,*******,*******,anonymous,EN,3804259766000004819-7_22_21_38,FALSE,5,FALSE,5,TRUE,85,FALSE,40,FALSE,5,FALSE,5,FALSE,5,FALSE,5,FALSE,5,TRUE,10,AERO_POL and SAR_ALTIM should not be assigned to the same orbit,5,"No more than five passive instruments may be assigned to the same orbit ",5,Two radars should not be assigned to the same orbit,5,Two atmospheric chemistry instruments are assigned together in the same orbit,15,"VEG_LID, VEG_INSAR, or SAR_ALTIM is assigned to LEO-600-PM",10,No more than one lidar should be used in total,6,CHEM_SWIRSPEC should not be assigned to Dawn/Dusk-Orbit,5,Either VEG_LID or VEG_INSAR is assigned to LEO-600-polar,6,High power instruments are not assigned to Dawn/Dusk orbit,5,"If AERO_POL is used, it is assigned to SSO-600-AM",5,YES,30,YES,25,NO,25,YES,25,NO,25,NO,25,NO,25,NO,25,NO,25,YES,25,6,5,2,3,1,5,5,4,3,3,5,2,4,5,5,5,3,3,3,5,3,5,2,2,2,5,,,,,,,,,,,,,,,,,,,,,,24,Male,Master's degree,Aerospace Engineering,No,,,"To a certain extent, yes. However I feel a fundamental understanding of satellite design is necessary to efficiently utilize this tool.","My preliminary strategy was to cursorily inspect the data for similarities in presence of instruments and/or their presence in certain orbits, investigate the features and go from there.",I struggled slightly with the tasks since I did not have a certain direction or manner of proceeding with the tasks. This can be attributed to my lack of experience in satellite design.
