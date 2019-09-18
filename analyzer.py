@@ -58,141 +58,151 @@ class ResultAnalyzer():
 
                     # Create new subject instance
                     s = Subject(self.jsonFilesRootPath, participant_id)
-
-                    # Problem set
-                    feature_classification_answer = []
-                    feature_classification_confidence = []
-                    feature_comparison_answer = []
-                    feature_comparison_confidence = []
-                    design_classification_answer = []
-                    design_classification_confidence = []
-                    design_comparison_answer = []
-                    design_comparison_confidence = []
-
-                    for j in range(NUM_FEATURE_CL_QUESTION * 2):
-                        val = row[COLNUM_FEATURE_CL_QUESTION + j]
-                        if val == '':
-                            raise ValueError()
-                        val = int(val)
-
-                        if j % 2 == 0:
-                            feature_classification_answer.append(val)
-                        else:
-                            feature_classification_confidence.append(val)
-
-                    for j in range(NUM_FEATURE_PWC_QUESTION * 2):
-                        val = row[COLNUM_FEATURE_PWC_QUESTION + j]
-                        if val == '':
-                            raise ValueError()
-                        val = int(val)
-
-                        if j % 2 == 0:
-                            feature_comparison_answer.append(val)
-                        else:
-                            feature_comparison_confidence.append(val)
-
-                    for j in range(NUM_DESIGN_CL_QUESTION * 2):
-                        val = row[COLNUM_DESIGN_CL_QUESTION + j]
-                        if val == '':
-                            raise ValueError()
-                        val = int(val)
-
-                        if j % 2 == 0:
-                            design_classification_answer.append(val)
-                        else:
-                            design_classification_confidence.append(val)
-
-                    for j in range(NUM_DESIGN_PWC_QUESTION * 2):
-                        val = row[COLNUM_DESIGN_PWC_QUESTION + j]
-                        if val == '':
-                            raise ValueError()
-                        val = int(val)
-
-                        if j % 2 == 0:
-                            design_comparison_answer.append(val)
-                        else:
-                            design_comparison_confidence.append(val)
-
-                    s.feature_classification_answer = feature_classification_answer
-                    s.feature_classification_confidence = feature_classification_confidence
-                    s.feature_comparison_answer = feature_comparison_answer
-                    s.feature_comparison_confidence = feature_comparison_confidence
-                    s.design_classification_answer = design_classification_answer
-                    s.design_classification_confidence = design_classification_confidence
-                    s.design_comparison_answer = design_comparison_answer
-                    s.design_comparison_confidence = design_comparison_confidence
-
-                    # Feature preference survey
-                    temp = []
-                    for j in range(NUM_FEATURE_PREFERENCE):
-                        val = row[COLNUM_FEATURE_PREFERENCE + j]
-                        if val == '':
-                            raise ValueError()
-                        val = int(val)
-
-                        if j == 3:
-                            s.feature_preference_data['generalization'] = temp
-                            temp = []
-                        elif j == 5:
-                            s.feature_preference_data['generalizationPlusException'] = temp
-                            temp = []
-                        temp.append(val)
-                    s.feature_preference_data['parity'] = temp
-
-                    # Self assessment of learning
-                    for j in range(NUM_SELF_ASSESSMENT):
-                        val = row[COLNUM_SELF_ASSESSMENT + j]
-                        if val == '':
-                            colIndex = COLNUM_SELF_ASSESSMENT + j
-                            raise ValueError("Empty value: column {0} of the participant {1}".format(colIndex, participant_id))
-                        val = int(val)
-                        s.learning_self_assessment_data.append(val)
-
-                    # Demographic survey
-                    s.demographic_data['age'] = row[COLNUM_AGE]
-                    s.demographic_data['gender'] = row[COLNUM_GENDER]
-                    s.demographic_data['education'] = row[COLNUM_EDUCATION]
-                    s.demographic_data['major'] = row[COLNUM_MAJOR]
-                    s.demographic_data['employerType'] = row[COLNUM_EMPLOYER_TYPE]
-
-                    # Prior experience survey
-                    s.prior_experience_data['satelliteDesign'] = dict()
-                    s.prior_experience_data['dataMining'] = dict()
-                    s.prior_experience_data['tradespaceExploration'] = dict()
-
-                    for j in range(NUM_PRIOR_EXPERIENCE_QUESTION):
-                        val = row[COLNUM_PRIOR_EXPERIENCE + j]
-                        if val == '':
-                            val = 0
-                        else:
-                            val = int(val)
-
-                        if j == 0:
-                            s.prior_experience_data['satelliteDesign']['exposure'] = val
-                        elif j == 1:
-                            s.prior_experience_data['satelliteDesign']['experience'] = val
-                        elif j == 2:
-                            s.prior_experience_data['satelliteDesign']['years'] = val
-                        elif j == 3:
-                            s.prior_experience_data['satelliteDesign']['earthObservation'] = val
-                        elif j == 4:
-                            s.prior_experience_data['satelliteDesign']['remoteSensing'] = val
-                        elif j == 5:
-                            s.prior_experience_data['dataMining']['exposure'] = val
-                        elif j == 6:
-                            s.prior_experience_data['dataMining']['experience'] = val
-                        elif j == 7:
-                            s.prior_experience_data['dataMining']['years'] = val
-                        elif j == 8:
-                            s.prior_experience_data['dataMining']['binaryClassification'] = val
-                        elif j == 9:
-                            s.prior_experience_data['tradespaceExploration']['exposure'] = val
-                        elif j == 10:
-                            s.prior_experience_data['tradespaceExploration']['experience'] = val
-                        elif j == 11:
-                            s.prior_experience_data['tradespaceExploration']['years'] = val
-
+                    self.importProblemsetAnswers(row, s)
+                    self.importFeaturePreferenceSurvey(row, s);
+                    self.importSelfAssessmentOfLearning(row, s);
+                    self.importDemographicSurvey(row, s);
+                    self.importPriorExperienceSurvey(row, s);
                     self.subjects.append(s)
+
+
+    def importProblemsetAnswers(self, inputRowData, subject):
+        feature_classification_answer = []
+        feature_classification_confidence = []
+        feature_comparison_answer = []
+        feature_comparison_confidence = []
+        design_classification_answer = []
+        design_classification_confidence = []
+        design_comparison_answer = []
+        design_comparison_confidence = []
+
+        for j in range(NUM_FEATURE_CL_QUESTION * 2):
+            val = inputRowData[COLNUM_FEATURE_CL_QUESTION + j]
+            if val == '':
+                raise ValueError()
+            val = int(val)
+
+            if j % 2 == 0:
+                feature_classification_answer.append(val)
+            else:
+                feature_classification_confidence.append(val)
+
+        for j in range(NUM_FEATURE_PWC_QUESTION * 2):
+            val = inputRowData[COLNUM_FEATURE_PWC_QUESTION + j]
+            if val == '':
+                raise ValueError()
+            val = int(val)
+
+            if j % 2 == 0:
+                feature_comparison_answer.append(val)
+            else:
+                feature_comparison_confidence.append(val)
+
+        for j in range(NUM_DESIGN_CL_QUESTION * 2):
+            val = inputRowData[COLNUM_DESIGN_CL_QUESTION + j]
+            if val == '':
+                raise ValueError()
+            val = int(val)
+
+            if j % 2 == 0:
+                design_classification_answer.append(val)
+            else:
+                design_classification_confidence.append(val)
+
+        for j in range(NUM_DESIGN_PWC_QUESTION * 2):
+            val = inputRowData[COLNUM_DESIGN_PWC_QUESTION + j]
+            if val == '':
+                raise ValueError()
+            val = int(val)
+
+            if j % 2 == 0:
+                design_comparison_answer.append(val)
+            else:
+                design_comparison_confidence.append(val)
+
+        subject.feature_classification_answer = feature_classification_answer
+        subject.feature_classification_confidence = feature_classification_confidence
+        subject.feature_comparison_answer = feature_comparison_answer
+        subject.feature_comparison_confidence = feature_comparison_confidence
+        subject.design_classification_answer = design_classification_answer
+        subject.design_classification_confidence = design_classification_confidence
+        subject.design_comparison_answer = design_comparison_answer
+        subject.design_comparison_confidence = design_comparison_confidence
+
+    def importFeaturePreferenceSurvey(self, inputRowData, subject):
+        # Feature preference survey
+        temp = []
+        for j in range(NUM_FEATURE_PREFERENCE):
+            val = inputRowData[COLNUM_FEATURE_PREFERENCE + j]
+            if val == '':
+                raise ValueError()
+            val = int(val)
+
+            if j == 3:
+                subject.feature_preference_data['generalization'] = temp
+                temp = []
+            elif j == 5:
+                subject.feature_preference_data['generalizationPlusException'] = temp
+                temp = []
+            temp.append(val)
+        subject.feature_preference_data['parity'] = temp
+
+    def importSelfAssessmentOfLearning(self, inputRowData, subject):
+        # Self assessment of learning
+        for j in range(NUM_SELF_ASSESSMENT):
+            val = inputRowData[COLNUM_SELF_ASSESSMENT + j]
+            if val == '':
+                colIndex = COLNUM_SELF_ASSESSMENT + j
+                raise ValueError("Empty value: column {0} of the participant {1}".format(colIndex, participant_id))
+            val = int(val)
+            subject.learning_self_assessment_data.append(val)
+
+    def importDemographicSurvey(self, inputRowData, subject):
+        # Demographic survey
+        subject.demographic_data['age'] = int(inputRowData[COLNUM_AGE])
+        subject.demographic_data['gender'] = int(inputRowData[COLNUM_GENDER])
+        subject.demographic_data['education'] = int(inputRowData[COLNUM_EDUCATION])
+        subject.demographic_data['major'] = inputRowData[COLNUM_MAJOR]
+        subject.demographic_data['employerType'] = inputRowData[COLNUM_EMPLOYER_TYPE]
+
+    def importPriorExperienceSurvey(self, inputRowData, subject):
+        # Prior experience survey
+        subject.prior_experience_data['satelliteDesign'] = dict()
+        subject.prior_experience_data['dataMining'] = dict()
+        subject.prior_experience_data['tradespaceExploration'] = dict()
+
+        for j in range(NUM_PRIOR_EXPERIENCE_QUESTION):
+            val = inputRowData[COLNUM_PRIOR_EXPERIENCE + j]
+            if val == '':
+                val = 0
+            else:
+                val = int(val)
+
+            if j == 0:
+                subject.prior_experience_data['satelliteDesign']['exposure'] = val
+            elif j == 1:
+                subject.prior_experience_data['satelliteDesign']['experience'] = val
+            elif j == 2:
+                subject.prior_experience_data['satelliteDesign']['years'] = val
+            elif j == 3:
+                subject.prior_experience_data['satelliteDesign']['earthObservation'] = val
+            elif j == 4:
+                subject.prior_experience_data['satelliteDesign']['remoteSensing'] = val
+            elif j == 5:
+                subject.prior_experience_data['dataMining']['exposure'] = val
+            elif j == 6:
+                subject.prior_experience_data['dataMining']['experience'] = val
+            elif j == 7:
+                subject.prior_experience_data['dataMining']['years'] = val
+            elif j == 8:
+                subject.prior_experience_data['dataMining']['binaryClassification'] = val
+            elif j == 9:
+                subject.prior_experience_data['tradespaceExploration']['exposure'] = val
+            elif j == 10:
+                subject.prior_experience_data['tradespaceExploration']['experience'] = val
+            elif j == 11:
+                subject.prior_experience_data['tradespaceExploration']['years'] = val
+
 
     def gradeAnswers(self, confidenceThreshold=None):
         for s in self.subjects:
@@ -213,7 +223,6 @@ class ResultAnalyzer():
                 for s in subjects:
                     if s.condition == condition:
                         out.append(s)
-
         return out
 
 
@@ -247,15 +256,6 @@ class ResultAnalyzer():
     #     return out
 
 
-    # def getSTEMMajors(self, subjects):
-    #     out = []
-    #     for subj in subjects:
-    #         if subj.major == "13":   
-    #             pass
-    #         else:
-    #             out.append(subj)  
-    #     return out
-    
     # def filterByDemographics(self, STEM=False, NonSTEM=False, prior_experience=False, SYSEN5400 = False, NoSYSEN5400 = False):
     #     out = self.results
     #     if STEM:
