@@ -37,12 +37,10 @@ class Subject():
         self.feature_preference_data = dict()
 
         # Self-assessment of learning
-        self.learning_self_assessment_data = dict()
+        self.learning_self_assessment_data = []
 
         # Demographic info
-        self.age = None
-        self.gender = None
-        self.major = None
+        self.demographic_data = dict()
         self.prior_experience_data = dict()
 
         # Read JSON files
