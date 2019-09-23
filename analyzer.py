@@ -156,14 +156,65 @@ class ResultAnalyzer():
                 raise ValueError("Empty value: column {0} of the participant {1}".format(colIndex, participant_id))
             val = int(val)
             subject.learning_self_assessment_data.append(val)
+            
+
 
     def importDemographicSurvey(self, inputRowData, subject):
         # Demographic survey
         subject.demographic_data['age'] = int(inputRowData[COLNUM_AGE])
         subject.demographic_data['gender'] = int(inputRowData[COLNUM_GENDER])
         subject.demographic_data['education'] = int(inputRowData[COLNUM_EDUCATION])
-        subject.demographic_data['major'] = inputRowData[COLNUM_MAJOR]
+                      
+        def majorDemographicString(major): 
+            switcher = {  
+                1: "Aerospace Engineering", 
+                2: "Biological / Agricultural / Biomedial Engineering", 
+                3: "Chemical Engineering",
+                4: "Civil / Environmental Engineering",
+                5: "Computer Science / Information Science",
+                6: "Electrical Engineering",
+                7: "Industrial / Systems Engineering",
+                8: "Mechanical Engineering",
+                9: "Mathematics / Statistics",
+                10: "Physics",
+                11: "Chemistry",
+                12: "Biological Science",
+                13: "Other",
+            } 
+
+            return switcher.get(major, "nothing")
+              
+        subject.demographic_data['major']=inputRowData[COLNUM_MAJOR]
+        major0=subject.demographic_data['major']
+        majorIntList=[int(i) for i in major0.split(',')]
+        majorStringList=majorIntList
+        for w in range(len(majorIntList)):
+            majorStringList[w]=majorDemographicString(majorIntList[w]) 
+            
+        concatMajor=', '.join(majorStringList)
+        subject.demographic_data['major']=concatMajor
+        
+        
+        def employerTypeDemographicString(argument): 
+            switcher = {  
+                1: "For profit", 
+                2: "Non-profit (non-profit research organization, government contractor, etc.)", 
+                3: "Government",
+                4: "Academic institution",
+                5: "Other",
+            } 
+
+            return switcher.get(argument, "nothing") 
+        
         subject.demographic_data['employerType'] = inputRowData[COLNUM_EMPLOYER_TYPE]
+        employer0=subject.demographic_data['employerType']
+        employerIntList=[int(i) for i in employer0.split(',')]
+        employerStringList=employerIntList
+        for w in range(len(employerIntList)):
+            employerStringList[w]=employerTypeDemographicString(employerIntList[w]) 
+            
+        concatEmployer=', '.join(employerStringList)
+        subject.demographic_data['employerType']=concatEmployer
 
     def importPriorExperienceSurvey(self, inputRowData, subject):
         # Prior experience survey
