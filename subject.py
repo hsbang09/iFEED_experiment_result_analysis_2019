@@ -74,7 +74,9 @@ class Subject():
         dirname = os.path.join(self.jsonFilesRootPath, self.participant_id)
 
         if not os.path.isdir(dirname):
-            raise OSError("Directory not found: {0}".format(dirname))
+            print("Failed to load the JSON file - directory not found: {0}".format(dirname))
+            return
+            # raise OSError("Directory not found: {0}".format(dirname))
 
         jsonFiles = [os.path.join(dirname, f) for f in os.listdir(dirname) if os.path.isfile(os.path.join(dirname, f)) and f.endswith(".json")]
 
@@ -111,3 +113,6 @@ class Subject():
                 except:
                     print("Exception while reading: {0}".format(filename))
                     traceback.print_exc()
+
+    def countFeatureParity(self, positive=True):
+        return self.grader.countFeatureParity(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, positive=positive)

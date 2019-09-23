@@ -4,6 +4,10 @@ FEATURE_PWC_QUESTION_ANSWER = [1, 0, 1, 0, 1, 1, 1, 0, 0]
 DESIGN_CL_QUESTION_ANSWER = [1, 0, 0, 1, 1, 0, 1, 0, 1]
 DESIGN_PWC_QUESTION_ANSWER = [1, 0, 0, 1, 1, 0, 0, 0, 1]
 
+FEATURE_CL_PARITY = [1, 0, 0, 1, 1, 0, 0, 0, 1] # positive - 1, negative - 0
+FEATURE_PWC_PARITY = [0, 1, 0, 1, 1, 0, 1, 1, 0] # positive - 1, negative - 0
+
+
 class Grader():
     def __init__(self, confidenceThreshold=None):
         self.confidenceThreshold = confidenceThreshold
@@ -11,7 +15,7 @@ class Grader():
     def setConfidenceThreshold(self, confidenceThreshold):
         self.confidenceThreshold = confidenceThreshold
 
-    def gradeAnswers(self, problemTopic, problemType, answers, confidence=None):
+    def gradeAnswers(self, problemTopic, problemType, answers, confidence=None, parity=False):
         """Grades the answers and outputs the total score in %, 
         and the list containing 1 or 0's indicating whether each answer was right or wrong.
 
@@ -86,3 +90,46 @@ class Grader():
 
         score = round(total / len(graded), 2)
         return score, graded
+
+    def countFeatureParity(self, featureGradedCL, featureGradedPWC, positive=True):
+        graded = []
+        for i in range(len(featureGradedCL)):
+            problemParityPositive = None
+            if FEATURE_CL_QUESTION_ANSWER[i] == 1:
+                if FEATURE_CL_PARITY[i] == 1: # Paritiy is positive and the correct answer is True
+                    problemParityPositive = True 
+                else: # Paritiy is positive and the correct answer is False
+                    problemParityPositive = False 
+            else:
+                if FEATURE_CL_PARITY[i] == 1: # Paritiy is negative and the correct answer is True
+                    problemParityPositive = False 
+                else: # Paritiy is positive and the correct answer is False
+                    problemParityPositive = True 
+        
+            if positive == problemParityPositive:
+                if featureGradedCL[i] == 1: # Correctly answered the question
+                    graded.append(1)
+                else:
+                    graded.append(0)
+
+        for i in range(len(featureGradedPWC)):
+            problemParityPositive = None
+            if FEATURE_PWC_PARITY[i] == 1:
+                problemParityPositive = True
+            else:
+                problemParityPositive = False
+        
+            if positive == problemParityPositive:
+                if featureGradedPWC[i] == 1: # Correctly answered the question
+                    graded.append(1)
+                else:
+                    graded.append(0)
+
+        total = 0
+        for g in graded:
+            if g == 1:
+                total += 1
+
+        score = round(total / len(graded), 2)
+        return score, graded
+
