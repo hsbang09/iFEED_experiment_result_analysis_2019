@@ -9,13 +9,10 @@ FEATURE_PWC_PARITY = [0, 1, 0, 1, 1, 0, 1, 1, 0] # positive - 1, negative - 0
 
 
 class Grader():
-    def __init__(self, confidenceThreshold=None):
-        self.confidenceThreshold = confidenceThreshold
+    def __init__(self):
+        pass
 
-    def setConfidenceThreshold(self, confidenceThreshold):
-        self.confidenceThreshold = confidenceThreshold
-
-    def gradeAnswers(self, problemTopic, problemType, answers, confidence=None, parity=False):
+    def gradeAnswers(self, problemTopic, problemType, answers, confidence=None, parity=False, confidenceThreshold=None):
         """Grades the answers and outputs the total score in %, 
         and the list containing 1 or 0's indicating whether each answer was right or wrong.
 
@@ -46,8 +43,8 @@ class Grader():
         if problemType == "classification":
             for i in range(len(answers)):
 
-                if self.confidenceThreshold is not None:
-                    if confidence[i] < self.confidenceThreshold: # Failed to pass confidence level test
+                if confidenceThreshold is not None:
+                    if confidence[i] < confidenceThreshold: # Failed to pass confidence level test
                         graded.append(0) # Mark the answer wrong without checking the answer
                         continue
 
@@ -66,8 +63,8 @@ class Grader():
         elif problemType == "comparison":
             for i in range(len(answers)):
 
-                if self.confidenceThreshold is not None:
-                    if confidence[i] < self.confidenceThreshold: # Failed to pass confidence level test
+                if confidenceThreshold is not None:
+                    if confidence[i] < confidenceThreshold: # Failed to pass confidence level test
                         graded.append(0) # Mark the answer wrong without checking the answer
                         continue
 

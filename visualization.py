@@ -11,7 +11,6 @@ import os
 import scipy.stats as st
 
 class Visualizer():
-
     def __init__(self, subjectGroups, subjectGroupNames=None):
         self.subjectGroups = subjectGroups
         self.subjectGroupNames = subjectGroupNames
@@ -59,7 +58,7 @@ class Visualizer():
             self.subjectGroupNames = ['group_{0}'.format(i) for i in range(len(self.subjectGroups))]
 
         if markers is None:
-            markers = ['o','^','2']
+            markers = ['o','^','d']
 
         ax = None
         for i, group in enumerate(self.subjectGroups):
