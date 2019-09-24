@@ -67,8 +67,8 @@ class Subject():
         self.design_comparison_score, self.design_comparison_graded_answers = self.grader.gradeAnswers("design", "comparison", self.design_comparison_answer, self.design_comparison_confidence)
 
     def printScoreSummary(self):
-        print("Subject: {0} - Fcl: {1}, Fpwc: {2}, Dcl: {3}, Dpwc: {4}".format(self.participant_id, self.feature_classification_score, self.feature_comparison_score, self.design_classification_score, self.design_comparison_score))
-
+        print("Subject: {0} - condition: {1}".format(self.participant_id, self.condition))
+        print("Fcl: {0}, Fpwc: {1}, Dcl: {2}, Dpwc: {3}".format(self.feature_classification_score, self.feature_comparison_score, self.design_classification_score, self.design_comparison_score))
 
     def readJSONFiles(self):
         dirname = os.path.join(self.jsonFilesRootPath, self.participant_id)
@@ -85,8 +85,14 @@ class Subject():
 
                     if 'treatmentCondition' in data:
                         if self.condition is None:
+                            # Condition 1: Manual - without generalization
+                            # Condition 2: Automated - without generalization
+                            # Condition 3: Interactive - without generalization
+                            # Condition 4: Manual - with generalization
+                            # Condition 5: Automated - with generalization
+                            # Condition 6: Interactive - with generalization
                             self.condition = data['treatmentCondition']
-                    
+
                     if "learning" in os.path.basename(filename):
                         self.learning_task_data = data
 
