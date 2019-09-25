@@ -141,7 +141,7 @@ class ResultAnalyzer():
             if j == 3:
                 subject.feature_preference_data['generalization'] = temp
                 temp = []
-            elif j == 5:
+            elif j == 6:
                 subject.feature_preference_data['generalizationPlusException'] = temp
                 temp = []
             temp.append(val)
@@ -184,8 +184,7 @@ class ResultAnalyzer():
         subject.demographic_data['major'] = inputRowData[COLNUM_MAJOR]
         majorIndexString = subject.demographic_data['major']
         majorStringList = [majorIndex2String(int(i)) for i in majorIndexString.split(',')]
-        concatMajor=', '.join(majorStringList)
-        subject.demographic_data['major']=concatMajor
+        subject.demographic_data['major'] = ', '.join(majorStringList)
         
         def employerTypeIndex2String(argument): 
             switcher = {  
@@ -200,8 +199,7 @@ class ResultAnalyzer():
         subject.demographic_data['employerType'] = inputRowData[COLNUM_EMPLOYER_TYPE]
         employerIndexString = subject.demographic_data['employerType']
         employerStringList = [employerTypeIndex2String(int(i)) for i in employerIndexString.split(',')]
-        concatEmployer = ', '.join(employerStringList)
-        subject.demographic_data['employerType'] = concatEmployer
+        subject.demographic_data['employerType'] = ', '.join(employerStringList)
 
     def importPriorExperienceSurvey(self, inputRowData, subject):
         # Prior experience survey

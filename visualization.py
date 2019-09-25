@@ -53,7 +53,7 @@ class Visualizer():
                                 alpha=alpha, 
                                 returnAxis=returnAxis)
 
-    def featureSynthesisScatter(self, markers=None, figsize=(13,6), alpha=1.0):
+    def featureSynthesisScatter(self, useLearningTaskData=False, markers=None, figsize=(13,6), alpha=1.0):
         if self.subjectGroupNames is None:
             self.subjectGroupNames = ['group_{0}'.format(i) for i in range(len(self.subjectGroups))]
 
@@ -68,7 +68,10 @@ class Visualizer():
             for subject in group:
                 participantId = subject.participant_id
 
-                features = subject.feature_synthesis_task_data['features_found']
+                if useLearningTaskData:
+                    features = subject.learning_task_data['features_found']
+                else:
+                    features = subject.feature_synthesis_task_data['features_found']
                 precisions = []
                 recalls = []
                 for j, f in enumerate(features):

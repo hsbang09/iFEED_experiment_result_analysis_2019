@@ -92,7 +92,7 @@ class Subject():
                             # Condition 6: Interactive - with generalization
                             self.condition = data['treatmentCondition']
 
-                    if "learning" in os.path.basename(filename):
+                    if "learning" in os.path.basename(filename) and "conceptMap" not in os.path.basename(filename):
                         self.learning_task_data = data
 
                     elif "feature_synthesis" in os.path.basename(filename):
