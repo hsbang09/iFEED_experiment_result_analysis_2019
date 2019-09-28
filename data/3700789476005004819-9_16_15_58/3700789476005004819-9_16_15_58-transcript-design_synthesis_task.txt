@@ -1,0 +1,39 @@
+[START]
+
+Ok.. usually, SAR_ALTIM is somewhere. Let's see if I'm right.
+
+Ok.. so it's moving well. Let's put more. 
+
+... I like it here... better..
+
+
+Ok.. let me look at what I had here.
+
+AERO_LID... and... ok... it should fly low.
+
+
+
+...
+
+
+Basically what I'm doing here is design of experiment.
+
+I'm trying to add instruments and trying to get as close as possible to the blue region.
+
+If I have an instruments that brings to right, I will keep it here.
+
+And I'm just doing experiments. And I'm trying to learn by experiment.
+
+I don't have enough information myself to make it a real exercise where I am thinking the physics of the problem, I would say.
+
+I'm just looking at the labels and I'm just playing. And see what brings me better science.
+
+Some point I'm going to try to be more systematic in the way I do this. Now it's now more of really a.. let's play and see.
+
+Oh.. that is a nice one.
+
+I will start with this thing here.
+
+
+
+[END]

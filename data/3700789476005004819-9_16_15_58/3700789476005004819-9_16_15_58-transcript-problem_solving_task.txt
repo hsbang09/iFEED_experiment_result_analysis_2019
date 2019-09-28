@@ -1,0 +1,109 @@
+
+[F_cl_1]
+I think so...
+
+[F_cl_2]
+Honestly, I don't, in this case, I'm not referring to tradespace, and referring to what I know. 
+
+[F_cl_3]
+[inaudible] ...
+
+[F_cl_4]
+Yes that is true, I remember that.
+
+[F_cl_5]
+Yes, correct...
+
+[F_cl_6]
+This one, I don't know. I'm going to guess.
+
+[F_cl_7]
+No I remember that SAR_ALTIM was always on its own. But I don't remeber the orbit honestly. Well, I think it's false but not really confident.
+
+[F_cl_8]
+I don't know...
+
+[F_cl_9]
+[inaudible] I think [inaudible]
+
+[F_pwc_1]
+I think it's this one.
+
+[F_pwc_2]
+I have really no insight on this SSO-600-DD, it didn't come to my radar, so I really don't know.
+
+[F_pwc_3]
+Let's see this can help. So these are classes. These are radars. These are lidars. I'm looking at the text. Ok. This one.
+
+[F_pwc_4]
+I don't have the information, I think.
+
+[F_pwc_5]
+This one's quite clear.
+
+[F_pwc_6]
+This one I'm not sure.
+
+[F_pwc_7]
+I'm not sure why I didn't get this.
+
+[F_pwc_8]
+Again (not sure)
+
+[F_pwc_9]
+Don't have that information
+
+[D_cl_1]
+Yes I think it is. It's a big one, middle one, and small one.
+
+[D_cl_2]
+Ah... no. This is no because SAR is always alone.
+
+[D_cl_3]
+This one I really don't know.
+
+[D_cl_4]
+Yeah I think this one is.
+
+[D_cl_5]
+Yes. SAR_ALTIM is alone
+
+[D_cl_6]
+Ah... No.
+
+[D_cl_7]
+I'm using SAR_ALTIM as a reference here.
+
+[D_cl_8]
+...
+
+[D_cl_9]
+No, it seems to be too many instruments.
+
+[D_pwc_1]
+I think this is closer.
+
+[D_pwc_2]
+This one.
+
+[D_pwc_3]
+...
+
+[D_pwc_4]
+...
+
+[D_pwc_5]
+...
+
+[D_pwc_6]
+...
+
+[D_pwc_7]
+...
+
+[D_pwc_8]
+...
+
+[D_pwc_9]
+...
+

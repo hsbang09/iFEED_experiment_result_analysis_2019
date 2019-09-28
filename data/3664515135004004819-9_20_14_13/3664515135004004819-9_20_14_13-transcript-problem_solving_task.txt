@@ -1,0 +1,111 @@
+
+[F_cl_1]
+So AERO_POL and HIRES_SOUND...So I'm not sure. So I just click one of the option and say confidence of 0.
+
+[F_cl_2]
+...
+
+[F_cl_3]
+I think this is False... because SWIRSPEC is both visible and nocturnal (?), so it can be used both day and night. So I'll put the confidence level of 15.
+
+[F_cl_4]
+I'm not confident about this one... 
+
+[F_cl_5]
+I think this is true. Because dawn and dusk generate more power for the satellite.
+
+[F_cl_6]
+I think this is false. I think almost all the orbits had some satellites.
+
+[F_cl_7]
+I'm not sure of this...
+
+[F_cl_8]
+I'm not sure...
+
+[F_cl_9]
+I think I oberved most of the instrument - vegetation - to be in 600km, but not sure if it was INSAR or the other type of the vegetation instrument.
+
+[F_pwc_1]
+I'm not sure.
+
+[F_pwc_2]
+I think it's the first one.. but not 100% confident.
+
+[F_pwc_3]
+I think uh... lidars and radars should not be assigned to the same orbit. But I did not oberved it within this tutorial. So I will put it at... less confidence.
+
+[F_pwc_4]
+So I do not think chemistry instruments are assigned together in the same orbit. Perhaps, topography instruments may be assigned together. So it may be the second option.
+
+[F_pwc_5]
+So in the target region, I observed a lot of SAR_ALTIM. So I'll put high confidence.
+
+[F_pwc_6]
+I think it's the first option. I think there's correlation between active and high power instruments, so I'm not why those are two separate options.
+
+[F_pwc_7]
+So this suggests that VEG_INSAR is assigned to LEO... it seems both options are correct... wait both are radars, so I think it's the second option. 
+
+[F_pwc_8]
+I saw a lot of vegetation instruments.. but not sure about which orbit they were in.
+
+[F_pwc_9]
+I think it's the first one. But this is based on my prior experience.
+
+[D_cl_1]
+I think so, yes, because there is less number of orbits in this. Hence the cost is low. 
+
+[D_cl_2]
+I do not think so, because I did not see many architectures in the target region which had seven instruments. So uh... but there were a few architectures which had 7 instruments.
+
+[D_cl_3]
+I think this is also true. This is in the target region, because I don't see multiple types... multiple instruments of the same type in the architecture. So I think this is a good architecture.
+
+[D_cl_4]
+So in this case, we have six instruments in one of the orbits. And uh... it looks good, because the SAR instruments are not in the SSO, and uh... one less satellite. So this has uh... less cost.. in this particular architecture.
+
+[D_cl_5]
+So this has total of 6 instruments. So I'm not sure if the science value from this architecture is high enough for it to be in the target region.
+
+[D_cl_6]
+We have two HIRES_SOUND instruments in the architecutre, but in different orbits. Maybe there is a reason why one is DD and one is in PM. So um.. this may be in the target region but my confidence is low.
+
+[D_cl_7]
+So in this case there are 9 instruments. But we have 3 UVSPEC. So I think this is not in the target region. Because I think the science value is not so high.
+
+[D_cl_8]
+So in this case, we have uh... I think this has a high science value. But we have two UVSPEC, one in SSO and another in LEO. And we have two HYP_IMAG. So I'm not sure if it is ok to have these three instruments in the non-SSO orbit. So, I will vote this is not in the target region.
+
+[D_cl_9]
+So this has a about... a large number of instruments. And I think... uh... the science value for this will be high, but so would be the cost. And uh... I see at least 3 UVSPEC in this architecutre, and 2 HYP_IMAG, so I do not think this is in the target region. But with relatively low confidence, because the science value is still high for this architecture. 
+
+[D_pwc_1]
+So in this case, I think uh... one uses 3 orbits, and another uses 4 orbits. The total number of instruments is both 7 or 8. So the first option has more number of instruments. And let me look on the type of... repeated number of instruments. So the first option, we have two, polarimeters. So I think the second option is more close, even though it has more number of satellites.
+
+[D_pwc_2]
+So in this case, we have one satellite with 5 instruments, and we have three satellites in the first architecture, but 4 satellites in the second architecture. So I think the second architecture has more... repeated number of AERO_POL. Three of them. So I think the first architecture is closer to the target region.
+
+[D_pwc_3]
+So in this case, we have a large number of orbits and satellites for the first option. So the cost would be high for the first option. But it seems the science value to be high. Because there's almost all of ... uh different types of instruments. There are a couple of repeated instrument. So in the second option, there is one repeated instrument. But just four satellites, so cost will be low. And in the first option, there is no SAR... radar instrument it seems. Oh ok, there is one altimeter here. But i think the second option is better.
+
+[D_pwc_4]
+Both are the same number of satellites. The second one has a SAR_ALTIM in sun-synchronous orbit, which I don't think is normal. For the number of instruments, we have 8, and then the second option we have 7 instruments.  Uh... same number of orbits. I think the first option is better, because it has... because the second option has two satellites with just one instrument each.  
+
+[D_pwc_5]
+In this case, we have two orbits for both cases. So in one case, we have the altimeter, and hyperspectral imaging and vegetation, and in the first case we just have both in the sun-synchronous orbits. So I think the first case is better, because we have the vegetation and HYP_IMAG in sun-synchronous orbit. I think this would deliver more science value. 
+
+[D_pwc_6]
+We have four orbits and three orbits. We have altimeters... we have two altimeters in the first case. So I did not actually see... like 6... this kind of structure in the target region, where one satellite had like 6 instruments. But let me look at them more closely. So we have uh... we have a couple of UV_SPECs here. So I think the second option is better, because it has the hyper... yeah because in the first option we have two UV spectrometers. Um... and the first option has like four satellites, so cost is more. 
+
+[D_pwc_7]
+So in this case, we have uh... 8 instruments... and 9 intruments in the second case. So I think the second case is both high cost and high benefit, because it has more number of satellites. And in the first case, we have CHEM_UVSPEC [inaudible]. And uh... hyper spectral... so this has more number of instruments in one satellite too. But I think in the target region I saw more of ... uh ... even distribution of the instruments among the satellites.
+
+[D_pwc_8]
+So here we have four orbits and three orbits. And we have OCE_SPEC in LEO both of them. We have CHEM_UVSPEC. So in this case, like this... sort of... one satellite has large number of instruments. But I'm not so confident of the answers. Because both of them have different types of instruments, which are not repeated in the architecture. 
+
+[D_pwc_9]
+So in this case, we have 4 instruments both of them. But in the second case, it is uh... just two orbits, but one type is repeated. But in the first case, there are 3 orbits. So I think the first case falls in the target region, because I think the second case doesn't give sufficient science value.
+
+
+

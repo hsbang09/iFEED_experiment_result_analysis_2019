@@ -1,0 +1,12 @@
+[START]
+
+So what I'm seeing here is the pareto front and the few other architectures, two or three solutions I guess.
+
+Umm.. I can inspect some of these here and see if there something that appears a lot.
+
+And what I see is that most of the designs on the pareto front have all the instrument in 800 PM orbit.
+
+
+
+
+[END]

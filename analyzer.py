@@ -38,10 +38,10 @@ NUM_PRIOR_EXPERIENCE_QUESTION = 12
 
 
 class ResultAnalyzer():    
-    def __init__(self, surveyDataFilePath, jsonFilesRootPath, confidenceThreshold=None):
+    def __init__(self, surveyDataFilePath, loggedDataRootPath, confidenceThreshold=None):
         self.subjects = []
         self.surveyDataFilePath = surveyDataFilePath
-        self.jsonFilesRootPath = jsonFilesRootPath
+        self.loggedDataRootPath = loggedDataRootPath
         self.loadDataSet()
 
     def loadDataSet(self):
@@ -57,12 +57,14 @@ class ResultAnalyzer():
                     participant_id = row[COLNUM_PARTICIPANT_ID]
 
                     # Create new subject instance
-                    s = Subject(self.jsonFilesRootPath, participant_id)
+                    s = Subject(participant_id)
                     self.importProblemsetAnswers(row, s)
-                    self.importFeaturePreferenceSurvey(row, s);
-                    self.importSelfAssessmentOfLearning(row, s);
-                    self.importDemographicSurvey(row, s);
-                    self.importPriorExperienceSurvey(row, s);
+                    self.importFeaturePreferenceSurvey(row, s)
+                    self.importSelfAssessmentOfLearning(row, s)
+                    self.importDemographicSurvey(row, s)
+                    self.importPriorExperienceSurvey(row, s)
+                    self.importJSONFiles(s)
+                    self.importTranscriptFiles(s)
                     self.subjects.append(s)
 
 
@@ -239,6 +241,141 @@ class ResultAnalyzer():
             elif j == 11:
                 subject.prior_experience_data['tradespaceExploration']['years'] = val
 
+    def importJSONFiles(self, subject):
+        dirname = os.path.join(self.loggedDataRootPath, subject.participant_id)
+
+        if not os.path.isdir(dirname):
+            print("Failed to load JSON file - directory not found: {0}".format(dirname))
+            return
+
+        jsonFiles = [os.path.join(dirname, f) for f in os.listdir(dirname) if os.path.isfile(os.path.join(dirname, f)) and f.endswith(".json")]
+
+        for filename in jsonFiles:
+            with open(filename, newline='') as file:
+                try:
+                    data = json.loads(file.read())
+
+                    if 'treatmentCondition' in data:
+                        if subject.condition is None:
+                            # Condition 1: Manual - without generalization
+                            # Condition 2: Automated - without generalization
+                            # Condition 3: Interactive - without generalization
+                            # Condition 4: Manual - with generalization
+                            # Condition 5: Automated - with generalization
+                            # Condition 6: Interactive - with generalization
+                            subject.condition = data['treatmentCondition']
+
+                    if "learning" in os.path.basename(filename) and "conceptMap" not in os.path.basename(filename):
+                        subject.learning_task_data = data
+
+                    elif "feature_synthesis" in os.path.basename(filename):
+                        subject.feature_synthesis_task_data = data
+
+                    elif "design_synthesis" in os.path.basename(filename):
+                        subject.design_synthesis_task_data = data
+
+                    elif "conceptMap-prior" in os.path.basename(filename):
+                        subject.cmap_prior_data = data
+
+                    elif "conceptMap-learning" in os.path.basename(filename):
+                        subject.cmap_learning_data = data
+
+                except:
+                    print("Exception while reading: {0}".format(filename))
+                    traceback.print_exc()
+
+    def importTranscriptFiles(self, subject):
+        dirname = os.path.join(self.loggedDataRootPath, subject.participant_id)
+
+        if not os.path.isdir(dirname):
+            print("Failed to load transcript file - directory not found: {0}".format(dirname))
+            return
+
+        transcriptFiles = [os.path.join(dirname, f) for f in os.listdir(dirname) if os.path.isfile(os.path.join(dirname, f)) and f.endswith(".txt") and "transcript" in f]
+
+        for filename in transcriptFiles:
+            with open(filename, newline='') as file:
+                try:
+                    content = file.read()
+                    if "problem_solving_task" in filename:
+                        subject.transcript_problem_solving = self.parseTranscript("problem_solving_task", content)
+
+                    elif "survey" in filename:
+                        subject.transcript_survey = self.parseTranscript("survey", content)
+
+                except:
+                    print("Failed to load transcript file: {0}".format(filename))
+                    traceback.print_exc()
+                    
+    def parseTranscript(self, type, content):
+        out = dict()
+        contentLines = content.split("\n")
+
+        if type == "problem_solving_task":
+            problemTopic = ["F", "D"]
+            problemType = ["cl", "pwc"]
+            problemNum = 9
+
+            for pTopic in problemTopic:
+                for pType in problemType:
+                    for i in range(problemNum):
+                        problemKey = "_".join([pTopic, pType, str(i+1)])
+
+                        recordContent = False
+                        problemSpecificContent = []
+                        for line in contentLines:
+                            if problemKey in line:
+                                recordContent = True
+                                continue
+
+                            if recordContent:
+                                if "[F_" in line or "[D_" in line:
+                                    recordContent = False
+                                    break
+                                else:
+                                    if not line.strip():
+                                        # Empty space
+                                        pass
+                                    else:
+                                        problemSpecificContent.append(line)
+
+                        out[problemKey] = "\n".join(problemSpecificContent)
+
+        elif type == "survey":
+            surveyQuestionNum = 9
+            for i in range(surveyQuestionNum):
+
+                questionKey = "[{0}]".format(str(i+1))
+                nextQuestionKey = "[{0}]".format(str(i+2))
+                recordContent = False
+                questionSpecificContent = []
+
+                for line in contentLines:
+                    if questionKey in line:
+                        recordContent = True
+                        continue
+
+                    if recordContent:
+                        if nextQuestionKey in line:
+                            recordContent = False
+                            break
+                        else:
+                            if not line.strip():
+                                # Empty space
+                                pass
+                            else:
+                                questionSpecificContent.append(line)
+
+                questionType = None
+                if i < 3:
+                    questionType = "gen"
+                elif i < 6:
+                    questionType = "gpe"
+                elif i < 9:
+                    questionType = "par"
+                out["{0}_{1}".format(str(i+1), questionType)] = "\n".join(questionSpecificContent)
+
+        return out
 
     def gradeAnswers(self, confidenceThreshold=None):
         for s in self.subjects:
@@ -261,10 +398,46 @@ class ResultAnalyzer():
                         out.append(s)
         return out
 
+    def getComments(self, subjects, type, targetKeyword, displayParticipantID=False, displayKeyword=False):
+        out = []
+        if type == "problem_solving_task":
+            for s in subjects:
+                if s.transcript_problem_solving is not None:
+                    for key in s.transcript_problem_solving:
+                        if targetKeyword in key:
 
+                            message = ""
+                            if displayParticipantID or displayKeyword:
+                                identifier = []
+                                if displayParticipantID:
+                                    identifier.append(s.participant_id)
+                                if displayKeyword:
+                                    identifier.append(key)
+                                identifier = ":".join(identifier)
+                                message = "[{0}] ".format(identifier)
 
+                            message = message + s.transcript_problem_solving[key]
+                            out.append(message)
 
+        elif type == "survey":
+            for s in subjects:
+                if s.transcript_survey is not None:
+                    for key in s.transcript_survey:
+                        if targetKeyword in key:
 
+                            message = ""
+                            if displayParticipantID or displayKeyword:
+                                identifier = []
+                                if displayParticipantID:
+                                    identifier.append(s.participant_id)
+                                if displayKeyword:
+                                    identifier.append(key)
+                                identifier = ":".join(identifier)
+                                message = "[{0}] ".format(identifier)
+
+                            message = message + s.transcript_survey[key]
+                            out.append(message)
+        return out
 
 
     # def getConfidenceData(self, subjects=None, problem_type="design", condition_number=None, task_number=None, count_only_correct_answer=False, exclude_first_task=False):   

@@ -1,0 +1,52 @@
+
+[START]
+
+I need to create features, so...
+
+So I think in terms of number of orbits, I think I missed the number of orbits before.
+
+So the number of orbits I think... uh... in the target region were considerably less.
+
+So this gave a point... so this is not the case. Oh five is the maximum.
+
+So this region of [inaudible] average...
+
+So this has again low specificity. Same like before.
+
+So I saw a lot of uh... I think I saw a couple of vegetation insruments together in the LEO orbit.
+
+So let me... try to specify ... LEO polar...
+
+[Participant asks the experimenter what emptyOrbit means] 
+
+Ok.. that is not what I want to do.
+
+One of the orbits in the target region was not used. But I'm not sure which orbit it was. 
+
+So I'm trying to... uh... 
+
+Ok so this point... this maybe the orbit.
+
+I will try to specify a condition on one instrument which must be used.
+
+So I think a... I did see the CHEM_UVSPEC. 
+
+Ok so this did improve the specificity, but coverage is low.
+
+I think maybe... 
+
+[Experiment lets the participant know tha numOrbits[4] means the number of orbits is exactly 4]
+
+I want to put many OR, and then put AND condition.
+
+Ok let me add...  let me add one more...
+
+Ok so this I think specifies the number of orbits 1 to 4, and ...
+
+Let me go to the best case... so this is... hmm
+
+I'll try something different. Hmm.. number of instruments. 
+
+I think there must be a minimum of 5 instruments. And maximum of 20 instruments.
+
+[END]

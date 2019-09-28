@@ -1,0 +1,122 @@
+
+[START]
+
+Ok so you want me to find a feature.
+
+Maximize both coverage and specificity. So it's probably somewhere here.
+
+Hmm... let me do... hmm... view task goal... shared by at least 70% of the target designs... ok
+
+So it's probably this region. No? Cause we are trying to find the best compromise? I understand? 
+
+So you want [inaudible] more ... [inaudible]? The goal?
+
+So you want coverage of 0.7 or higher. Maximizes both coverage and specificity.
+
+Ok so you wanted to be more than 0.7 and maximizes specificity... somewhere here. This guy. Probably.
+
+I'm not talking about the tradespace here. This is very relevant, but it's more relevant here. So you want to have at least 0.7 and you want to maximize the specificity. This guy. This is it?
+
+[Participant asks about the task and the experimenter explains that he is supposed to find features and try to learn information from them]
+
+Ok so I think what this is saying is that... um... spacecraft is not in this orbit? ... no... 
+
+Ok so these instruments are not assigned to this orbit, and these instruments are not assigned to sun-synchrnous orbit, and these things are separated because active and passive, in fact... never assigned... ok
+
+These three instruments are assigned to the AM orbit.
+
+And you always have SAR_ALTIM.
+
+[Experiment advises the participant to record the informatiom he learns]
+
+I'm really lost. I'm just copy-pasting this thing, right? So now I need to take a paper and put it back?
+
+[Participant brought out a paper and started writing on it]
+
+...
+
+Now what's clear is this one, because it is simple. So you need SAR_ALTIM. Let me try. Yeah there's always SAR_ALTIM.
+
+Not really, actually. So SAR_ALTIM is very.... seems to be very prominent in architectures with high specificity. 
+
+Ok this is an exception, but generally speaking it seems to be prominent among highly specific features.
+
+Now the other ones are difficult to compare, there are very big features here. And there are 7 features that I should need to compare to others and that's really hard to do. 
+
+For me, cognitively, to hold that information together seems really an impossible task.
+
+I can try to replace bits, like, ok. AERO_LID not in dawn dusk. Um... ok it seems to be a common feature. And also, sun-synchronous... [inaudible]
+
+Then, CPR_RAD doesn't [inaudible]
+
+But there's no way I can do a really comprehensible analysis.
+
+It seems to me, if the goal was to find general insights, it would be much easier for me if the algorithm or the model makes computation for itself, rather than me doing this manually. I don't see the value for this.
+
+It seems to me, it is more of an academic exercise.
+
+Looking at the orbits... I'm looking at the orbits now. The second branch.
+
+It doesn't appear to be anywhere else. Oh here it is...
+
+Done this way, I'm not triggering my engineering reasoning. I'm not triggering my thinking about orbits and instruments and so on. It's really triggering my mnemonic ability to memorize acronyms. 
+
+Ok now I'm looking at SSO-600-AM. Let's see if I find this somewhere else.
+
+So it's really dissociating my engineering reasoning. Now, I'm not specifically an instrument expert, but even if I were, I would not be thinking about specificity of instruments but thinking about data comparison for this task.
+
+Now I'm looking at the third one. CPR_RAD, VEG_LID, and HIRES_SOUND... are never assigned together. So I need to look all of them together. 
+
+Ok is it true for other places? Kind of. Understood.
+
+Ok... I think got the feeling more or less.  
+
+[Experimenter reminds the subject that he can also inspect designs manually]
+
+Ok I'm just looking that out.
+
+You know it's cool, this interface, but I don't feel like it's helping me to understand. Probably because I'm not [inaudible] really specific problem... I'm not coming to this exercise [inaudible] questions to answer. I'm more exploring the data. I don't feel like I'm looking for anything in particular. 
+
+I'm just looking for similarities. Meaning, I don't feel like, I'm not... an Earth observation expert to do this exercise. 
+
+I'm just looking at the names and trying to do mix and match. 
+
+There seems to be always one spacecraft with a lot of instruments, one that is specialized, and one that is a medium thing. 
+
+No if we look at the bad ones. So if we look at the bad ones, so the bad ones are always combining things. 
+
+And the really bad ones, if you go to high science, they pack a lot of instruments together, so there are many [inaudible], but they are expensive.
+
+But if we go on the other hand, there will be very simple sets with very little instruments, and so on. So basically here I'm looking for the best compromises.
+
+And it compromises that they are usually made of one big spacecraft with many instruments. 
+
+Um.. under this separate SAR.
+
+[inaudible] combined with other instruments.
+
+And that's it. Ok so I think learned something new from this, looking at this.
+
+I can see at a glance how number of instruments increasing but cost too... 
+
+[inaudible]
+
+It's interesting that there's a very complex mission here has the same science benefit of mission here, but I don't know why.
+
+I would really love to know, why this guy with so many instruments has the same science benefit of the guy down here. It seems so much simpler. And it's not evident.
+
+Maybe I can look at the features, but I don't know.
+
+I start to see how the features are triggered on the right. 
+
+So let's make a summary of what I learned. 
+
+I've learned that usually well balanced missions have 3-4 spacecraft there's always a combination of mixed spacecraft with some small spacecraft. This is the major takeaway I get.
+
+And SAT_ALTIM is always a standalone guy.
+
+
+
+[END]
+
+

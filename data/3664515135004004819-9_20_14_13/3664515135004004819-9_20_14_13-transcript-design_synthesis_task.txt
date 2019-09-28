@@ -1,0 +1,69 @@
+[START]
+
+I think I saw a couple of vegetation instruments in polar, so I'll assign them here, and uh...
+
+So the ocean spectrometer... I'm not sure about that.
+
+But the... CHEM_UVSPEC... I think I saw it in the second and the last. 
+
+[inaudible] maybe... fourth orbit. 
+
+And uh... I saw the SAR_ALTIM again in the first orbit.
+
+HYP_IMAG... so... 
+
+I think... I have 6 instruments.
+
+So in the last orbit, I think I saw the UVSPEC, and the HIRES_SOUND... and the... SWIR.
+
+Ok let me evaluate this thing.
+
+Ok so this shows that the science value is less but the cost is also less.
+
+So I need to increase the science value. So.. how do we do that..
+
+So in case of the... I think I'll input the AERO_POL and lidar. So I add two more instruments.
+
+Ok so this increased the science value, but the... cost is almost the same.
+
+So I will try to bring down the cost. By maybe moving one of the satellite... the instrument.
+
+Ok so that did not make much difference. But.. uh... that looks strange.
+
+So let me remove... 
+
+So the science value did not change, and the cost came down marginally.
+
+Let me add uh... let me try to remove one of the UV spectrometers. The first one from this orbit.
+
+So that did not do good. So I will add it back.
+
+And remove it from this orbit.
+
+Ok that too did not do good. So I will add it back.
+
+So ocean spectrometer... not complete sure which orbit to put it into, but let me try this.
+
+Ok so the science value increased, but the cost is still high.
+
+So let me try to remove maybe one of some instrument. 
+
+But that is not good.
+
+[inaudible]
+
+Let me remove this instrument. So I am trying to bring down cost. [inaudible]
+
+Let me add a UV spectrometer here. Ok so it did increase the science value... hmm...
+
+So maybe adding... ok so it did not increase science but it increased the cost. 
+
+Let me try a different type of isntrument. Hmm.. no.
+
+So I reduce it to just three orbits.
+
+So cost does reduce, but not so much. Let me try to... uh...
+
+Let me try to put many instruments.
+
+[END]

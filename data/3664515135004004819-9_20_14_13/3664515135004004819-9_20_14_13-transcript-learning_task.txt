@@ -1,0 +1,168 @@
+[START]
+
+So, when I put the SAR_ALTIM, it seems like it satisfies almost all the target region but also the non-target region. 
+
+So I'm trying to add an AND condition.
+
+So I am browsing through some points, to see if uh... yeah there's some differentiator between the non-target and the target region.
+
+I think in the target region, there are at least... or the maximum number of instruments seems to be six or seven.
+
+So, I will try to add a constraint on the maximum number of instruments. Let me put it as... say five.
+
+And the new condition... and what we see here is...
+
+Ok... I think the point has low coverage. Oh.. this is not what we want.
+
+Ok so with this, with the altimeter, it has high coverage, but less specificity... ok.
+
+So if we apply this filter (numInstrumentsInOrbit[0,5]) ... ok let me add a child node.. a condition with the SAR... presence of SAR_ALTIM.
+
+Ok so this gives the point here. 
+
+So adding the SAR_ALTIM did not make much difference because both the points are ... so the one with the condition on the number of instruments and the SAR_ALTIM are very close. 
+
+Ok now I'm trying to see some features of the non-target region, so that I can filter out... and be more specific.
+
+So what I'm trying to do is ... to search for the reason why these points are in the target region. With the high science and low cost value.
+
+So some points here have like six...
+
+As the science value increases it seems the number of instruments is also increasing.
+
+So with the low science value, the number of instruments... but there are some cases that even large number of instruments ...
+
+Ok so I think this case corresponds to one with the total number of instruments being less ... of the entire architecture.
+
+So let me apply another constraint on the total number of instruments over entire architecture. 
+
+And let it be the lower bound of 5, and the upper bound of... so there are about 5 orbits per architecture... so 5 times 5... 25. Let me put 25 and see.
+
+Ok so this gave a point over here. So this has high coverage, but low specificity again.
+
+So I think I need to apply another condition on top of this condition to increase the specificity. 
+
+So these points correspond to low cost, so I'm trying to think why these points have low cost. 
+
+Maybe they have much lesser number of instruments ... [inaudible]
+
+So let me modify this and decrease the maximum number of instruments. 
+
+That seems to have improved specificity but only a tiny bit.
+
+Let me modify it more. Let me decrease it more.. say 15.
+
+So the specificity is still about 18%. 
+
+So it needs to ... so it seems like the target region is over here. The target region which is covered by this condition... There's a subset over here. On the lower left, but not on the upper right.
+
+So if I can get rid of the common feature which is there in these architectures, then maybe I can increase the specificity.
+
+So I am searching for some common feature...
+
+Ok so the number of instruments seem to be more for all of this.
+
+And it seems that... uh... these architectures are carrying instruments of more than... of the same type... uh... carrying multiple instruments of the same type.
+
+So I will try applying a filter on the max... say the type of the instruments. And restrict the type of the... So I want to apply a filter which will restrict only one type of instrument per architecture.
+
+[Experimenter explains that there's no filter that can do exactly what the participant wants, and suggests using Separate]
+
+So let me see...
+
+[inaudible]
+
+So let's say we have the ocean... so let me apply VEG_INSAR and VEG_LID. I'm not sure what is LID. But let me apply that.
+
+So let me add this condition to this... So I'll add a child node with another condition of Separate.
+
+Let me add INSAR and VEG_LID. Ok so this is not doing so good.
+
+It decreased the coverage but it did not improve the specificity.
+
+So for example, in this orbit, we have the CHEM_UVSPEC in three orbits... Yeah in this architecture, we have like CHEM_UVSPEC in three orbits. 
+
+Oh ok... there are some... there is one orbit with two CHEM_UVSPEC. That looks strange.
+
+Ok let me restrict the number of CHEM_UVSPEC... Number of instruments... ok... CHEM_UVSPEC and I select one to... zero to one.
+
+Ok this does not look good.
+
+Let go back and find... or... let me modify the condition. I'll specify the number of instruments in orbit.
+
+[inaudible] number of instruments... This improved the coverage, but it did not improve the specificity.
+
+But I think we have a way to restrict the type of instruments... the number of types of instruments over an architecture. 
+
+So I select numOfInstruments, and I select one instrument...
+
+[Participant asks a question about the filter and the experiment explains]
+
+[Applies filter numInstruments[OCE_SPEC;0-1]]
+
+I will add the next instrument separately.
+
+[Applies filter numInstruments[ACE_POL;0-1]]
+
+It seems to be... increasing the specificity.
+
+So what I'm trying to do is to add all instruments.
+
+So it seems to be increasing the specificity.
+
+[Applies filter numInstruments[AERO_LID; 0-1]]
+[Applies filter numInstruments[HYP_ERB; 0-1]]
+
+... ah no. In this case, it didn't do good.
+
+[Experiment adivses the participant to start recording info on concept map page]
+[Records new info on concept map: "Multiple instrument of same type in same architecture in the non-target region."]
+
+I'm trying to add more conditions.
+ 
+[Records new info on concept map: "Restricting the number of same types look to increase specificity marginally"]
+[Experiment advises the participant that they can use "copyTextDescription" option to easily copy and paste info]
+
+So it seems... I'm seeing a lot of CHEM_UVSPEC. So for CHEM_UVSPEC, I will increase the minimum number of instruments, 
+
+But.. ah... no. But it will decreases the specificity.
+
+So let me go back to the original [inaudible].. and add child node.
+
+So this improved the specificity. 
+
+[inaudible]
+
+So I want... 1 and 2. Ah no. So 1 and 2 is very sub-optimal.
+
+So changing... so applying this CHEM_UVSPEC condition improved the specificity much more.
+
+[END]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
