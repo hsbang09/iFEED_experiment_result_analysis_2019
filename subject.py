@@ -62,6 +62,33 @@ class Subject():
         self.design_classification_score, self.design_classification_graded_answers = self.grader.gradeAnswers("design", "classification", self.design_classification_answer, self.design_classification_confidence, confidenceThreshold=confidenceThreshold)
         self.design_comparison_score, self.design_comparison_graded_answers = self.grader.gradeAnswers("design", "comparison", self.design_comparison_answer, self.design_comparison_confidence, confidenceThreshold=confidenceThreshold)
 
+    def getMeanConfidence(self, problemTopic=None, problemType=None, countOnlyCorrectAnswers=False, countOnlyWrongAnswers=False):
+        if self.feature_classification_score is None or self.feature_comparison_score is None or self.design_classification_score is None or self.design_comparison_score is None:
+            raise ValueError()
+        
+        gradedAnswers = []
+        confidences = []
+
+        if problemTopic is None and problemType is None:
+            gradedAnswers = self.feature_classification_graded_answers + self.feature_comparison_graded_answers + self.design_classification_graded_answers + self.design_comparison_graded_answers
+            confidences = self.feature_classification_confidence + self.feature_comparison_confidence + self.design_classification_confidence + self.design_comparison_confidence
+
+        targetGrade = None
+        if countOnlyCorrectAnswers:
+            targetGrade = 1
+        elif countOnlyWrongAnswers:
+            targetGrade = 0
+
+        if targetGrade is not None:
+            tempConfidences = []
+            for i, c in enumerate(gradedAnswers):
+                if gradedAnswers[i] == targetGrade:
+                    tempConfidences.append(confidences[i])
+            confidences = tempConfidences
+
+        return np.mean(confidences)                
+
+
     def printScoreSummary(self):
         print("Subject: {0} - condition: {1}".format(self.participant_id, self.condition))
         print("Fcl: {0}, Fpwc: {1}, Dcl: {2}, Dpwc: {3}".format(self.feature_classification_score, self.feature_comparison_score, self.design_classification_score, self.design_comparison_score))
