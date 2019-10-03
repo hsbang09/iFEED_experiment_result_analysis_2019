@@ -4,7 +4,6 @@ import os
 import numpy as np
 import pandas as pd
 import traceback
-
 from subject import Subject
 
 # Column numbers: problems
@@ -440,52 +439,6 @@ class ResultAnalyzer():
         return out
 
 
-    # def getConfidenceData(self, subjects=None, problem_type="design", condition_number=None, task_number=None, count_only_correct_answer=False, exclude_first_task=False):   
-    #     if subjects is None:
-    #         subjects = self.data
-
-
-    #     out = []
-    #     for i in range(len(subjects)):
-    #         subject = subjects[i]
-
-    #         if problem_type == "pretest":
-    #             out.append(subject.getScore(problem_type=problem_type))
-    #         else:
-    #             if condition_number is None and task_number is None:
-    #                 raise ValueError("Either the condition or the task number must be specified")
-
-    #             if condition_number is not None and exclude_first_task:
-    #                 if condition_number == subject.condition_order[0]: 
-    #                     # If the first task matches the current condition, exclude this score
-    #                     continue
-
-    #             out.append(np.mean(subject.getConfidence(condition_number=condition_number, task_number=task_number, problem_type=problem_type, count_only_correct_answer=count_only_correct_answer)))
-
-    #     return out
-
-
-    # def filterByDemographics(self, STEM=False, NonSTEM=False, prior_experience=False, SYSEN5400 = False, NoSYSEN5400 = False):
-    #     out = self.results
-    #     if STEM:
-    #         out = self.getSTEMMajors(out)
-    #     if NonSTEM:
-    #         stem = self.getSTEMMajors(out)
-    #         out = []
-    #         for subj in self.results:
-    #             if subj not in stem:
-    #                 out.append(subj)            
-    #     if prior_experience:
-    #         out = self.getSubjectsWithPriorExperience(out)
-    #     if SYSEN5400:
-    #         out = self.getSubjectsTakingSYSEN5400(out)
-    #     if NoSYSEN5400:
-    #         sysen5400 = self.getSubjectsTakingSYSEN5400(out)
-    #         out = []
-    #         for subj in self.results:
-    #             if subj not in sysen5400:
-    #                 out.append(subj)
-    #     return out
 
     # def saveCSV(self, filename=None):
 
@@ -509,26 +462,6 @@ class ResultAnalyzer():
 
     #     with open(filename, "w+") as file:
     #         file.write("\n".join(out))
-  
-    # def printStatistics(self, subjects, condition_effect=True, order_effect=False):
-        
-    #     first_scores, second_scores = self.getScoreData(subjects, condition_effect, order_effect)
-        
-    #     first_mean = np.mean(first_scores)
-    #     second_mean = np.mean(second_scores)
-    #     first_std = np.std(first_scores)
-    #     second_std = np.std(second_scores)
-        
-    #     if order_effect:    
-    #         print("First Task Score Mean: {0}, Second Task Score Mean: {1}".format(first_mean, second_mean))
-    #         print("First Task Score Stdev: {0}, Second Task Score Stdev: {1}".format(first_std, second_std))
-    #     else:
-    #         print("First Condition Score Mean: {0}, Second Condition Score Mean: {1}".format(first_mean, second_mean))
-    #         print("First Condition Score Stdev: {0}, Second Condition Score Stdev: {1}".format(first_std, second_std))  
-            
-    #     return first_mean, second_mean, first_std, second_std
-
-
 
 
 def RepresentsInt(s):

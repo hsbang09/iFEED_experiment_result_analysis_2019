@@ -88,6 +88,38 @@ class Subject():
 
         return np.mean(confidences)                
 
+    def printloggedDataSummary(self, task=None, loggedData=None):
+
+        if task is None and loggedData is None:
+            raise ValueError()
+
+        if task is not None:
+            if task == "learning_task":
+                data = self.learning_task_data
+            elif task == "feature_synthesis_task":
+                data = self.feature_synthesis_task_data
+            elif task == "design_synthesis_task":
+                data = self.design_synthesis_task_data
+
+        elif loggedData is not None:
+            data = loggedData
+            
+        out = ["Subject: {0} - condition: {1}".format(self.participant_id, self.condition)]
+        for key in data.keys():
+            if key in ["participantID", "treatmentCondition", "stage", "duration", "paramsInfo"]:
+                continue
+
+            val = data[key]
+            
+            if key == "designs_evaluated":
+                val = str(len(data[key]))
+
+            elif key == "features_found":
+                val = str(len(data[key]))
+
+            out.append("{0}: {1}".format(key, val))
+
+        print("\n".join(out))
 
     def printScoreSummary(self):
         print("Subject: {0} - condition: {1}".format(self.participant_id, self.condition))
