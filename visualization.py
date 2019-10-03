@@ -37,8 +37,8 @@ class Visualizer():
                     designObjective_science.append(d['outputs'][0])
                     designObjective_cost.append(d['outputs'][1])
 
-                x.append(designObjective_science)
-                y.append(designObjective_cost)
+                x += designObjective_science
+                y += designObjective_cost
 
             returnAxis = True
             if i == len(self.subjectGroups) - 1:
@@ -78,8 +78,8 @@ class Visualizer():
                     precisions.append(f['metrics'][2])
                     recalls.append(f['metrics'][3])
 
-                x.append(precisions)
-                y.append(recalls)
+                x += precisions
+                y += recalls
 
             returnAxis = True
             if i == len(self.subjectGroups) - 1:
@@ -102,7 +102,7 @@ class Visualizer():
 
         if self.subjectGroupNames is None:
             self.subjectGroupNames = ['group_{0}'.format(i) for i in range(len(self.subjectGroups))]
-
+            
         sc = ax.scatter(
                    x, 
                    y, 

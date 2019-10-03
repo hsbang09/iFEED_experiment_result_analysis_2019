@@ -89,7 +89,6 @@ class Subject():
         return np.mean(confidences)                
 
     def printloggedDataSummary(self, task=None, loggedData=None):
-
         if task is None and loggedData is None:
             raise ValueError()
 
@@ -110,7 +109,6 @@ class Subject():
                 continue
 
             val = data[key]
-            
             if key == "designs_evaluated":
                 val = str(len(data[key]))
 
@@ -118,12 +116,36 @@ class Subject():
                 val = str(len(data[key]))
 
             out.append("{0}: {1}".format(key, val))
-
         print("\n".join(out))
+
+    def getAggregateScore(self, combineFandD=True):
+        FScore = (self.feature_classification_score + self.feature_comparison_score) / 2
+        DScore = (self.design_classification_score + self.design_comparison_score ) / 2
+        if combineFandD:
+            total = (FScore + DScore) / 2
+            return round(total, 2)
+        else:
+            FScore = round(FScore, 2)
+            DScore = round(DScore, 2)
+            return FScore, DScore
+
+    def printAggregateScore(self, combineFandD=True):
+        print("Subject: {0} - condition: {1}".format(self.participant_id, self.condition))
+        if combineFandD:
+            total = self.getAggregateScore(combineFandD=combineFandD)
+            print("Total score: {0}".format(total))
+        else:
+            FScore, DScore = self.getAggregateScore(combineFandD=combineFandD)
+            print("Feature: {0}, Design: {1}".format(FScore, DScore))
 
     def printScoreSummary(self):
         print("Subject: {0} - condition: {1}".format(self.participant_id, self.condition))
         print("Fcl: {0}, Fpwc: {1}, Dcl: {2}, Dpwc: {3}".format(self.feature_classification_score, self.feature_comparison_score, self.design_classification_score, self.design_comparison_score))
 
-    def countFeatureParity(self, positive=True):
-        return self.grader.countFeatureParity(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, positive=positive)
+    def gradePositiveFeatures(self):
+        return self.grader.gradePositiveOrNegativeFeatures(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, positive=True)
+
+    def gradeNegativeFeatures(self):
+        return self.grader.gradePositiveOrNegativeFeatures(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, positive=False)
+
+

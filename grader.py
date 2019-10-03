@@ -88,7 +88,7 @@ class Grader():
         score = round(total / len(graded), 2)
         return score, graded
 
-    def countFeatureParity(self, featureGradedCL, featureGradedPWC, positive=True):
+    def gradePositiveOrNegativeFeatures(self, featureGradedCL, featureGradedPWC, positive=True):
         graded = []
         for i in range(len(featureGradedCL)):
             problemParityPositive = None

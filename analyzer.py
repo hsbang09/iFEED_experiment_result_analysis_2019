@@ -397,6 +397,93 @@ class ResultAnalyzer():
                         out.append(s)
         return out
 
+    def getDataFrame(self, subjects=None, columns=None):
+        if subjects is None:
+            subjects = self.subjects
+
+        if columns is None:
+            columns = ["fcl","fpwc","dcl","dpwc","FScore","DScore","PScore","NScore","totalScore"]
+
+        dat = []
+        for i, s in enumerate(subjects):
+            rowData = []
+            rowData.append(s.participant_id)
+            rowData.append(s.condition)
+
+            if i == 0:
+                colNames = []
+                colNames.append("id")
+                colNames.append("condition")
+                colNames += columns
+
+            for col in columns:
+                val = None
+                if col == "fcl":
+                    val = s.feature_classification_score
+
+                elif col == "fpwc":
+                    val = s.feature_comparison_score
+
+                elif col == "dcl":
+                    val = s.design_classification_score
+
+                elif col == "dpwc":
+                    val = s.design_comparison_score
+
+                elif col == "FScore":
+                    val = s.getAggregateScore(combineFandD=False)[0]
+
+                elif col == "DScore":
+                    val = s.getAggregateScore(combineFandD=False)[1]
+
+                elif col == "totalScore":
+                    val = s.getAggregateScore(combineFandD=True)
+
+                elif col == "PScore":
+                    val = s.gradePositiveFeatures()[0]
+
+                elif col == "NScore":
+                    val = s.gradeNegativeFeatures()[0]
+
+                elif col == "counter_design_viewed":
+                    val = s.learning_task_data['counter_design_viewed']
+
+                elif col == "counter_feature_viewed":
+                    val = s.learning_task_data['counter_feature_viewed']
+
+                elif col == "counter_filter_used":
+                    val = s.learning_task_data['counter_filter_used']
+                rowData.append(val)
+            dat.append(rowData)
+
+        out = pd.DataFrame(data=dat, index=None, columns=colNames)
+        return out
+
+
+
+    # def printAggregateScore(self, subjects=None, combineFandD=True):
+    #     if subjects is None:
+    #         subjects = self.subjects
+
+    #     for s in subjects:
+
+    #     print("Subject: {0} - condition: {1}".format(self.participant_id, self.condition))
+    #     FScore = (self.feature_classification_score + self.feature_comparison_score) / 2
+    #     DScore = (self.design_classification_score + self.design_comparison_score ) / 2
+    #     total = (FScore + DScore) / 2
+    #     if combineFandD:
+    #         print("[Condition {0}] Total score: {1}".format(total))
+    #     else:
+    #         print("Feature: {0}, Design: {1}".format(FScore, DScore))
+
+    # def printScoreSummary(self, subjects):
+    #     print("Subject: {0} - condition: {1}".format(self.participant_id, self.condition))
+    #     print("Fcl: {0}, Fpwc: {1}, Dcl: {2}, Dpwc: {3}".format(self.feature_classification_score, self.feature_comparison_score, self.design_classification_score, self.design_comparison_score))
+
+    # def countFeatureParity(self, positive=True):
+    #     return self.grader.countFeatureParity(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, positive=positive)
+
+
     def getComments(self, subjects, type, targetKeyword, displayParticipantID=False, displayKeyword=False):
         out = []
         if type == "problem_solving_task":
