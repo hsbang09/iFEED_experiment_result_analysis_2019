@@ -11,19 +11,69 @@ import os
 import scipy.stats as st
 
 class Visualizer():
-    def __init__(self, subjectGroups, subjectGroupNames=None):
-        self.subjectGroups = subjectGroups
-        self.subjectGroupNames = subjectGroupNames
+
+    def __init__(self, data=None, groups=None, groupNames=None):
+        if data is not None:
+            self.data = data
+
+        elif groups is not None:
+            self.groups = groups
+            if groupNames is None:
+                self.groupNames = ['group_{0}'.format(i) for i in range(len(self.groups))]
+            else:
+                self.groupNames = groupNames
+
+    def setDataFrame(self, data):
+        self.data = data
+
+    def boxPlot(self, columns, figsize=(10,6), grid=False, layout=None):
+        fig, ax = plt.subplots(figsize=figsize)
+
+        ax = self.data.boxplot(by=["condition"], 
+                            column=columns, 
+                            ax=ax,
+                            grid=grid,
+                            layout=layout)
+
+    def parallelCoordinates(self, columns, figsize=(13,6), colors=None, legend=None, grid=False):
+
+        fig, ax = plt.subplots(figsize=figsize)
+
+        # if colors is None:
+        #     colors = ['#556270', '#4ECDC4', '#C7F464']
+
+        if columns is None:
+            columns = ['fcl','fpwc', 'dcl','dpwc','FScore','DScore','PScore','NScore','totalScore']
+
+        pd.plotting.parallel_coordinates(self.data, 'condition', 
+                ax=ax,
+                cols=columns,
+                color=colors)
+
+        if legend is not None:
+            ax.legend(legend)
+        ax.grid(grid)
+        # ax.set_xlabel(xLabel)
+        # ax.set_ylabel(yLabel)
+        # plt.colorbar(sc)
+        plt.show()
+
+    def setSubjectGroups(self, groups, groupNames=None):
+        self.groups = groups
+        if groupNames is None:
+            self.groupNames = ['group_{0}'.format(i) for i in range(len(self.groups))]
+        else:
+            self.groupNames = groupNames
 
     def designSynthesisScatter(self, markers=None, figsize=(13,6), alpha=1.0):
-        if self.subjectGroupNames is None:
-            self.subjectGroupNames = ['group_{0}'.format(i) for i in range(len(self.subjectGroups))]
+        if self.groups is None:
+            raise ValueError("")
 
         if markers is None:
             markers = ['o','^','2']
 
         ax = None
-        for i, group in enumerate(self.subjectGroups):
+        for i, group in enumerate(self.groups):
             x = []
             y = []
 
@@ -41,11 +91,12 @@ class Visualizer():
                 y += designObjective_cost
 
             returnAxis = True
-            if i == len(self.subjectGroups) - 1:
+            if i == len(self.groups) - 1:
                 returnAxis = False
 
             ax = self.drawScatter(x, y, 
                                 marker=markers[i], 
+                                legend=self.groupNames,
                                 axis=ax, 
                                 xLabel="Science", 
                                 yLabel="Cost", 
@@ -54,14 +105,14 @@ class Visualizer():
                                 returnAxis=returnAxis)
 
     def featureSynthesisScatter(self, useLearningTaskData=False, markers=None, figsize=(13,6), alpha=1.0):
-        if self.subjectGroupNames is None:
-            self.subjectGroupNames = ['group_{0}'.format(i) for i in range(len(self.subjectGroups))]
+        if self.groups is None:
+            raise ValueError("")
 
         if markers is None:
             markers = ['o','^','d']
 
         ax = None
-        for i, group in enumerate(self.subjectGroups):
+        for i, group in enumerate(self.groups):
             x = []
             y = []
 
@@ -82,11 +133,12 @@ class Visualizer():
                 y += recalls
 
             returnAxis = True
-            if i == len(self.subjectGroups) - 1:
+            if i == len(self.groups) - 1:
                 returnAxis = False
 
             ax = self.drawScatter(x, y, 
                                 marker=markers[i], 
+                                legend=self.groupNames,
                                 axis=ax, 
                                 xLabel="Precision", 
                                 yLabel="Recall", 
@@ -94,15 +146,12 @@ class Visualizer():
                                 alpha=alpha, 
                                 returnAxis=returnAxis)
 
-    def drawScatter(self, x, y, c=None, marker=None, label=None, axis=None, xLabel=None, yLabel=None, figsize=(13,6), alpha=1.0, returnAxis=False):
+    def drawScatter(self, x, y, c=None, marker=None, legend=None, label=None, axis=None, xLabel=None, yLabel=None, figsize=(13,6), alpha=1.0, returnAxis=False):
         if axis is None:
             fig, ax = plt.subplots(figsize=figsize)
         else:
             ax = axis
 
-        if self.subjectGroupNames is None:
-            self.subjectGroupNames = ['group_{0}'.format(i) for i in range(len(self.subjectGroups))]
-            
         sc = ax.scatter(
                    x, 
                    y, 
@@ -115,7 +164,7 @@ class Visualizer():
         if returnAxis:
             return ax
         else:
-            ax.legend(self.subjectGroupNames)
+            ax.legend(legend)
             ax.grid(True)
             ax.set_xlabel(xLabel)
             ax.set_ylabel(yLabel)
