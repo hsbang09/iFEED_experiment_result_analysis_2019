@@ -10,11 +10,20 @@ import math
 import os
 import scipy.stats as st
 
+PROP_CYCLE = plt.rcParams['axes.prop_cycle']
+COLORS = PROP_CYCLE.by_key()['color']
+
+GROUP_LABEL_MAP = {
+    4: "Manual",
+    5: "Automated",
+    6: "Interactive"
+}
+
 class Visualizer():
 
     def __init__(self, data=None, groups=None, groupNames=None):
         if data is not None:
-            self.data = data
+            self.dataFrame = data
 
         elif groups is not None:
             self.groups = groups
@@ -24,28 +33,52 @@ class Visualizer():
                 self.groupNames = groupNames
 
     def setDataFrame(self, data):
-        self.data = data
+        self.dataFrame = data
 
-    def boxPlot(self, columns, figsize=(10,6), grid=False, layout=None):
+    def simpleBoxPlot(self, columns, figsize=(10,6), grid=False, layout=None):
         fig, ax = plt.subplots(figsize=figsize)
 
-        ax = self.data.boxplot(by=["condition"], 
+        ax = self.dataFrame.boxplot(by=["condition"], 
                             column=columns, 
                             ax=ax,
                             grid=grid,
                             layout=layout)
 
-    def parallelCoordinates(self, columns, figsize=(13,6), colors=None, legend=None, grid=False):
+    def boxPlot(self, columns, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False, grid=False, displayPoints=False):
+        fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
+        grouped = self.dataFrame.groupby("condition")
 
+        if type(columns) is not list:
+            columns = [columns]
+
+        for i, col in enumerate(columns):
+            names, vals, xs = [], [] ,[]
+            for j, (name, subdf) in enumerate(grouped):
+                names.append(GROUP_LABEL_MAP[name])
+                vals.append(subdf[col].tolist())
+                xs.append(np.random.normal(j+1, 0.04, subdf.shape[0]))
+
+            ax[i].boxplot(vals, labels=names)
+            ngroup = len(vals)
+            clevels = np.linspace(0., 1., ngroup)
+            ax[i].set_title(col)
+
+            for x, val, clevel in zip(xs, vals, clevels):
+                ax[i].scatter(x, val, alpha=0.4)
+
+    def parallelCoordinates(self, columns, figsize=(13,6), colors=None, legend=None, grid=False):
         fig, ax = plt.subplots(figsize=figsize)
 
-        # if colors is None:
-        #     colors = ['#556270', '#4ECDC4', '#C7F464']
+        if colors is None:
+            colors = []
+            for i in range(10):
+                colors.append(COLORS[i])
 
         if columns is None:
             columns = ['fcl','fpwc', 'dcl','dpwc','FScore','DScore','PScore','NScore','totalScore']
 
-        pd.plotting.parallel_coordinates(self.data, 'condition', 
+        pd.plotting.parallel_coordinates(frame=self.dataFrame, 
+                class_column='condition', 
                 ax=ax,
                 cols=columns,
                 color=colors)
