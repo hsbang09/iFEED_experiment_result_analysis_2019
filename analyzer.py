@@ -4,6 +4,7 @@ import os
 import numpy as np
 import pandas as pd
 import traceback
+import math
 from subject import Subject
 
 # Column numbers: problems
@@ -157,6 +158,19 @@ class ResultAnalyzer():
                 raise ValueError("Empty value: column {0} of the participant {1}".format(colIndex, participant_id))
             val = int(val)
             subject.learning_self_assessment_data.append(val)
+            
+            
+    def dist2Utopia(self, subject):
+        sub = subject.feature_synthesis_task_data['features_found']
+        subject.feature_synthesis_dist2UP = 1
+        print(1)
+        for count, feature in enumerate(sub):
+            x = subject.feature_synthesis_task_data['features_found'][count]['metrics'][2]
+            y = subject.feature_synthesis_task_data['features_found'][count]['metrics'][3]
+            distNew = math.sqrt((1.0 - x)**2 + (1.0 - y)**2)
+            if distNew <  subject.feature_synthesis_dist2UP:
+                subject.feature_synthesis_dist2UP = distNew
+                
 
     def importDemographicSurvey(self, inputRowData, subject):
         # Demographic survey
@@ -461,6 +475,7 @@ class ResultAnalyzer():
 
 
 
+
     # def printAggregateScore(self, subjects=None, combineFandD=True):
     #     if subjects is None:
     #         subjects = self.subjects
@@ -549,6 +564,8 @@ class ResultAnalyzer():
 
     #     with open(filename, "w+") as file:
     #         file.write("\n".join(out))
+    
+
 
 
 def RepresentsInt(s):

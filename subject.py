@@ -16,6 +16,7 @@ class Subject():
         self.learning_task_data = dict()
         self.design_synthesis_task_data = dict()
         self.feature_synthesis_task_data = dict()
+        self.feature_synthesis_dist2UP = dict()
 
         # Concept map data
         self.cmap_prior_data = dict()
