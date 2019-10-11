@@ -402,7 +402,11 @@ class ResultAnalyzer():
             subjects = self.subjects
 
         if columns is None:
-            columns = ["fcl","fpwc","dcl","dpwc","FScore","DScore","PScore","NScore","totalScore"]
+            columns = ["fcl","fpwc","dcl","dpwc",
+                        "FScore","DScore",
+                        "PScore","NScore",
+                        "HScore","LScore",
+                        "totalScore"]
 
         dat = []
         for i, s in enumerate(subjects):
@@ -444,6 +448,12 @@ class ResultAnalyzer():
 
                 elif col == "NScore":
                     val = s.gradeNegativeFeatures()[0]
+
+                elif col == "HScore":
+                    val = s.gradeHighLevelFeatures()[0]
+
+                elif col == "LScore":
+                    val = s.gradeLowLevelFeatures()[0]
 
                 elif col == "counter_design_viewed":
                     val = s.learning_task_data['counter_design_viewed']

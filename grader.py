@@ -7,6 +7,8 @@ DESIGN_PWC_QUESTION_ANSWER = [1, 0, 0, 1, 1, 0, 0, 0, 1]
 FEATURE_CL_PARITY = [1, 0, 0, 1, 1, 0, 0, 0, 1] # positive - 1, negative - 0
 FEATURE_PWC_PARITY = [0, 1, 0, 1, 1, 0, 1, 1, 0] # positive - 1, negative - 0
 
+FEATURE_CL_HIGH_LEVEL = [0, 1, 1, 0, 1, 0, 0, 0, 0] 
+FEATURE_PWC_HIGH_LEVEL = [0, 0, 1, 1, 0, 1, 0, 1, 0] 
 
 class Grader():
     def __init__(self):
@@ -79,6 +81,42 @@ class Grader():
                         graded.append(0)
                     else:  # User answered: 2nd item
                         graded.append(1)
+
+        total = 0
+        for g in graded:
+            if g == 1:
+                total += 1
+
+        score = round(total / len(graded), 2)
+        return score, graded
+
+    def gradeHighVsLowLevelFeatures(self, featureGradedCL, featureGradedPWC, highLevel=True):
+        graded = []
+
+        for i in range(len(featureGradedCL)):
+            add = False
+            if highLevel:
+                if FEATURE_CL_HIGH_LEVEL[i] == 1:
+                    add = True
+            else:
+                # lowLevel
+                if FEATURE_CL_HIGH_LEVEL[i] == 0:
+                    add = True
+            if add:
+                graded.append(featureGradedCL[i])
+
+
+        for i in range(len(featureGradedPWC)):
+            add = False
+            if highLevel:
+                if FEATURE_PWC_HIGH_LEVEL[i] == 1:
+                    add = True
+            else:
+                # lowLevel
+                if FEATURE_PWC_HIGH_LEVEL[i] == 0:
+                    add = True
+            if add:
+                graded.append(featureGradedCL[i])
 
         total = 0
         for g in graded:

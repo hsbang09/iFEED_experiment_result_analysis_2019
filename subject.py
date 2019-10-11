@@ -148,4 +148,9 @@ class Subject():
     def gradeNegativeFeatures(self):
         return self.grader.gradePositiveOrNegativeFeatures(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, positive=False)
 
+    def gradeHighLevelFeatures(self):
+        return self.grader.gradeHighVsLowLevelFeatures(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, highLevel=True)
+
+    def gradeLowLevelFeatures(self):
+        return self.grader.gradeHighVsLowLevelFeatures(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, highLevel=False)
 
