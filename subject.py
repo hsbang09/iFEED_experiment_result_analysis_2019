@@ -16,6 +16,7 @@ class Subject():
         self.learning_task_data = dict()
         self.design_synthesis_task_data = dict()
         self.feature_synthesis_task_data = dict()
+        self.feature_synthesis_dist2UP = dict()
 
         # Concept map data
         self.cmap_prior_data = dict()
@@ -153,4 +154,14 @@ class Subject():
 
     def gradeLowLevelFeatures(self):
         return self.grader.gradeHighVsLowLevelFeatures(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, highLevel=False)
+
+    def dist2Utopia(self, subject):
+        sub = subject.feature_synthesis_task_data['features_found']
+        subject.feature_synthesis_dist2UP = 1
+        for count, feature in enumerate(sub):
+            x = feature['metrics'][2]
+            y = feature['metrics'][3]
+            distNew = math.sqrt((1.0 - x)**2 + (1.0 - y)**2)
+            if distNew <  subject.feature_synthesis_dist2UP:
+                subject.feature_synthesis_dist2UP = distNew
 
