@@ -410,6 +410,7 @@ class ResultAnalyzer():
                         "FScore","DScore",
                         "PScore","NScore",
                         "HScore","LScore",
+                        "dist2UP",
                         "totalScore"]
 
         dat = []
@@ -458,6 +459,9 @@ class ResultAnalyzer():
 
                 elif col == "LScore":
                     val = s.gradeLowLevelFeatures()[0]
+
+                elif col == "dist2UP":
+                    val = s.getDist2Utopia()
 
                 elif col == "counter_design_viewed":
                     val = s.learning_task_data['counter_design_viewed']
