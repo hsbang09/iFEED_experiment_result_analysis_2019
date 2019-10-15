@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 import pandas as pd
 import math
 import os
-import scipy.stats as st
+from scipy import stats
 import seaborn as sns 
 
 PROP_CYCLE = plt.rcParams['axes.prop_cycle']
@@ -59,7 +59,7 @@ class Visualizer():
         for i, col in enumerate(columns):
             names, vals, xs = [], [] ,[]
             for j, (name, subdf) in enumerate(grouped):
-                names.append(GROUP_LABEL_MAP[name])
+                names.append(name)
                 vals.append(subdf[col].tolist())
                 xs.append(np.random.normal(j+1, 0.04, subdf.shape[0]))
 
@@ -189,7 +189,7 @@ class Visualizer():
                                 alpha=alpha, 
                                 returnAxis=returnAxis)
 
-    def scatterPlot(self, x, y, c=None, marker=None, legend=None, label=None, axis=None, xLabel=None, yLabel=None, figsize=(13,6), alpha=1.0, returnAxis=False):
+    def scatterPlot(self, x, y, c=None, marker=None, legend=None, label=None, axis=None, xLabel=None, yLabel=None, figsize=(13,6), alpha=1.0, grid=False, returnAxis=False):
         if axis is None:
             fig, ax = plt.subplots(figsize=figsize)
         else:
@@ -198,24 +198,53 @@ class Visualizer():
         sc = ax.scatter(
                    x, 
                    y, 
-                   c = c, 
-                   marker = marker, 
-                   cmap = "coolwarm", 
-                   label = label, 
-                   alpha = alpha)
+                   c=c, 
+                   marker=marker, 
+                   cmap="coolwarm", 
+                   label=label, 
+                   alpha=alpha)
+
+        if returnAxis:
+            return ax
+        else:
+            if legend:
+                ax.legend(legend)
+            ax.grid(grid)
+
+            if xLabel:
+                ax.set_xlabel(xLabel)
+            if yLabel:
+                ax.set_ylabel(yLabel)
+            # plt.colorbar(sc)
+            plt.show()
+            return None
+
+    def linePlot(self, x, y, c=None, axis=None, figsize=(13,6), xLabel=None, yLabel=None, legend=None, grid=False, returnAxis=False):
+        if axis is None:
+            fig, ax = plt.subplots(figsize=figsize)
+        else:
+            ax = axis
+
+        ax.plot(
+           x, 
+           y, 
+           c=c, 
+           marker=None)
 
         if returnAxis:
             return ax
         else:
             ax.legend(legend)
             ax.grid(True)
-            ax.set_xlabel(xLabel)
-            ax.set_ylabel(yLabel)
-            # plt.colorbar(sc)
+
+            if xLabel:
+                ax.set_xlabel(xLabel)
+            if yLabel:
+                ax.set_ylabel(yLabel)
             plt.show()
             return None
 
-    def barChart(self, data, groupNames, ax=None, axisIndex=None, xLabel=None, yLabel=None, title=None, colors=None, barWidth=0.2, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False):
+    def barChart(self, data, groupNames, errData=None, ax=None, axisIndex=None, xLabel=None, yLabel=None, title=None, colors=None, barWidth=0.2, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False):
         if ax is None:
             fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
 
@@ -238,13 +267,19 @@ class Visualizer():
 
         # transpose the data
         Tdata = np.array(data).transpose()
+        if errData is not None:
+            Terr = np.array(errData).transpose()
 
         for gIndex, groupData in enumerate(Tdata):
             #set where on chart the bars will be    
             r1 = np.arange(len(groupData)) + gIndex * barWidth
             
             #GENERAL: plot bar chart for each subject
-            thisAxis.bar(r1, groupData, color=colors[gIndex], width=barWidth, edgecolor='white', label=groupNames[gIndex], alpha=0.7)
+            yerr = None
+            if errData is not None:
+                yerr = Terr[gIndex]
+
+            thisAxis.bar(r1, groupData, yerr=yerr, color=colors[gIndex], width=barWidth, edgecolor='white', label=groupNames[gIndex], alpha=0.7)
             thisAxis.legend(loc='upper right')
             thisAxis.set_xticks([r + barWidth * i / 2 for r in range(len(groupData))], ['Q1', 'Q2', 'Q3'])
         
@@ -289,37 +324,51 @@ class Visualizer():
                 if qInd == 0 or qInd == 2:
                     if ans == 1:
                         answerCounter[qInd][1] += 1
-                    else:
+                    else: # ans == 2
                         answerCounter[qInd][0] += 1
                 else:
                     if ans == 1:
                         answerCounter[qInd][0] += 1
-                    else:
+                    else: # ans == 2
                         answerCounter[qInd][1] += 1
         self.barChart(data=answerCounter, groupNames=["Positive","Negative"], ax=ax, axisIndex=2, colors=colors, xLabel="Questions", yLabel="Response", title="Feature preference data: parity")
         plt.show()
         
-    def selfAssessmentPlot(self, barWidth=0.2, colors=None, figsize=(13,6)):
+    def selfAssessmentPlot(self, displayStderr=False, barWidth=0.2, colors=None, figsize=(13,6)):
         fig, ax = plt.subplots(figsize=figsize)
 
         averagedDataPerGroup = [] # [[0,0,0,0], [0,0,0,0], [0,0,0,0]]
+        stderrPerGroup = []
 
-        # iterate through self.SubjectGroups
-        for i, group in enumerate(self.groups):
-            # iterate through group
-            accumulatedData = []
-            for count, subject in enumerate(group):
+        # iterate through subject groups
+        for group in self.groups:
+            individualAnswerData = []
+            for s in group:
+                subjectAnswers = s.learning_self_assessment_data
+
                 # get question responses for each subject
-                if len(accumulatedData) == 0:
-                    accumulatedData = subject.learning_self_assessment_data
+                if len(individualAnswerData) == 0:
+                    individualAnswerData = [[val] for val in subjectAnswers]
                 else:
-                    accumulatedData = [accumulatedData[a] + subject.learning_self_assessment_data[a] for a in range(len(accumulatedData))]
+                    for q in range(len(individualAnswerData)):
+                        individualAnswerData[q].append(subjectAnswers[q])
             
             # Take the average
-            averagedData = [accumulatedData[a] / len(group) for a in range(len(accumulatedData))]
+            averagedData = [np.mean(q) for q in individualAnswerData]
             averagedDataPerGroup.append(averagedData)
+
+            # Compute stdErr
+            stderrData = [stats.sem(q) for q in individualAnswerData]
+            stderrPerGroup.append(stderrData)
             
         averagedDataPerGroup = np.array(averagedDataPerGroup).transpose()
-        self.barChart(averagedDataPerGroup, groupNames=self.groupNames, ax=ax, axisIndex=None, xLabel="Questions", yLabel="Response", title="Learning Self Assessment Data", colors=colors, barWidth=barWidth, figsize=figsize)
+        stderrPerGroup = np.array(stderrPerGroup).transpose()
+
+        print(stderrPerGroup)
+
+        if not displayStderr:
+            stderrPerGroup = None
+
+        self.barChart(averagedDataPerGroup, errData=stderrPerGroup, groupNames=self.groupNames, ax=ax, axisIndex=None, xLabel="Questions", yLabel="Response", title="Learning Self Assessment Data", colors=colors, barWidth=barWidth, figsize=figsize)
         plt.show()
     

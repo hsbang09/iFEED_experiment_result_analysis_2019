@@ -36,6 +36,11 @@ NUM_FEATURE_PREFERENCE = 9
 NUM_SELF_ASSESSMENT = 4
 NUM_PRIOR_EXPERIENCE_QUESTION = 12
 
+GROUP_LABEL_MAP = {
+    4: "manual",
+    5: "automated",
+    6: "interactive"
+}
 
 class ResultAnalyzer():    
     def __init__(self, surveyDataFilePath, loggedDataRootPath, confidenceThreshold=None):
@@ -156,12 +161,9 @@ class ResultAnalyzer():
             if val == '':
                 colIndex = COLNUM_SELF_ASSESSMENT + j
                 raise ValueError("Empty value: column {0} of the participant {1}".format(colIndex, participant_id))
-            val = int(val)
+            val = 5 - int(val)
             subject.learning_self_assessment_data.append(val)
             
-            
-                
-
     def importDemographicSurvey(self, inputRowData, subject):
         # Demographic survey
         subject.demographic_data['age'] = int(inputRowData[COLNUM_AGE])
@@ -411,13 +413,14 @@ class ResultAnalyzer():
                         "PScore","NScore",
                         "HScore","LScore",
                         "dist2UP",
-                        "totalScore"]
+                        "totalScore",
+                        "selfAssessment"]
 
         dat = []
         for i, s in enumerate(subjects):
             rowData = []
             rowData.append(s.participant_id)
-            rowData.append(s.condition)
+            rowData.append(GROUP_LABEL_MAP[s.condition])
 
             if i == 0:
                 colNames = []
@@ -471,6 +474,10 @@ class ResultAnalyzer():
 
                 elif col == "counter_filter_used":
                     val = s.learning_task_data['counter_filter_used']
+
+                elif col == "selfAssessment":
+                    val = np.mean(s.learning_self_assessment_data)
+
                 rowData.append(val)
             dat.append(rowData)
 
