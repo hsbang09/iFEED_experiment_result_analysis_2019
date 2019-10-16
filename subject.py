@@ -16,7 +16,7 @@ class Subject():
         self.learning_task_data = dict()
         self.design_synthesis_task_data = dict()
         self.feature_synthesis_task_data = dict()
-        self.feature_synthesis_dist2UP = dict()
+        
 
         # Concept map data
         self.cmap_prior_data = dict()
@@ -56,6 +56,10 @@ class Subject():
         # Transcript data
         self.transcript_problem_solving = None
         self.transcript_survey = None
+        
+        # IDG and distance to utopia
+        self.feature_synthesis_dist2UP = dict()
+        self.design_IGD = dict()
 
     def gradeAnswers(self, confidenceThreshold=None):
         self.feature_classification_score, self.feature_classification_graded_answers = self.grader.gradeAnswers("feature", "classification", self.feature_classification_answer, self.feature_classification_confidence, confidenceThreshold=confidenceThreshold)
@@ -149,13 +153,17 @@ class Subject():
     def gradeNegativeFeatures(self):
         return self.grader.gradePositiveOrNegativeFeatures(self.feature_classification_graded_answers, self.feature_comparison_graded_answers, positive=False)
 
-    def dist2Utopia(self, subject):
-        sub = subject.feature_synthesis_task_data['features_found']
-        subject.feature_synthesis_dist2UP = 1
-        for count, feature in enumerate(sub):
-            x = feature['metrics'][2]
-            y = feature['metrics'][3]
-            distNew = math.sqrt((1.0 - x)**2 + (1.0 - y)**2)
-            if distNew <  subject.feature_synthesis_dist2UP:
-                subject.feature_synthesis_dist2UP = distNew
+    def getDist2Utopia(self):
+        if len(self.feature_synthesis_task_data) != 0 and 'features_found' in self.feature_synthesis_task_data:
+            features = self.feature_synthesis_task_data['features_found']
+            self.feature_synthesis_dist2UP = 1
+            for count, feature in enumerate(features):
+                x = feature['metrics'][2]
+                y = feature['metrics'][3]
+                dist = math.sqrt((1.0 - x)**2 + (1.0 - y)**2)
+                if dist <  self.feature_synthesis_dist2UP:
+                    self.feature_synthesis_dist2UP = dist
+
+        return self.feature_synthesis_dist2UP
+
 
