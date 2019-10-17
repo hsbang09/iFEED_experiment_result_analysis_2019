@@ -4,7 +4,7 @@ import os
 import numpy as np
 import pandas as pd
 import traceback
-import xlrd
+import csv
 import math
 from subject import Subject
 
@@ -288,15 +288,29 @@ class ResultAnalyzer():
                     print("Exception while reading: {0}".format(filename))
                     traceback.print_exc()
                    
-    ######### COMPUTE IDG #############                
-    def computeIDG(self, subject):
-        # load in excel sheet
-        targetDDLoc = ("C:\\Users\\renee\\Documents\\__MACOSX\\TargetDesigns.xlsx")
-        targetWB = xlrd.open_workbook(targetDDLoc)
-        targetDesignData = targetWB.sheet_by_index(0)
+    ######### COMPUTE IGD #############                
+    def computeIGD(self, subject, filePath):
+        
+        # load in csv
+        with open(filePath) as csvfile:
+            readCSV = csv.reader(csvfile, delimiter = ',')
+            indexTotal = []
+            targetVals = []
+            scienceTotal = []
+            costTotal = []
+            for row in readCSV:
+                index = row[0]
+                targetVal = row[1]
+                science = row[3]
+                cost = row[4]
+
+                indexTotal.append(int(index))
+                targetVals.append(int(targetVal))
+                scienceTotal.append(float(science))
+                costTotal.append(float(cost))
+
         
         # initialize empty arrays
-        targetVals = []
         scienceVals = []
         costVals = []
         
@@ -304,27 +318,34 @@ class ResultAnalyzer():
         subDesigns = subject.design_synthesis_task_data['designs_evaluated'][:]
         numDesigns = len(subDesigns)
         numTargetDesigns = len(targetVals)
-
+        
+        # find min and max for cost for normalization
+        costMax = max(costTotal)
+        costMin = min(costTotal)
+        sciMax = max(scienceTotal)
+        sciMin = min(scienceTotal)
+        
         # iterate through the column that contains a 0 or 1 describing if 
         # design is a target. if Yes (targetbool = 1), append science and cost
         # to array
-        for count, targetBool in enumerate(targetDesignData.col_values(1)):
+        for count, targetBool in enumerate(targetVals):
             if targetBool == 1:
-                targetVals.append(count)
-                scienceVals.append(targetDesignData.cell_value(count,3))
-                costVals.append(targetDesignData.cell_value(count,4))
+                scienceVals.append(scienceTotal[count])
+                costVals.append(costTotal[count])
+
         
         minDist = []
         # iterate through target solutions, get science and cost for each solution
-        for j, zSci in enumerate(scienceVals):
-            zCost = costVals[j]
+        for j, zSci_nonorm in enumerate(scienceVals):
+            zCost = (costVals[j] - costMin)/(costMax-costMin)
+            zSci = (zSci_nonorm - sciMin)/(sciMax - sciMin)            
             distArr = []
     
              # iterate through the subject's solutions, get science and cost. compute
             # distance, keeping target solution the same and changing subject soln
             for k, designs in enumerate(subDesigns):
-                aSci = subject.design_synthesis_task_data['designs_evaluated'][k]['outputs'][0]
-                aCost = subject.design_synthesis_task_data['designs_evaluated'][k]['outputs'][1]
+                aSci = (subject.design_synthesis_task_data['designs_evaluated'][k]['outputs'][0] - sciMin)/(sciMax - sciMin)
+                aCost = (subject.design_synthesis_task_data['designs_evaluated'][k]['outputs'][1] - costMin)/(costMax-costMin)
                 dist = math.sqrt((zCost - aCost)**2 + (zSci - aSci)**2)
                 distArr.append(dist)
             
@@ -334,9 +355,6 @@ class ResultAnalyzer():
         # sum and average  
         subject.design_IGD = sum(minDist)/len(minDist)
         print(subject.design_IGD)
-        
-        
-        
         
 
     def importTranscriptFiles(self, subject):
