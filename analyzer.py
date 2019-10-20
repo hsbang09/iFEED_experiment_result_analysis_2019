@@ -289,76 +289,7 @@ class ResultAnalyzer():
                 except:
                     print("Exception while reading: {0}".format(filename))
                     traceback.print_exc()
-                   
-    ######### COMPUTE IGD #############                
-    def computeIGD(self, subject, filePath):
-        
-        # load in csv
-        with open(filePath) as csvfile:
-            readCSV = csv.reader(csvfile, delimiter = ',')
-            indexTotal = []
-            targetVals = []
-            scienceTotal = []
-            costTotal = []
-            for row in readCSV:
-                index = row[0]
-                targetVal = row[1]
-                science = row[3]
-                cost = row[4]
-
-                indexTotal.append(int(index))
-                targetVals.append(int(targetVal))
-                scienceTotal.append(float(science))
-                costTotal.append(float(cost))
-
-        
-        # initialize empty arrays
-        scienceVals = []
-        costVals = []
-        
-        # create variable with the subject's design info
-        subDesigns = subject.design_synthesis_task_data['designs_evaluated'][:]
-        numDesigns = len(subDesigns)
-        numTargetDesigns = len(targetVals)
-        
-        # find min and max for cost for normalization
-        costMax = max(costTotal)
-        costMin = min(costTotal)
-        sciMax = max(scienceTotal)
-        sciMin = min(scienceTotal)
-        
-        # iterate through the column that contains a 0 or 1 describing if 
-        # design is a target. if Yes (targetbool = 1), append science and cost
-        # to array
-        for count, targetBool in enumerate(targetVals):
-            if targetBool == 1:
-                scienceVals.append(scienceTotal[count])
-                costVals.append(costTotal[count])
-
-        
-        minDist = []
-        # iterate through target solutions, get science and cost for each solution
-        for j, zSci_nonorm in enumerate(scienceVals):
-            zCost = (costVals[j] - costMin)/(costMax-costMin)
-            zSci = (zSci_nonorm - sciMin)/(sciMax - sciMin)            
-            distArr = []
-    
-             # iterate through the subject's solutions, get science and cost. compute
-            # distance, keeping target solution the same and changing subject soln
-            for k, designs in enumerate(subDesigns):
-                aSci = (subject.design_synthesis_task_data['designs_evaluated'][k]['outputs'][0] - sciMin)/(sciMax - sciMin)
-                aCost = (subject.design_synthesis_task_data['designs_evaluated'][k]['outputs'][1] - costMin)/(costMax-costMin)
-                dist = math.sqrt((zCost - aCost)**2 + (zSci - aSci)**2)
-                distArr.append(dist)
-            
-            # add min of the distances to an array    
-            minDist.append(min(distArr))
-        
-        # sum and average  
-        subject.design_IGD = sum(minDist)/len(minDist)
-        print(subject.design_IGD)
-        
-
+                 
     def importTranscriptFiles(self, subject):
         dirname = os.path.join(self.loggedDataRootPath, subject.participant_id)
 
@@ -482,8 +413,9 @@ class ResultAnalyzer():
                         "FScore","DScore",
                         "PScore","NScore",
                         "HScore","LScore",
-                        "dist2UP",
+                        "dist2UP","IGD",
                         "totalScore",
+                        "numDesigns",
                         "selfAssessment"]
 
         dat = []
@@ -535,6 +467,14 @@ class ResultAnalyzer():
 
                 elif col == "dist2UP":
                     val = s.getDist2Utopia()
+
+                elif col == "IGD":
+                    if s.design_IGD is None:
+                        raise ValueError("IGD was not computed")
+                    val = s.design_IGD
+
+                elif col == "numDesigns":
+                    val = len(s.design_synthesis_task_data['designs_evaluated'])
 
                 elif col == "counter_design_viewed":
                     val = s.learning_task_data['counter_design_viewed']
@@ -621,19 +561,87 @@ class ResultAnalyzer():
                             out.append(message)
         return out
 
+    """ Computes IGD
+    """             
+    def computeIGD(self, dataFilePath):    
+        indexTotal = []
+        classLabel = []
+        scienceTotal = []
+        costTotal = []
 
+        # load in csv
+        with open(dataFilePath) as csvfile:
+            readCSV = csv.reader(csvfile, delimiter = ',')
+
+            for row in readCSV:
+                index = row[0]
+                targetVal = row[1]
+                science = row[3]
+                cost = row[4]
+                indexTotal.append(int(index))
+                classLabel.append(int(targetVal))
+                scienceTotal.append(float(science))
+                costTotal.append(float(cost))
+
+        # initialize empty arrays
+        targetScience = []
+        targetCost = []
+        numTargetDesigns = 0
+
+        # find min and max for cost for normalization
+        costMax = max(costTotal)
+        costMin = min(costTotal)
+        sciMax = max(scienceTotal)
+        sciMin = min(scienceTotal)
+        costDiff = costMax - costMin
+        sciDiff = sciMax - sciMin
+
+        # iterate through the column that contains a 0 or 1 describing if 
+        # design is a target. if Yes (targetbool = 1), append science and cost
+        # to array
+        for i, label in enumerate(classLabel):
+            if label == 1:
+                targetScience.append(scienceTotal[i])
+                targetCost.append(costTotal[i])
+        numTargetDesigns = len(targetScience)
+
+        for s in self.subjects:
+
+            # create variable with the subject's design info
+            subDesigns = s.design_synthesis_task_data['designs_evaluated']
+            numDesigns = len(subDesigns)
+            
+            minDistList = []
+
+            # iterate through target solutions, get science and cost for each solution
+            for i in range(numTargetDesigns):
+                tSci = (targetScience[i] - sciMin) / sciDiff
+                tCost = (targetCost[i] - costMin) / costDiff       
+                
+                # iterate through the subject's solutions, get science and cost. compute
+                # distance, keeping target solution the same and changing subject soln
+                minDist = 10
+                for design in subDesigns:
+                    sSci = (design['outputs'][0] - sciMin) / sciDiff
+                    sCost = (design['outputs'][1] - costMin) / costDiff
+                    dist = math.sqrt((sCost - tCost)**2 + (sSci - tSci)**2)
+                    if dist < minDist:
+                        minDist = dist
+                
+                # add min of the distances to an array    
+                minDistList.append(minDist)
+            
+            # sum and average  
+            s.design_IGD = np.mean(minDistList)
+        
 
     # def saveCSV(self, filename=None):
-
     #     if filename is None:
     #         filename = "/Users/bang/workspace/iFEED_experiment_result_analysis_2018/data.csv"
-
     #     header = ["id","gender","major","pretestScore","condition1","condition2","condition3","order","score","time","confidence"]
 
     #     out = []
-
     #     out.append(",".join(header))
-
     #     # For each subject
     #     for s in self.data:
     #         summary = s.getDataSummary()
@@ -645,8 +653,6 @@ class ResultAnalyzer():
 
     #     with open(filename, "w+") as file:
     #         file.write("\n".join(out))
-    
-
 
 
 def RepresentsInt(s):
