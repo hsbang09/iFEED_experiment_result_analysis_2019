@@ -14,12 +14,6 @@ import seaborn as sns
 PROP_CYCLE = plt.rcParams['axes.prop_cycle']
 COLORS = PROP_CYCLE.by_key()['color']
 
-GROUP_LABEL_MAP = {
-    4: "Manual",
-    5: "Automated",
-    6: "Interactive"
-}
-
 class Visualizer():
     def __init__(self, data=None, groups=None, groupNames=None):
         if data is not None:
@@ -49,9 +43,20 @@ class Visualizer():
                             grid=grid,
                             layout=layout)
 
-    def boxPlot(self, columns, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False, grid=False, displayPoints=False):
+    def boxPlot(self, columns, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False, grid=False, displayPoints=False, dataFrame=None):
         fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
-        grouped = self.dataFrame.groupby("condition")
+
+        if dataFrame is None:
+            dataFrame = self.dataFrame
+
+        grouped = dataFrame.groupby("condition")
+
+        groupedReordered = []
+        for targetName in ["manual","automated","interactive"]:
+            for (name, subdf) in grouped:
+                if name == targetName:
+                    groupedReordered.append((name, subdf))
+        grouped = groupedReordered
 
         if type(columns) is not list:
             columns = [columns]
@@ -71,8 +76,11 @@ class Visualizer():
             for x, val, clevel in zip(xs, vals, clevels):
                 ax[i].scatter(x, val, alpha=0.4)
 
-    def parallelCoordinates(self, columns, figsize=(13,6), colors=None, legend=None, grid=False):
+    def parallelCoordinates(self, columns, figsize=(13,6), colors=None, legend=None, grid=False, dataFrame=None):
         fig, ax = plt.subplots(figsize=figsize)
+
+        if dataFrame is None:
+            dataFrame = self.dataFrame
 
         if colors is None:
             colors = []
@@ -82,7 +90,7 @@ class Visualizer():
         if columns is None:
             columns = ['fcl','fpwc', 'dcl','dpwc','FScore','DScore','PScore','NScore','totalScore']
 
-        pd.plotting.parallel_coordinates(frame=self.dataFrame, 
+        pd.plotting.parallel_coordinates(frame=dataFrame, 
                 class_column='condition', 
                 ax=ax,
                 cols=columns,
@@ -244,7 +252,68 @@ class Visualizer():
             plt.show()
             return None
 
-    def barChart(self, data, groupNames, errData=None, ax=None, axisIndex=None, xLabel=None, yLabel=None, title=None, colors=None, barWidth=0.2, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False):
+    def barPlot(self, columns=None, showError=False, nrows=1, ncols=1, figsize=(10,6), width=0.8, sharex=False, sharey=False, grid=False, title=None, displayPoints=False, dataFrame=None):
+        fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
+
+        if dataFrame is None:
+            dataFrame = self.dataFrame
+
+        conditions = ["manual", "automated", "interactive"]
+        grouped = dataFrame.groupby("condition")
+
+        groupedReordered = []
+        for targetName in conditions:
+            for (name, subdf) in grouped:
+                if name == targetName:
+                    groupedReordered.append((name, subdf))
+        grouped = groupedReordered
+
+        if type(columns) is not list:
+            columns = [columns]
+
+        for i, col in enumerate(columns):
+            names, vals, xs = [], [] ,[]
+            for j, (name, subdf) in enumerate(grouped):
+                names.append(name)
+                vals.append(subdf[col].tolist())
+
+                tempX = np.random.normal(j+1, 0.06, subdf.shape[0])
+                tempXOffset = []
+                for x in tempX:
+                    if np.random.randint(2) == 1:
+                        x += 0.15
+                    else:
+                        x -= 0.15
+                    tempXOffset.append(x)
+                xs.append(tempXOffset)
+
+            if showError:
+                stdErr = [stats.sem(val) for val in vals]
+                capsize = 10
+            else:
+                stdErr = None
+                capsize = None
+
+            x_pos = np.arange(len(conditions))
+            x_pos = [x + 1 for x in x_pos]
+            heights = [np.mean(val) for val in vals]
+
+            ax[i].bar(x_pos, heights, yerr=stdErr, capsize=capsize, width=width, color="white", edgecolor="black", align='center', alpha=1.0, zorder=0)
+            ax[i].set_xticks(x_pos)
+            ax[i].set_xticklabels(conditions)
+
+            ngroup = len(vals)
+            clevels = np.linspace(0., 1., ngroup)
+            ax[i].set_title(col)
+
+            for x, val, clevel in zip(xs, vals, clevels):
+                ax[i].scatter(x, val, color="black", alpha=0.5, zorder=1)
+        
+        if title is not None:
+            plt.title(title)
+        plt.show()
+
+    def catBarPlot(self, data, groupNames, errData=None, ax=None, axisIndex=None, xLabel=None, yLabel=None, title=None, colors=None, barWidth=0.2, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False):
         if ax is None:
             fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
 
@@ -303,7 +372,7 @@ class Visualizer():
                     answerCounter[qInd][0] += 1
                 else:
                     answerCounter[qInd][1] += 1
-        self.barChart(data=answerCounter, groupNames=["HighLevel","LowLevel"], ax=ax, axisIndex=0, colors=colors, xLabel="Questions", yLabel="Response", title="Feature preference data: generalization")
+        self.catBarPlot(data=answerCounter, groupNames=["HighLevel","LowLevel"], ax=ax, axisIndex=0, colors=colors, xLabel="Questions", yLabel="Response", title="Feature preference data: generalization")
 
         # iterate through all subjects
         answerCounter = [[0,0],[0,0],[0,0]]
@@ -314,7 +383,7 @@ class Visualizer():
                     answerCounter[qInd][0] += 1
                 else:
                     answerCounter[qInd][1] += 1
-        self.barChart(data=answerCounter, groupNames=["Gen+Exception","LowLevel"], ax=ax, axisIndex=1, colors=colors, xLabel="Questions", yLabel="Response", title="Feature preference data: generalization + exception")
+        self.catBarPlot(data=answerCounter, groupNames=["Gen+Exception","LowLevel"], ax=ax, axisIndex=1, colors=colors, xLabel="Questions", yLabel="Response", title="Feature preference data: generalization + exception")
 
         # iterate through all subjects
         answerCounter = [[0,0],[0,0],[0,0]]
@@ -331,7 +400,7 @@ class Visualizer():
                         answerCounter[qInd][0] += 1
                     else: # ans == 2
                         answerCounter[qInd][1] += 1
-        self.barChart(data=answerCounter, groupNames=["Positive","Negative"], ax=ax, axisIndex=2, colors=colors, xLabel="Questions", yLabel="Response", title="Feature preference data: parity")
+        self.catBarPlot(data=answerCounter, groupNames=["Positive","Negative"], ax=ax, axisIndex=2, colors=colors, xLabel="Questions", yLabel="Response", title="Feature preference data: parity")
         plt.show()
         
     def selfAssessmentPlot(self, displayStderr=False, barWidth=0.2, colors=None, figsize=(13,6)):
@@ -360,15 +429,15 @@ class Visualizer():
             # Compute stdErr
             stderrData = [stats.sem(q) for q in individualAnswerData]
             stderrPerGroup.append(stderrData)
+
+        print(averagedDataPerGroup)
             
         averagedDataPerGroup = np.array(averagedDataPerGroup).transpose()
         stderrPerGroup = np.array(stderrPerGroup).transpose()
 
-        print(stderrPerGroup)
-
         if not displayStderr:
             stderrPerGroup = None
 
-        self.barChart(averagedDataPerGroup, errData=stderrPerGroup, groupNames=self.groupNames, ax=ax, axisIndex=None, xLabel="Questions", yLabel="Response", title="Learning Self Assessment Data", colors=colors, barWidth=barWidth, figsize=figsize)
+        self.catBarPlot(averagedDataPerGroup, errData=stderrPerGroup, groupNames=self.groupNames, ax=ax, axisIndex=None, xLabel="Questions", yLabel="Response", title="Learning Self Assessment Data", colors=colors, barWidth=barWidth, figsize=figsize)
         plt.show()
     
