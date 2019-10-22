@@ -1,0 +1,282 @@
+3221520754006004819-10_2_6_8
+
+Begin learning task
+[Start]
+Ok, so low power. Power instruments. So, instruments… ok. Let’s look at [inaudible]
+Ok. Got it
+So… think we can do some relations between imagers… let’s see, generally instruments that are at a lower altitude you get a better resolution. 
+Um… so let’s try this here. 
+So we go imager… and… ok so 600 kilometers. We’ll say that there is a… so there’s two altitudes, 600 and 800. We’ll say that 600 is slightly positive.
+We’ll call it moderately positive.
+600 for imagers. And then we’ll do the same for O 600 orbit. And then we will add a slightly negative relation – actually you know what. I couldn’t… just do this around here.
+New relation. We’ll just apply it… we’ll just do this.
+Um, weakly positive. And add a new relation. 
+[inaudible]
+And weakly negative.
+Alright, looks good.
+I’ll go ahead and add… Hm…
+Looking for other relations that I could add. So, in terms of instrument types, I don’t know if these other instrument types like RADAR, LIDAR have particular requirements or benefits for different orbit types.
+Let’s add another concept.
+[inaudible]
+Slightly less coverage. And we add another one between [inaudible]. Slightly positive.
+Ok, there’s something.
+I don’t know, ill leave it at that. I don’t think ill get anything in the next 22 seconds.
+End learning task
+
+
+
+
+
+
+
+
+
+Begin data analysis task
+Alright, so just trying to get a sense of these guys. So, let’s see. We have a bunch of features here. And we’re looking for 70% coverage, I believe. Let’s go back here.
+[inaudible]
+Best feature… ok. So, it looks like we already have features… and if I record the best features that explains target design. [inaudible] Feature that is shared by 70% of the target design, coverage is 0.7 or higher, maximizes both coverage and specificity.
+I mean so, a lot of these… a lot of these features… seemingly meet the goal coverage of 0.7 or higher. Yeah, so…
+Any feature above this line meets our goal of coverage of 0.7 or higher. 
+And these guys in the middle kind of balance coverage and specificity.
+For example, these two – oh look. Suggestions, try to search…
+Gonna cancel that for a second here. 
+Mm, so I see. It still looks like it adds… the auto search is adding features as I go. It’s not particularly finding anything like further out.
+Gonna restore initial features. 
+So, both these features seem to be nice.
+Let’s see what this is saying.
+So, this is saying that this feature… coverage is 0.755. 
+[inaudible]
+Saying that the generalization simplifies the feature but doesn’t necessarily maintain the same coverage or specificity. I know that’s like the... well at least in this case, the generalizations are… wait never mind. 
+It just happens that the top one has the highest coverage. And improved specificity.
+So now our new one has moved up in coverage slightly compared to our old one.
+[experimenter tells subject they can zoom in and out of feature analysis plot]
+Ok cool. Thanks. 
+Ok, so… not in orbit.
+[experimenter tells subject to switch back and forth between features due to bug]
+Ok, so this is the one that is currently being displayed?
+Ok so, not in orbit. 
+[experimenter reminds subject to narrate thought process]
+Ok so, I’m trying to understand like what this feature is telling us depending on like… this feature meets the requirement of the task, so it has coverage greater than 70% and it, in terms of this coverage specificity plot, it’s on the pareto front here. So, we’re gonna be doing as well as we can in terms of maximizing coverage and specificity. So, we’re above 70% and maximizing coverage and specificity.
+So, from that metric, it’s like a feature that meets the task requirement. But I was just trying to understand what is kinda going on behind this particular feature.
+And so, this is very simple. Doesn’t have this radar. These instruments are in this orbit. 
+I wonder if… I think. Let’s see here. Let me go back to this guy here. Where’d he go?
+I see. 
+Trying to determine the difference between… Ok so… 
+I see. So… Ok.
+Ok so, this feature has essentially two instruments. This feature essentially has four instruments in this orbit because it has gone with the generic LWIR instrument like class here instead of the two instances. Whereas this one has both HYP_IMAG and HYP_ERB.
+Ok, so…
+[experimenter explains that this does not mean both instruments are assigned, but can be either one or the other]
+Alright, but it looks like everything else is the same.
+Ok so, it means that the not in orbit is kind of interesting to me because… let’s see there are… five orbits. So… 
+[inaudible]
+Ok, so you have to have these. I guess I’m not sure, I don’t have an intuitive sense for why…. I guess it’s just explaining it… well. I don’t have an intuitive sense why these aspects of the feature result in being in this target range. 
+And hard to understand really why, I guess what I’m thinking is that, yeah this… I can see that there is a feature that meets a requirement for coverage, but I don’t have an intuitive sense for why architectures with this feature are part of the target population. Anyway…
+I can… So… I mean to me, the easiest way to… 
+I don’t think that’s… Ok. 
+Oh, didn’t mean to do that.
+Alright, so I’m trying to record this feature. And I could do so…
+[experimenter tells subject that they can right click to copy text]
+So it seems like there are capabilities of this tool that I’m not quite maximizing here. That’s ok. We’ll look at some other features.
+ There’s some here that re relatively good in terms of coverage. It seems, looking at this curve here, at the pareto front, looks like we can… we can improve coverage. Improving coverage at the cost of Specificity can be achieved using features that are relatively simple compared to features that maximizes specificity at the expense of coverage. 
+Which makes sense because as a feature becomes more complex, it definitely becomes more specific. Whereas, these can be considered kind of more broad features, so they catch more of the target design space but maybe they’re simpler by virtue of catching more designs. 
+So, here’s another one. [inaudible]
+Complexity two. Let’s look at that.
+So, this doesn’t really maximize, so we shouldn’t choose that because…
+Let’s just choose a feature that’s on the pareto front. 
+I am going to… this meets our requirement of above 70% coverage. I guess we can auto search and see if there is anything…
+Ok, I am just going to copy this over here.
+[inaudible]
+Ok so, let’s see. This one… these two are similar in the sense that similar instruments are not assigned to dawn dusk 800 SSO and some instruments not assigned to an SSO 600. And CPR_RAD is not assigned to any orbit. Same suit of instruments. So, these are very similar features. 
+There’s just this LIDAR that’s different. And then these. There’s no HYP_ERB in this one. Ok, so they’re in the same family. I don’t know if we learned a lot from those two.
+Well let’s look at this guy.
+Ok, so this is identifying some instruments that are good to separate. 
+So yeah, I guess in the concluding seconds, it is easy to see which features… the visualization of the features is good. It’s hard to infer the underlying relationships that cause these to be on the pareto front here.
+END data analysis task
+
+
+
+
+
+
+
+
+
+
+
+BEGIN problem set
+[F_cl1_1]
+Ok, so do you think the feature is shared by more than 70%...
+Do you think the following feature is shared by more than 70%...?
+AERO_POL and HIRES_SOUND assigned together… Hm…
+Ok so, I don’t have a good sense of this based on the features I was looking at. All I know, from the features I found, talked about where HIRES_SOUND was assigned and where AERO_POL was assigned.
+So, they could be together, but I don’t feel confident. Let’s say 20%. Sure 25%, why not. One quarter percent.
+[F_cl1_2]
+High power instruments, oh boy. Can I look at the instrument information? This thing?
+Power… 
+[experimenter reminds subject they can refer to the concept map relations]
+So, the ones not assigned to SSO-800-DD…
+It seems like a combination of low and high-power instruments are not assigned to that…
+So, I’ll say false with a pretty unconfident score. Well, a little more confident.
+Well I mean… there are some high powered that are not, its not a general rule…
+[F_cl1_3]
+Are not assigned to dawn dusk orbits…
+That’s illumination type… passive, I see. 
+So, I’ll say true. Somewhat more confident.
+[F_cl1_4]
+So, dawn dusk is not empty. Only contains these two instruments. I’m gonna say false, but I’m not super clear about it. Seems like any active instrument could sit in a dawn dusk orbit potentially, but I don’t know. So, I don’t think it could contain only these two, could contain a couple more, but not very confident. 
+[F_cl1_5]
+Gonna say false. Not confident.
+[F_cl1_6]
+SSO-600-DD is empty…
+No idea.
+True, not confident.
+[F_cl1_7]
+Sure. I see an instance of that here.
+[F_cl1_8]
+Just going off of what I have in my notes here, which is very limited, I’m gonna say false, but not confident.
+[F_cl1_9]
+I didn’t see anything for polar. So true, not confident.
+[F_pwc_1]
+So, I’m looking for connections between these instruments, and um… 
+Well I see at least one instance of this, so… we’ll just try this. Not confident though.
+[F_pwc_2]
+Ok this… I have no idea. 
+[F_pwc_3]
+Instrument type…
+Ok, so this is based on my own, sort of, I’m trying to see if things are complementary of competing.
+[F_pwc_4]
+Ok so, we have information at least in these notes at least about which instruments are not assigned together, which gives us a little information about which instruments are, except for… instruments that are together in SSO-800-PM orbit.
+Let’s see here.
+[inaudible]
+[experimenter reminds subject they can select any answer and specify low confidence if they are unsure]
+[F_pwc_5]
+…
+[F_pwc_6]
+…
+[F_pwc_7]
+…
+[F_pwc_8]
+…
+[F_pwc_9]
+…
+[D_cl_1]
+…
+[D_cl_2]
+…
+[D_cl_3]
+…
+[D_cl_4]
+…
+[D_cl_5]
+[experimenter reminds subject to use think aloud protocol]
+I’ve been trying to just map what I found in the feature that I documented against these items shown here. So, you’re basically looking for instances where the architecture of the design shown is in agreement or contradicts what I’ve found here
+[D_cl_6]
+So, like these two guys are in that orbit, although, can one instrument appear in multiple orbits? Is that allowed?
+So, is this even a valid design?
+[experimenter explains that an instrument cannot appear multiple times in the same orbit]
+Polar, so the problem is that my features say very little about the polar orbits. 
+Ok, well this is not the design because CPR_RAD is not. So, let’s say no, and I’m pretty confident.
+[D_cl_7]
+Well this, this looks pretty similar to those. But again, im not very confident about any of this.
+[D_cl_8]
+Ok, so this is HYP_IMAG not assigned to this orbit. So, we’re gonna say probably not. But not confident.
+[D_cl_9]
+SSO-600-AM… I mean, this seems like it’s possible there. Based on the feature.
+[D_pwc_1]
+Closer to the target region. I mean I think this, this sorta seems… closer to the… seems kinda closer to the feature I found here
+[D_pwc_2]
+Ok, closer to the target region.
+Ok sure.
+[D_pwc_3]
+This looks more similar to the feature, that’s what I’m going on.
+[D_pwc_4]
+[inaudible]
+DD… ok, so this violates… this is different than what’s in the feature, so why not?
+[D_pwc_5]
+Ok, so the 800 PM orbit looks more similar.
+[D_pwc_6]
+So, this is good.
+[D_pwc_7]
+Yeah, I like this more for the 800 PM orbit.
+[D_pwc_8]
+Ok, this…
+[D_pwc_9]
+Ok, so… alright, I like this because the 800 PM looks a little better.
+END problem solving task
+Begin feature synthesis task
+Ok so, features…
+Oh man… oh boy…
+Hmm, that didn’t work very well.
+Let’s do this. Let’s say… so this is a low altitude polar orbit.
+Actually, let’s do this. AM, sort of passive instruments.
+Ok, so coverage, not much specificity. 
+So, this is… [inaudible]
+So, let’s do dawn dusk orbit…
+Try this.
+Ok, that’s…
+[experimenter reminds subject they can refer to the concept map page]
+Gonna use this guy here.
+Slightly better specificity. 
+Let’s say and… let’s see how, I’m trying to remember how…
+Ok, that’s still better. Nice.
+I think that’s about as good as I’m gonna get in the time left. 
+END feature synthesis task
+BEGIN design synthesis task
+Alright. 
+Oh, that’s a bummer.
+[experimenter remind subject to use think aloud protocol]
+Ok, so my notes here kinda specify what shouldn’t, well, some things are assigned to particular orbits, that’s easy. It then describes things that are not assigned to orbits, so in the absence of any other information about what makes these instruments good or bad, together or separate or in different orbits, it’s sort of a shot in the dark.
+So, these last ones, I found something that’s here…
+Whoops, something just cleared. That’s ok.
+So, I’m just gonna kind of randomly put things together here. All I know is that the CPR_RAD wasn’t assigned to any orbits.
+I don’t really know what else makes these good. So, I’m just going to, other than reading through this, I guess there’s certain things here that could help…
+Ok, so only day orbits. Could probably reason about what makes an instrument good in a particular orbit. Only during the day, it observes nadir, it’s a passive radiator.
+Oh boy.
+So, probably want some sort of synchronous, probably want some sort of sun synchronous during the day.
+So, let’s se OCE_SPEC sun synchronous.
+Ok, so that’s not horrible. Let’s check this out here. What happens if we put it dawn dusk?
+Ok, that’s not horrible. Dawn dusk…
+Maybe it’s the same? I don’t know.
+Ok so, we’ll put it there. AERO_POL is similar, so put it there. Ok cool.
+So, more science casue it’s a new instrument, not as much cost.
+Probably put this here also, probably more cost… ok, for not that much more science. Ok got it.
+Cool, so let’s keep going. Something happened here…
+AERO_LID is day and night, so let’s do polar.
+Hm, so that doesn’t help us actually.
+CPR, interesting…
+Day and night…
+Oh ok, two minutes to go, let’s try this guy. Well a little bit better. We’ve moved up here.
+Here, cause it’s day and or night and it doesn’t; have to be nadir facing.
+Ok, still not great.
+So far, none of the architectures or designs are in the target region. 
+HYP_ERB, only day, nadir…
+Ok, so put that in and try that. Maybe sun sync…
+Ah, let’s try this over here.
+Well…
+Alright, I’m finding my intuition about [inaudible] day versus night, about geometry and thermal isn’t quite what I thought it was.
+END design synthesis task
+BEGIN survey task
+[1]
+Which do you think contains more useful information? Equivalent coverage…
+I think this one… this one probably lets you eliminate more options. I’m gonna say that has more information.
+[2]
+[inaudible]
+I don’t know. I don’t know why I choose that one. Seems more straight forward.
+[3]
+I prefer, yeah, I guess I prefer general rules rather than complicated acronyms.
+[4]
+…
+[5]
+I’m just going by which statement is easier to understand.
+[6]
+…
+[7]
+Um, this seems to be more specific.
+[8]
+I’m choosing ones that I think give you more, I like to eliminate the most number of designs.
+[9]
+…
+END survey task
+
+
+

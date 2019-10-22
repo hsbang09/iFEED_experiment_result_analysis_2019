@@ -1,0 +1,158 @@
+
+
+[F_cl_1]
+Yeah, ok well we’ll see, had I known I would have spent more picking more, well maybe, well we’ll see. Cause, I don’t remember those. Well, there’s that one. Yeah.
+[experimenter reminds subject they can use their text notes]
+Well, I don’t remember some of these so.
+Do you think the following feature is shared by more than 70% of the design in the target region?
+I’d say false, but I’m not super confident. 25%
+[F_cl_2]
+Ah, high power. Wow. Don’t know anything about power. Um, where is this guy connected to? 
+Ok, and this is connected to - and where is – ok so where is SS 0800 D? Well I didn’t really have much. This one is the 800 kilometer so.
+Ok, so… So those ones should not be tied to – ok, let me, I need more real estate here to work. I’m gonna close this guy.
+Alright, so, high power. That should come here. I wish I could turn off the ones that are not connected to it, but. So, it’s these, these, these, dawn dusk, the HIGHRESSOUND is on the 600 polar.
+So, so, far, none and then, this one is in the dawn dusk also, so I don’t think so, so not assigned, yes that is possible. They are high power we said, and they were assigned to others so… I’d say maybe 70%.
+[F_cl_3]
+CHEM_SWIRSPEC is not assigned to dawn dusk.
+Dawn dusk is here. Well, I have nothing, but I saw dawn dusk a few times, I’ve assigned, I’ve had others assigned to it. I don’t see it, I don’t remember seeing it. So, this one. [inaudible]
+I don’t think I have any information one way or another, so, but when I did dawn dusk I didn’t see it.
+So maybe it’s more true – yes?
+[experimenter tells subject they can specify low confidence if unsure of answer]
+Oh ok, alright.
+[F_cl_4]
+If SS 0800 DD is not empty it contains only… SS 0800 is not empty.
+Ok.
+Yeah, I don’t remember that at all. So, I don’t know, and I don’t remember that. So, I’m not going to. Next.
+[F_cl_5]
+And I didn’t, ok, so the active, so ok, dawn dusk orbit, one of the dawn dusk. Which are what? Do I have them here? One of the active, and which ones are the active?
+I mean, I don’t know, maybe.
+I can’t, is there any way for me to see... some characteristics of, like I’m inferring that lets say, that this instrument is active by the relationship, but is there a definition somewhere? Of the instrument, or of like the characteristics?
+[experimenter shows subject instrument and orbit information tab]
+Is it this one?
+Oh yeah, this one, yeah, yeah, yeah. Yeah, I see, it’s just a lot of data to, to, to digest, and in this amount of time, it’s um…
+Yeah so, I would go, I would go here. And then, this one, ok, so I don’t have this one.
+Well that’s what I was doing, but I don’t know whether that was reasonable or not, but so, I have this one that’s active, mkay.
+Um, that was this.
+And then uh, right? Well there was one, yeah ok. And then this one, yeah, so it appears here also, ok, and yeah, ok, so yeah. I am maybe a little more than 50%, let’s say 65.
+Kay, next.
+[F_cl_6]
+SSO 600 DD is empty, well… let’s see but…
+Well it is a dawn dusk, so… no.
+I’m gonna, I’m gonna say that.
+[F_cl_7]
+AERO_POL and SAR_ALTIM… are separate, yeah so that’s the relationship that I didn’t know how to characterize. Well, how to capture. Um well I don’t remember seeing it but.
+I’m not very confident of that.
+[F_cl_8]
+I don’t remember seeing this guy at all – AERO_POL.
+Oh, it is an atmospheric prop, let me check.
+What is the definition?
+Oh no, I’m thinking of something else. 
+Well maybe not. Atmospheric prop instrument. Well I assume it is. Ok, so 800… and… 600. SSO 600 AM, let’s say true, but, not really sure about that.
+[F_cl_9]
+If VEG_INSAR is… I would need, I would, to be confident I would need a much more complete network and to have evaluated a lot more features which I haven’t had time to, but. Um, VEG_INSAR
+It wasn’t dawn dusk, I said.
+So, I’m, I’m gonna say false.
+[F_pwc_1]
+Which of the features better describes the target region?
+CHEM_UV and SAR_ALTIM. [inaudible]
+Huh. That’s the one I know worse part of… the answers I’ve found, but not along with those other instruments. So, it’s very difficult for this one, I can’t answer. Maybe this one. Who knows?
+[F_pwc_2]
+Huh. 600 DD
+That’s a dawn dusk.
+And we said… And only contains…
+Well, I won’t be able to see that from here. Not easily I don’t think.
+CHEM_UVSPEC, yeah, I mean, maybe this one, but I don’t have enough information.
+[F_pwc_3]
+So which ones were better? The LIDAR or RADAR? So, let’s say.
+SAR [inaudible]. Just checking, so this is radar, yes. And this is an altimeter.
+They’re both radars.
+Yes, so ok, and then, in this one, ok, so they’re both radars and they were not together. So, mm, I would say maybe it’s, I mean I’ve seen it twice, which is better than anything else I’ve seen/
+[F_pwc_4]
+Which of the two features better describes the target region?
+So, assigned together… I think it was this. [inaudible].
+Yeah, I think so. So, so I saw this atmospheric concept appear… For I think, several times, so I think I would wanna have two atmospheric chemistry instrument assigned together.
+[F_pwc_5]
+I think I’ve definitely seen that one.
+[F_pwc_6]
+Ah, so dawn dusk. So, dawn dusk… 
+Ah, I didn’t get much information about that. But we can try again.
+So, point to see which ones are the high power one, and then my dawn dusk was here.
+CPR_RAD, VEG_INSAR. CPR_RAD, VEG_INSAR.
+This one is active, and the CPR_RAD is also active, so… oh. Oh, that is the opposite of what I was doing, sorry.
+So, CPR and VEG_INSAR… not assigned.
+Are they high power?
+Well that’s weird. I don’t know how to answer that, so I’m gonna say this but.
+[F_pwc_7]
+Which of the two features better describes the target region?
+AERO_POL – that, I didn’t see enough. So, if VEG_INSAR is used, I think we want it to be in the dawn dusk. Dawn dusk… 
+And I didn’t see AERO_POL either so, but I saw it that one for the others, so maybe I’m gonna say that. Terrible, alright. 
+[F_pwc_8]
+Which of the two features better describes the target region? At least one of the vegetation instruments is assigned to LEO 600
+Did I do anything with this one? Yes. 
+So, we have AERO_LID, CPR_RAD, HIRES. So, AERO_LID, is – I think. Let me check the other one. HIRES_SOUND.
+No, and then, CPR_RAD, that’s the radar. Ok, so I think I’m gonna stick to this one. AERO_POL, maybe say this.
+[F_pwc_9]
+How many questions do I have, does it say?
+[experimenter tells subject they are almost halfway]
+Really? I mean, how to people answer those that quickly. It’s crazy.
+Yeah, ok.
+So, we saw that one.
+I thought- no. Ok, well.
+
+
+
+[D_cl_1]
+Alright, so I’m just comparing to my notes and whatever I captured in that amount of time. So, I had the CHEM_UVSPEC and I had the HYP_IMAG on the 800 km.
+On the – let me check the network.
+This one, that’s all I had. CHEM_UVSPEC. So that’s promising for this row, and not in orbit yeah. Didn’t capture them. Oh here.
+I wish I had taken more.
+Ok those are not together here, um. Yeah, those are not together, so yeas, I’d say it’s probably. But how confident I am? Not great, maybe more than 50%. Next.
+[D_cl_2]
+Ok, we didn’t want the HYP_IMAG in orbit, CPR RAD, HPY_IMAG, SAR ALTIM should not be together. So no, I think I’m pretty confident in that’s not what I want based on what I’ve seen.
+[D_cl_3]
+SAR ALTIM…
+Sorry, I’m – ok, LEO 600, so I want this guy, and this one… And the 800 PM. Not much info on the CHEM_UVSPEC, doesn’t look like that’s what I had, but I’m not super confident, but maybe more than 50.
+[D_cl_4]
+Ok, so SAR_ALTIM, 800, CPR_RAD. Abd VEG_INSAR at 600, so it shouldn’t be in orbit based on this one. Well, but this one said it should be in dawn dusk. But this is in polar here, and then…
+Honestly, I, I’m not sure, I would say no, but I’m not super confident on that one.
+[D_cl_5]
+CHEM_UVSPEC, yeah so, that’s more what I’ve seen maybe. Where’s the SAR altimeter? Where is – it’s here.
+[Inaudible] I’m gonna say yes, I’m gonna say this.
+[D_cl_6]
+Ok. This one is LEO 600 polar.
+I’m just comparing, continuing to compare my notes but not in a way that’s very methodical unfortunately, it’s um… it’s not organized in a way that I can easily compare – my notes. And I don’t think I have enough relation to really clarify the network, that one I just… I don’t know, that much.
+[D_cl_7]
+So, SAR_ALTIM present, and the CHEM_UVSPEC, so that one looks ok. LEO 600
+Hmm, not exactly what I wanted. It’s possible, but…
+[D_cl_8]
+Ok, 800 yes, yes. LEO 600 I had, so HYP_IMAG. No.
+I mean it’s possible, but it’s not super…
+[D_cl_9]
+Mkay, no.
+The fact that, yeah, I wish I had the not together part I had, I had those conditions listed twice but I was unable to capture them in the network, so that’s unfortunate.
+AERO_POL – I don’t know, I don’t know. I can’t focus anymore, I don’t think so, but I’m not confident at all.
+[D_pwc_1]
+Which of the following is closer to the target? 
+Ok so… CHEM_UVSPEC, CPR_RAD… hm, this one is both.
+CHEM_UVSPEC. ok, yes, well that one is here too, but it’s not here, so maybe I’ll pick that.
+[D_pwc_2]
+So, they should be not together, image and SAR_ALTIM. We want our altim, um, in LEO 600 I had AERO… kay. That’s the only specific orbit I had that had connections, unfortunately.
+But I would say this, based on the notes I took, so I’m gonna be a little more than 50%.
+[D_pwc_3]
+Again, I said I didn’t want that together. And then, HIRES_SOUND… measure… 
+Not together, yeah. Alright.
+Also, maybe a little more than 50%.
+[D_pwc_4]
+Well, we do want SAR_ALTIM present, I mean just based on that, I can say that it should be there.
+[D_pwc_5]
+And we said we wanted it… ok so, SAR_ALTIM and HYP_IMAG not together, I had that twice. I can’t see anything here now. Not together, ok so I’m gonna pick that one, because they’re not together and I’m gonna say it’s this.
+[D_pwc_6]
+Same reasons here. CHEM_UVSPEC also on 800 kilometer orbit, what’d you have on the LEO 600 polar? CPRM, mkay, so also, I think.
+[D_pwc_7]
+Ok, hires sound I had on the 600 polar orbit… I don’t… ok. Those are not in orbit. SAR_ALTIM… unclear, maybe this one. Not confident.
+[D_pwc_8]
+Dawn dusk… I really don’t know
+[D_pwc_9]
+Mkay, so we like the CHEM_UVSPEC in the 800 kilometer potentially, I would like this SAR altimeter with on the LEO.
+And none of the instrument I picked for the LEO 600 is there. So, I think this one, just based on the - oh but UVSPEC is there too. Lets just pick that, but I don’t know.
+

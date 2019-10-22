@@ -1,0 +1,500 @@
+5577734270005004819-10_4_13_54.mp4
+
+
+Hmmm, hey I need more time. Is it gonna close after the 0 or? Ah. I’m gonna mess up your experiment. Umm. See it’s like thinking under pressure now. So let me think, let me think. Ok so, there is.. but I don’t know about the relation- I need more time to think about the relationship and those guys are floating away. [laughs] umm. Let’s see. 
+This is gonna be terrible, cause we have 10 seconds. Hmm. Yeah, I, I apologize about that you’re not gonna get – ah ok, yeah cause [inaudible] question I didn’t realize that it was gonna close the window.
+Kay, we can rerun it if you want. Oh the [inaudible], the xml? 
+Ok, I still have them. Or did I just – discard it? 
+Yes, yes. 
+Mhm.
+Yeah so, I’m sorry, there’s a combination of things happening here, there’s the fact that, yeah, there’s, I, and, and there’s uh, [inaudible] don’t know what’s wrong, it’s a little harder to focus here. For this. Usually it’s one problem, but for this I feel like I need to concentrate. So ok.
+[experimenter instructs to begin data analysis task]
+Yes, mhm.
+Ok, ok.
+Ok, ok.
+Ok… Ok…
+Ok is this gonna be, this screen is gonna remain somewhere?
+Ok… but, ok. [inaudible] 70%. Yes
+Ok…
+[inaudible]
+Ok... Ok… Ok…
+Ok, so… not sure what’s gonna happen once I click start, but.
+
+
+
+
+
+
+
+
+
+
+
+BEGIN learning task
+So, is it, am I gonna, so I have a thing of goals, but is there anything else that’s gonna appear once I do start or?
+Ok. But the givens here is really the data set, right? Given this set of points, can you use the interface to find features that are, that follow the guidelines that you provided?
+I see. Ok, alright, well let’s try and fail miserably. [laughs]
+And not, not, not because of you, that just because of me not being able to focus. Alright.
+[experimenter reminds subject to narrate thought process]
+Yeah, yeah, yeah, so let me, let me think.
+So…ok… So, I want features that are shared by at least 70% of the target design.
+Ok.
+So, the blue ones that are the ones that are in the target, I believe, if I remember well.
+If I click on one, now I just have to remember how it works, I already forgot.
+I have one feature… 
+So, feature with high coverage and specificity…
+Hmm. Well I mean here it seems that the feature – well I mean that’s the trade off, right? When we’re talking about the high specificity… you typically have low coverage so I wanna be as much as possible in this region.
+Um, and then, low complexity… which I don’t see here unless I click on it. It’s almost I need a 3rd dimension. Um ok, and so… ok so, ok so, so the process I just pick one.
+Sorry, I forgot what I – once I click, yes, ok, yes, but once I click. Whoops, once I click on a feature, it’s not that, what do I do with it?
+Ok, I’m kind of confused.
+[inaudible] will be asked after.
+Ah ok, so… alright, so I can draw a line here. So, I want, so I want 0.7 coverage, so I’m not interested in these, but I wanna maximize that, so maybe I’m here. And so, let’s say, oh and, what does the color mean again? Is it complexity? 
+And then a low complexity, so, I think I’ll take, I’ll pick that one.
+Or that one.
+What are the colors?
+So, I’m trying to get to – how many features do I have to use? I don’t know.
+Let say, ok, so I’m trying to go… Kay, not to go below 0.7. ok this one is good, 0.7, complexity is not too bad. So, this is my feature. So, can I ask you, so can I save it somewhere or, what do I do with it? Let say if I like it.
+[experimenter explains how to record information on concept map tab]
+Which is here?
+Should I do that? 
+Oh, ok, maybe I missed that. Sorry.
+I should probably open 2. 
+That’s ok, that’s ok, that’s ok.
+ So, so, so, let’s say, let’s say that I like this one.
+Yeah, so then… ok, ah.
+[experimenter tells subject how to record information in free text form rather in concept map]
+Yes… Ok… Ok…
+Yeah so ok, so, ok, so not in… ah I see, yeah.
+Mhm, whoops.
+It’s ok, it’s ok, so I don’t remember what those guys are, but uh, let’s say, cause I could see how, ok, yeah, I could see how I’m gonna get, well if I wanna copy that cause I wanna remember that compared to the second one.
+Separate... what is separate? Ah, I see. Mhm, ok, that’s interesting.
+SAR ALTIM not together… And… 
+Ok, sorry, so I’m just trying, I’m just copying this information cause I wanna move on to another one and compare it. And say ok, obvious similarities, cause I was gonna say, maybe I want this to be copied automatically by the tool and pick another one to compare. 
+Um, oh, it would be nice also if it automatically checked the overlap between several things I have picked. But…
+Um, I don’t know what this AtmPropInstrument is.
+This thing is – and – the HPY_IMAG on 800 kilometer orbit, and then, this is... this is a combination of 3 instruments? What is that?
+[experimenter explains class of instruments]
+Oh, ok.
+Ok.
+Ok, so then…
+But I don’t know the strength, so, well I don’t know the strength yet because I haven’t tried multiple ones.
+ And then we want – SAR_ALTIM present.
+But… Ok, ok.
+Ok. Alright, so let me just pick another one just for comparing.
+Let’s say something that’s… 
+This one. 
+Ok so then um, ok so, all these, we don’t wanna be, all those instruments we don’t wanna be, we don’t want them to be on those orbits.
+We want these to be separate.
+Ok, well we can already see that there’s uh… there’s uh…
+Also, maybe, this should be a concept. Separate.
+I don’t know. Whatever.
+And if I’ve added this guy… stay here.
+This guy. Oh, but…
+Well, but that doesn’t work cause this is… 
+Measured. I would need the three nodes for those three instruments as not together as more of a relationship.
+We can create. Ok, well I think I’m slowly gonna get.
+So, this is not a concept.
+So, let add a new relation.
+[inaudible]
+Think I understand.
+Is it this one?
+Well, I’m gonna try that. I don’t know. Separate, for now I have no idea how much the weight is, but I’m gonna say…
+But what does that mean?
+I don’t know if that means anything.
+Ok, I’m just gonna put 50 for now, but I’m gonna have to go back to it.
+Ok, and then let’s say I wanna say…
+Yeah ok, well. Also, I need to go back to this.
+Ok so in orbit, we like this one again.
+Altitude 800.
+Mhm, so there’s multiple ones.
+Ok, so this one is good.
+And then CHEM_UVSPEC is on it.
+So maybe I want that.
+Or is it here?
+Ok so I – so I would want – stay here. Ah!
+It’s floating.
+[experimenter instructs on how to close and navigate concept map]
+Oh, and it, it’s saving ok.
+So… I have 800, so it won’t go away, and of course I forgot which one I was gonna put, I think it was the CHEM_UVSPEC. 
+Yes, so UVSPEC, where are you? Here. So if I select the two – ok, ok, perfect. I wanna say it’s positive, I have no idea of the weight.
+I haven’t seen enough, I’m just gonna put a stupid number.
+Ok, yes, mkay 9 minutes, ok.
+Then, passive, did I put passive?
+I see. Ok, so maybe what I should do, is SAR_ALTIM present?
+Present is used on any orbit?
+I wonder, how do I get to select it maybe?
+Maybe it’s just a new concept. I don’t know. 
+I mean, present.
+Where did it go?
+Yeah, well again…
+AtmPropInstrument – that was good.
+Oh, it seems like it would be a concept.
+Then that it is strongly tied to the ones that it says.
+So, I kinda wanna add it.
+[experimenter shows subject atmosphericProp concept on map]
+Oh, ok.
+Oh, that one.
+Oh ok, good.
+Um... so, what did I say? I want it to be on 800.
+Ok, so, again, I would need more example to refine the weight, but I guess it’s going to tie them together, I assume.
+Separate, not in orbit.
+Yeah... well. I don’t know, I’m going to try something else now. I need more examples.
+So, goals, still want 70 percent coverage… and high specificity… and low complexity. Maybe do that one.
+This one? Ok. Ok so, SAR_ALTIM present, we find it again. Separate HYP_IMAG and in orbit, CHEM_UVSPEC…
+In orbit…
+Ah, ok, [inaudible]. Ok well that’s a new one, so PM orbit.
+Maybe I wanna save this, I wanna remember these, I wanna look at similarities when I go from one to the other.
+I wish I could copy paste.
+Um, ok, but so we want the SWIRS Gla – ok. Stressing me out. Glacier and ice instrument and then CHEM_UVSPEC. last time we said… ok so, this one, PM orbit, mkay.
+And SAR_ALTIM present, and we don’t like these.
+I don’t know how to code that here. Not in orbit.
+Wow, it’s a negative relationship.
+Yes, so, where is that dawn dusk?
+It’s not there.
+Oh, it’s here. I see, so yes. Alright so. [inaudible] 
+This guy, and this one. Negative… Well, not in orbit, well mkay, well I don’t know how much yet.
+Whoops, I am very curious see what, if it’s gonna keep it in. If any.
+Again, just random weights.
+[inaudible] 600.
+In here?
+Are they all here? Or do I have option to add? Oh, it’s here, yeah. [inaudible] 
+I know you’re not supposed to talk.
+This guy.
+Gotta have, I don’t know. I don’t know.
+This one will mount to anything? I wonder…
+Selecting things [inaudible].
+Am I completely off track or?
+[experimenter assures subject is on doing fine]
+Ok.
+Mkay.
+Those separate, so maybe it’s just… yeah, it’s just negative between, yeah, well, not in the same orbit? Well that one almost involves three things, well, it involves the orbit, so let’s say if I pick two, so that’s three, so how do I put a relationship between three things? Hmm, yeah not sure about that one.
+And I think, did I do that one? With the pm? Where are you? Where’s the pm? Oh, here it is. Yeah, oh, I thought I did it.
+That’s weird.
+The numbers.
+But where this one… this guy should be there as well. 
+End of session, no!
+Learning task end
+Ok.
+Yup.
+Mhm. 
+Oh, I thought that was the problem ok. [laughs]
+This one?
+Or this one?
+Mhm. Yes. Maybe yeah, maybe I should. The other? Oh, the other one, this one. 
+That’s ok.
+Ok, should I?
+Kay.
+Ok.
+
+
+
+
+
+
+
+
+
+
+
+
+BEGIN problem solving task
+[F_cl1_1]
+Yeah, ok well we’ll see, had I known I would have spent more picking more, well maybe, well we’ll see. Cause, I don’t remember those. Well, there’s that one. Yeah.
+[experimenter reminds subject they can use their text notes]
+Well, I don’t remember some of these so.
+Do you think the following feature is shared by more than 70% of the design in the target region?
+I’d say false, but I’m not super confident. 25%
+[F_cl1_2]
+Ah, high power. Wow. Don’t know anything about power. Um, where is this guy connected to? 
+Ok, and this is connected to - and where is – ok so where is SS 0800 D? Well I didn’t really have much. This one is the 800 kilometer so.
+Ok, so… So those ones should not be tied to – ok, let me, I need more real estate here to work. I’m gonna close this guy.
+Alright, so, high power. That should come here. I wish I could turn off the ones that are not connected to it, but. So, it’s these, these, these, dawn dusk, the HIGHRESSOUND is on the 600 polar.
+So, so, far, none and then, this one is in the dawn dusk also, so I don’t think so, so not assigned, yes that is possible. They are high power we said, and they were assigned to others so… I’d say maybe 70%.
+[F_cl1_3]
+CHEM_SWIRSPEC is not assigned to dawn dusk.
+Dawn dusk is here. Well, I have nothing, but I saw dawn dusk a few times, I’ve assigned, I’ve had others assigned to it. I don’t see it, I don’t remember seeing it. So, this one. [inaudible]
+I don’t think I have any information one way or another, so, but when I did dawn dusk I didn’t see it.
+So maybe it’s more true – yes?
+[experimenter tells subject they can specify low confidence if unsure of answer]
+Oh ok, alright.
+[F_cl1_4]
+If SS 0800 DD is not empty it contains only… SS 0800 is not empty.
+Ok.
+Yeah, I don’t remember that at all. So, I don’t know, and I don’t remember that. So, I’m not going to. Next.
+[F_cl1_5]
+And I didn’t, ok, so the active, so ok, dawn dusk orbit, one of the dawn dusk. Which are what? Do I have them here? One of the active, and which ones are the active?
+I mean, I don’t know, maybe.
+I can’t, is there any way for me to see... some characteristics of, like I’m inferring that lets say, that this instrument is active by the relationship, but is there a definition somewhere? Of the instrument, or of like the characteristics?
+[experimenter shows subject instrument and orbit information tab]
+Is it this one?
+Oh yeah, this one, yeah, yeah, yeah. Yeah, I see, it’s just a lot of data to, to, to digest, and in this amount of time, it’s um…
+Yeah so, I would go, I would go here. And then, this one, ok, so I don’t have this one.
+Well that’s what I was doing, but I don’t know whether that was reasonable or not, but so, I have this one that’s active, mkay.
+Um, that was this.
+And then uh, right? Well there was one, yeah ok. And then this one, yeah, so it appears here also, ok, and yeah, ok, so yeah. I am maybe a little more than 50%, let’s say 65.
+Kay, next.
+[F_cl1_6]
+SSO 600 DD is empty, well… let’s see but…
+Well it is a dawn dusk, so… no.
+I’m gonna, I’m gonna say that.
+[F_cl1_7]
+AERO_POL and SAR_ALTIM… are separate, yeah so that’s the relationship that I didn’t know how to characterize. Well, how to capture. Um well I don’t remember seeing it but.
+I’m not very confident of that.
+[F_cl1_8]
+I don’t remember seeing this guy at all – AERO_POL.
+Oh, it is an atmospheric prop, let me check.
+What is the definition?
+Oh no, I’m thinking of something else. 
+Well maybe not. Atmospheric prop instrument. Well I assume it is. Ok, so 800… and… 600. SSO 600 AM, let’s say true, but, not really sure about that.
+[F_cl1_9]
+If VEG_INSAR is… I would need, I would, to be confident I would need a much more complete network and to have evaluated a lot more features which I haven’t had time to, but. Um, VEG_INSAR
+It wasn’t dawn dusk, I said.
+So, I’m, I’m gonna say false.
+[F_pwc_1]
+Which of the features better describes the target region?
+CHEM_UV and SAR_ALTIM. [inaudible]
+Huh. That’s the one I know worse part of… the answers I’ve found, but not along with those other instruments. So, it’s very difficult for this one, I can’t answer. Maybe this one. Who knows?
+[F_pwc_2]
+Huh. 600 DD
+That’s a dawn dusk.
+And we said… And only contains…
+Well, I won’t be able to see that from here. Not easily I don’t think.
+CHEM_UVSPEC, yeah, I mean, maybe this one, but I don’t have enough information.
+[F_pwc_3]
+So which ones were better? The LIDAR or RADAR? So, let’s say.
+SAR [inaudible]. Just checking, so this is radar, yes. And this is an altimeter.
+They’re both radars.
+Yes, so ok, and then, in this one, ok, so they’re both radars and they were not together. So, mm, I would say maybe it’s, I mean I’ve seen it twice, which is better than anything else I’ve seen/
+[F_pwc_4]
+Which of the two features better describes the target region?
+So, assigned together… I think it was this. [inaudible].
+Yeah, I think so. So, so I saw this atmospheric concept appear… For I think, several times, so I think I would wanna have two atmospheric chemistry instrument assigned together.
+[F_pwc_5]
+I think I’ve definitely seen that one.
+[F_pwc_6]
+Ah, so dawn dusk. So, dawn dusk… 
+Ah, I didn’t get much information about that. But we can try again.
+So, point to see which ones are the high power one, and then my dawn dusk was here.
+CPR_RAD, VEG_INSAR. CPR_RAD, VEG_INSAR.
+This one is active, and the CPR_RAD is also active, so… oh. Oh, that is the opposite of what I was doing, sorry.
+So, CPR and VEG_INSAR… not assigned.
+Are they high power?
+Well that’s weird. I don’t know how to answer that, so I’m gonna say this but.
+[F_pwc_7]
+Which of the two features better describes the target region?
+AERO_POL – that, I didn’t see enough. So, if VEG_INSAR is used, I think we want it to be in the dawn dusk. Dawn dusk… 
+And I didn’t see AERO_POL either so, but I saw it that one for the others, so maybe I’m gonna say that. Terrible, alright. 
+[F_pwc_8]
+Which of the two features better describes the target region? At least one of the vegetation instruments is assigned to LEO 600
+Did I do anything with this one? Yes. 
+So, we have AERO_LID, CPR_RAD, HIRES. So, AERO_LID, is – I think. Let me check the other one. HIRES_SOUND.
+No, and then, CPR_RAD, that’s the radar. Ok, so I think I’m gonna stick to this one. AERO_POL, maybe say this.
+[F_pwc_9]
+How many questions do I have, does it say?
+[experimenter tells subject they are almost halfway]
+Really? I mean, how to people answer those that quickly. It’s crazy.
+Yeah, ok.
+So, we saw that one.
+I thought- no. Ok, well.
+[D_cl_1]
+Alright, so I’m just comparing to my notes and whatever I captured in that amount of time. So, I had the CHEM_UVSPEC and I had the HYP_IMAG on the 800 km.
+On the – let me check the network.
+This one, that’s all I had. CHEM_UVSPEC. So that’s promising for this row, and not in orbit yeah. Didn’t capture them. Oh here.
+I wish I had taken more.
+Ok those are not together here, um. Yeah, those are not together, so yeas, I’d say it’s probably. But how confident I am? Not great, maybe more than 50%. Next.
+[D_cl_2]
+Ok, we didn’t want the HYP_IMAG in orbit, CPR RAD, HPY_IMAG, SAR ALTIM should not be together. So no, I think I’m pretty confident in that’s not what I want based on what I’ve seen.
+[D_cl_3]
+SAR ALTIM…
+Sorry, I’m – ok, LEO 600, so I want this guy, and this one… And the 800 PM. Not much info on the CHEM_UVSPEC, doesn’t look like that’s what I had, but I’m not super confident, but maybe more than 50.
+[D_cl_4]
+Ok, so SAR_ALTIM, 800, CPR_RAD. Abd VEG_INSAR at 600, so it shouldn’t be in orbit based on this one. Well, but this one said it should be in dawn dusk. But this is in polar here, and then…
+Honestly, I, I’m not sure, I would say no, but I’m not super confident on that one.
+[D_cl_5]
+CHEM_UVSPEC, yeah so, that’s more what I’ve seen maybe. Where’s the SAR altimeter? Where is – it’s here.
+[Inaudible] I’m gonna say yes, I’m gonna say this.
+[D_cl_6]
+Ok. This one is LEO 600 polar.
+I’m just comparing, continuing to compare my notes but not in a way that’s very methodical unfortunately, it’s um… it’s not organized in a way that I can easily compare – my notes. And I don’t think I have enough relation to really clarify the network, that one I just… I don’t know, that much.
+[D_cl_7]
+So, SAR_ALTIM present, and the CHEM_UVSPEC, so that one looks ok. LEO 600
+Hmm, not exactly what I wanted. It’s possible, but…
+[D_cl_8]
+Ok, 800 yes, yes. LEO 600 I had, so HYP_IMAG. No.
+I mean it’s possible, but it’s not super…
+[D_cl_9]
+Mkay, no.
+The fact that, yeah, I wish I had the not together part I had, I had those conditions listed twice but I was unable to capture them in the network, so that’s unfortunate.
+AERO_POL – I don’t know, I don’t know. I can’t focus anymore, I don’t think so, but I’m not confident at all.
+[D_pwc_1]
+Which of the following is closer to the target? 
+Ok so… CHEM_UVSPEC, CPR_RAD… hm, this one is both.
+CHEM_UVSPEC. ok, yes, well that one is here too, but it’s not here, so maybe I’ll pick that.
+[D_pwc_2]
+So, they should be not together, image and SAR_ALTIM. We want our altim, um, in LEO 600 I had AERO… kay. That’s the only specific orbit I had that had connections, unfortunately.
+But I would say this, based on the notes I took, so I’m gonna be a little more than 50%.
+[D_pwc_3]
+Again, I said I didn’t want that together. And then, HIRES_SOUND… measure… 
+Not together, yeah. Alright.
+Also, maybe a little more than 50%.
+[D_pwc_4]
+Well, we do want SAR_ALTIM present, I mean just based on that, I can say that it should be there.
+[D_pwc_5]
+And we said we wanted it… ok so, SAR_ALTIM and HYP_IMAG not together, I had that twice. I can’t see anything here now. Not together, ok so I’m gonna pick that one, because they’re not together and I’m gonna say it’s this.
+[D_pwc_6]
+Same reasons here. CHEM_UVSPEC also on 800 kilometer orbit, what’d you have on the LEO 600 polar? CPRM, mkay, so also, I think.
+[D_pwc_7]
+Ok, hires sound I had on the 600 polar orbit… I don’t… ok. Those are not in orbit. SAR_ALTIM… unclear, maybe this one. Not confident.
+[D_pwc_8]
+Dawn dusk… I really don’t know
+[D_pwc_9]
+Mkay, so we like the CHEM_UVSPEC in the 800 kilometer potentially, I would like this SAR altimeter with on the LEO.
+And none of the instrument I picked for the LEO 600 is there. So, I think this one, just based on the - oh but UVSPEC is there too. Lets just pick that, but I don’t know.
+END problem solving task
+Phew. [inaudible] [laughs]
+Oh well it’s just that I need more time to get used to the tool first, and I have so little information captured that I don’t know that I can really answer the assessments. 
+Mkay.
+Mhm.
+Ok, let me make sure, I don’t know how long, how long do you think you still have? 
+Oh ok, yeah, yeah, yeah, ok
+Ok, so next… ok…
+BEGIN feature synthesis task
+Ok, design feature, that’s interesting.
+Ok, let me just make sure that – so I want this. 70% coverage. Ok, but now, it doesn’t have to be low complexity? I guess maybe, the ones I had picked were a little too complex, not sure.
+Can be done using the filter setting tab… ok, to use a filter, select the filter type from the list of available filters… yes… contain a specific instrument, yes, and then you pick the instrument, ok, ok.
+Try to do it, ok.
+Yes, and then classes. [inaudible] Ok.
+To select an instrument, click the “apply filter” … Yes.
+Another filter, an orbit [inaudible].
+Ok, one orbit, yes.
+If more than one instruments are given, [inaudible] select an orbit, and more than one instruments are, as are given
+Kay. Ok…
+Ok. Oh ok. Well this isn’t, there’s an or now. I think I did it, ok. Yes, so it changes nice. You can view the options for each action by clicking on each node. Ok. Ok.
+Right click on one of the logical… yes. Yes. 
+Ok, ok. Added them yes, somewhere here. Yeah. Leaf nodes… yes. Ok. I see. Whoops. 
+Feel free to explore, yes, I don’t know if I will have the time, but… I’m given only 7 minutes! But I haven’t learned much, because I didn’t have time.
+Inspecting design is disables. So, based on what.
+Yeah, yeah, yeah.
+So, so I can copy some features, in orbit. Let’s say this one. And then, let’s say, is it this guy? AERO_LID…
+That’s one feature, kay. Another feature is... but then, well, that’s one condition, but then I can mix different conditions together in different features, so I would wanna first create the conditions. It would be nice if then I could create multiple features by just mixing the conditions out the filters I’ve created.
+So, how do I create a new one? [inaudible] apply this feature?
+[experimenter clarifies nodes]
+So, I have this one…
+But I think I wanna add a child node. Yeah, yeah, yeah.
+So, let’s say present… ok, here you go. Ok. Is it normal, is it supposed to give me a score here?
+Mhm, well I get 0 right now so.
+Ahh, thank you. I know you’re not supposed to help me but… well, they were negative ones? Well, let me, let me see what’s going on. I thought they were… I mean, when I said – are those the red ones, negative?
+Wow, ok, I think I misread the entire thing. [laughs]
+Yeah, because, the red thing, I didn’t see that they were, I forgot that they meant negative. Oh well, so yeah, so no wonder.
+I think, well, now I know, and I would pay attention to it, but at the time. So, I, I understand yes. Um.
+So that means, that means I don’t want that feature, right? Let me delete that…
+So separate… just gonna copy whatever I remembered from the ones that I’ve seen.
+Well… ah well ok. That’s a new filter that I want present. This one. Alright, ok. Better. So, another one. This is… how much time do I have? 2 minutes, oh oh.
+In orbit.
+Copy this condition.
+I mean I know, that I’m, I’m gonna get better if I add this. Yes, yes, I know.
+Ah, it deleted everything.
+Why?
+No, let me press… ok, that was sort of better. Right? I wanted – but specificity is not that great. Ok, so now I wanted add child node. I have to do it again, Jesus.
+Separate. 
+And… what was it?
+Which one’s SAR_ALTIM?
+Ok, that’s a little better.
+Not in orbit.
+Ah, I can’t do it. Just add that.
+Ok, not in orbit.
+I want the CPR_RAD not in orbit, oh but what was it. Ahh ok well, I didn’t know which one it was. Well, I don’t know. Can I pick a random one? Well this one maybe, in orbit.
+One second, PM one. And then… where are you? Is not? What is that?
+Kay, well.
+Ok.
+END feature synthesis task
+Mhm
+Ok
+
+
+
+
+
+
+BEGIN DESIGN SYNTHESIS TASK
+Kay. Ok. Yes. Yes.
+Ok, that’s very cheap, but not much science. Ah, ok, the blue, ok.
+Alright, so based on ok, so. No, I don’t like you. So, we remember that we wanted this one to be here. Here. And then SAR_ALTIM, maybe, I wanna have it. I have no idea what I’m doing but…
+ Well, show me where it is not that much better. Ah, lets use this also. But this is wrong, sadly.
+So, chem UV spec, 200 pm. Oh maybe this one is better. Oh so… number of design, oh, ok.
+And then, so maybe here.
+Ok.
+Dawn dusk HYP_IMAG, VEG_INSAR. Oh ok.
+Maybe this one.
+Same.
+CPR_RAD.
+Yeah, try this. Oof, still not there, um. Wow ok. So, I though they had to be on that 600 polar, so I can use that.
+AERO_LID.
+Unless… maybe I did it right. I forgot. That’s sad. Maybe I did it right the first time. Oh, maybe not. Um, maybe the negative relationship were in fact negative relationship. What else… CHEM_UVSPEC. I have it… maybe I can put it to a different one.
+That doesn’t – ok, I need more instruments. CHEM_UVSPEC.
+But what, what is this?
+Are they concepts?
+I forgot. 
+Um, let’s see.
+Hm, not even close. This was, separate, CPR_RAD and HYP_IMAG. Yeah, well they’re separate.
+AERO_LID, HIRES_SOUND on the LEO polar. Try again.
+Yeah, I think I need more instrument.
+Ill try, see what happens.
+Mm, nah.
+So, at this point, because I don’t have any much, much more information to use, I don’t think… I’m gonna have to… oh well glacier and ice instrument, what is that?
+What kind of instruments are they? I don’t know?
+Is there something about ice? VEG_LID, ok.
+So, we wanted that in the Pm orbit, let’s try that.
+Not great.
+Don’t think I added that one. I’m stuck in this region.
+I’m going to throw other things, but now it’s becoming kinda silly because I have no idea where I’m going.
+Unless, maybe there’s other constraints I haven’t looked at.
+Oh ok, that’s better maybe. Um, oh this one. Did I say I wanted them I a pm orbit? 
+Ok ok, that better, maybe we don’t need that one.
+What else?
+LEO 600. CHEM_UVSPEC pm. Oh pm, lets try that. Kay, but…
+Yeah, ok.
+Oh ok.
+END design synthesis task
+Yes.
+Here?
+Begin survey 
+Well… it has to be informed by what I’ve seen right? I mean otherwise.
+So, I can use what I just did to answer all those questions or?
+Subjective view, just based on what I’ve seen without necessarily going back to the analysis.
+But but based on… I guess, what other criteria, what do I use to answer the question.
+Mhm yeah. Now, is it back to… well this is gone right? So, I have, this is just from memory?
+So, it’s just the structure, ok, I think, ok alright.
+[1]
+I mean, this is simpler to understand so I guess I would. Which do I think? Ok, that’s not a question. Contains more useful information.
+I mean I think this is a better principle, this is just an artifact of. Yeah. I don’t think there’s any underlying principles there. Maybe, but um.
+[2]
+I mean in general, that the more general principle are more useful…
+[3]
+Because yeah, the specific ones. I don’t know. 
+[4]
+…
+[5]
+Not used unless it’s in a particular polar orbit, this one is not assigned to any of the orbits. Yeah, I don’t know, this is just simpler.
+[6]
+Ok, this is getting more… 
+So, I’m, I think I’m responding based on maybe, it’s the subjective complexity and, and what I think is more useful based on the fact that maybe it smore, maybe there’s an underlying principle that is uncovered.
+Ok ok, so that’s, I’m just explaining it because you wanted it to be expressed orally so.
+This is starting to become a little more convoluted, but uh.
+And also, whenever there’s exceptions, I don’t…
+Yeah, I would think this one is better.
+I don’t want those exceptions.
+[7]
+Mm, yes, I think being together is probably better than not being together. Well, ah, this one is for added science sometimes need to couple.
+[8]
+Um, following two features.
+Well of course this one.
+[9]
+Is used, yes
+END survey transcript
+Begin experience survey
+About the design problem, I mean I did learn for sure [laughs] 
+Um… so, let me think, the design problem being, yes well... yes, yes, I think I could
+A different but similar design problem in the future. The features… When you say features, you mean features, the way we’ve been using this tool or?... 
+Uh, so like a combination, like a condition, like a combination of conditions
+

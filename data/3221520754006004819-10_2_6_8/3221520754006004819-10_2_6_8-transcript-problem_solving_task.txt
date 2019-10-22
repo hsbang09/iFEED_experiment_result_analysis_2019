@@ -1,0 +1,105 @@
+
+[F_cl_1]
+Ok, so do you think the feature is shared by more than 70%...
+Do you think the following feature is shared by more than 70%...?
+AERO_POL and HIRES_SOUND assigned together… Hm…
+Ok so, I don’t have a good sense of this based on the features I was looking at. All I know, from the features I found, talked about where HIRES_SOUND was assigned and where AERO_POL was assigned.
+So, they could be together, but I don’t feel confident. Let’s say 20%. Sure 25%, why not. One quarter percent.
+[F_cl_2]
+High power instruments, oh boy. Can I look at the instrument information? This thing?
+Power… 
+[experimenter reminds subject they can refer to the concept map relations]
+So, the ones not assigned to SSO-800-DD…
+It seems like a combination of low and high-power instruments are not assigned to that…
+So, I’ll say false with a pretty unconfident score. Well, a little more confident.
+Well I mean… there are some high powered that are not, its not a general rule…
+[F_cl_3]
+Are not assigned to dawn dusk orbits…
+That’s illumination type… passive, I see. 
+So, I’ll say true. Somewhat more confident.
+[F_cl_4]
+So, dawn dusk is not empty. Only contains these two instruments. I’m gonna say false, but I’m not super clear about it. Seems like any active instrument could sit in a dawn dusk orbit potentially, but I don’t know. So, I don’t think it could contain only these two, could contain a couple more, but not very confident. 
+[F_cl_5]
+Gonna say false. Not confident.
+[F_cl_6]
+SSO-600-DD is empty…
+No idea.
+True, not confident.
+[F_cl_7]
+Sure. I see an instance of that here.
+[F_cl_8]
+Just going off of what I have in my notes here, which is very limited, I’m gonna say false, but not confident.
+[F_cl_9]
+I didn’t see anything for polar. So true, not confident.
+
+
+[F_pwc_1]
+So, I’m looking for connections between these instruments, and um… 
+Well I see at least one instance of this, so… we’ll just try this. Not confident though.
+[F_pwc_2]
+Ok this… I have no idea. 
+[F_pwc_3]
+Instrument type…
+Ok, so this is based on my own, sort of, I’m trying to see if things are complementary of competing.
+[F_pwc_4]
+Ok so, we have information at least in these notes at least about which instruments are not assigned together, which gives us a little information about which instruments are, except for… instruments that are together in SSO-800-PM orbit.
+Let’s see here.
+[inaudible]
+[experimenter reminds subject they can select any answer and specify low confidence if they are unsure]
+[F_pwc_5]
+…
+[F_pwc_6]
+…
+[F_pwc_7]
+…
+[F_pwc_8]
+…
+[F_pwc_9]
+…
+
+
+[D_cl_1]
+…
+[D_cl_2]
+…
+[D_cl_3]
+…
+[D_cl_4]
+…
+[D_cl_5]
+[experimenter reminds subject to use think aloud protocol]
+I’ve been trying to just map what I found in the feature that I documented against these items shown here. So, you’re basically looking for instances where the architecture of the design shown is in agreement or contradicts what I’ve found here
+[D_cl_6]
+So, like these two guys are in that orbit, although, can one instrument appear in multiple orbits? Is that allowed?
+So, is this even a valid design?
+[experimenter explains that an instrument cannot appear multiple times in the same orbit]
+Polar, so the problem is that my features say very little about the polar orbits. 
+Ok, well this is not the design because CPR_RAD is not. So, let’s say no, and I’m pretty confident.
+[D_cl_7]
+Well this, this looks pretty similar to those. But again, im not very confident about any of this.
+[D_cl_8]
+Ok, so this is HYP_IMAG not assigned to this orbit. So, we’re gonna say probably not. But not confident.
+[D_cl_9]
+SSO-600-AM… I mean, this seems like it’s possible there. Based on the feature.
+[D_pwc_1]
+Closer to the target region. I mean I think this, this sorta seems… closer to the… seems kinda closer to the feature I found here
+[D_pwc_2]
+Ok, closer to the target region.
+Ok sure.
+[D_pwc_3]
+This looks more similar to the feature, that’s what I’m going on.
+[D_pwc_4]
+[inaudible]
+DD… ok, so this violates… this is different than what’s in the feature, so why not?
+[D_pwc_5]
+Ok, so the 800 PM orbit looks more similar.
+[D_pwc_6]
+So, this is good.
+[D_pwc_7]
+Yeah, I like this more for the 800 PM orbit.
+[D_pwc_8]
+Ok, this…
+[D_pwc_9]
+Ok, so… alright, I like this because the 800 PM looks a little better.
+
+

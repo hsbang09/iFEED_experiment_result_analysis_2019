@@ -581,42 +581,56 @@ class ResultAnalyzer():
         out = pd.DataFrame(data=dat, index=None, columns=colNames)
         return out
 
-    def getComments(self, subjects, type, targetKeyword, displayParticipantID=False, displayKeyword=False):
+    def getComments(self, subjects, type, targetKeyword, displayCondition=False, displayParticipantID=False, displayKeyword=False):
         out = []
+
         if type == "problem_solving_task":
             for s in subjects:
+
+                tag = []
+                if displayCondition:
+                    tag.append(GROUP_LABEL_MAP[s.condition])
+                if displayParticipantID:
+                    tag.append(s.participant_id)
+
                 if s.transcript_problem_solving is not None:
                     for key in s.transcript_problem_solving:
                         if targetKeyword in key:
 
                             message = ""
-                            if displayParticipantID or displayKeyword:
-                                identifier = []
-                                if displayParticipantID:
-                                    identifier.append(s.participant_id)
-                                if displayKeyword:
-                                    identifier.append(key)
-                                identifier = ":".join(identifier)
-                                message = "[{0}] ".format(identifier)
+
+                            tagCopy = [s for s in tag]
+                            if displayKeyword:
+                                tagCopy.append(key)
+
+                            if len(tagCopy) != 0:
+                                tagString = " | ".join(tagCopy)
+                                message = "[{0}] ".format(tagString)
 
                             message = message + s.transcript_problem_solving[key]
                             out.append(message)
 
         elif type == "survey":
             for s in subjects:
+
+                tag = []
+                if displayCondition:
+                    tag.append(GROUP_LABEL_MAP[s.condition])
+                if displayParticipantID:
+                    tag.append(s.participant_id)
+                
                 if s.transcript_survey is not None:
                     for key in s.transcript_survey:
                         if targetKeyword in key:
 
                             message = ""
-                            if displayParticipantID or displayKeyword:
-                                identifier = []
-                                if displayParticipantID:
-                                    identifier.append(s.participant_id)
-                                if displayKeyword:
-                                    identifier.append(key)
-                                identifier = ":".join(identifier)
-                                message = "[{0}] ".format(identifier)
+                            tagCopy = [s for s in tag]
+                            if displayKeyword:
+                                tagCopy.append(key)
+
+                            if len(tagCopy) != 0:
+                                tagString = " | ".join(tagCopy)
+                                message = "[{0}] ".format(tagString)
 
                             message = message + s.transcript_survey[key]
                             out.append(message)
