@@ -174,3 +174,36 @@ class Subject():
 
         return self.feature_synthesis_dist2UP
 
+    def computeDesignEntropy(self):
+        def rearrangeDesignInputs(inputs):
+            inputAppearance = []
+            
+            for designIndex, designInputString in enumerate(inputs):
+                if len(inputAppearance) == 0:
+                    inputAppearance = [[] for k in range(len(designInputString))]
+                
+                for inputIndex, val in enumerate(designInputString):
+                    if val == "1":
+                        inputAppearance[inputIndex].append(designIndex)
+            return inputAppearance
+
+        def getEntropy(inputAppearances, base=10):
+            N = len(inputAppearances)
+            
+            sig = 0
+            for i, appearances in enumerate(inputAppearances):
+                if len(appearances) == 0:
+                    continue
+                else:
+                    p = len(appearances) / N
+                    sig += p * math.log(p,base) 
+            H = - 1 / math.log(N, base) * sig
+            return H
+
+        inputs = []
+        designs = self.design_synthesis_task_data['designs_evaluated']
+        for d in designs:
+            inputs.append(d['inputs'])
+        inputAppearances = rearrangeDesignInputs(inputs)
+        entropy = getEntropy(inputAppearances)
+        self.design_entropy = entropy

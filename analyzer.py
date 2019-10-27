@@ -280,6 +280,7 @@ class ResultAnalyzer():
 
                     elif "design_synthesis" in os.path.basename(filename):
                         subject.design_synthesis_task_data = data
+                        subject.computeDesignEntropy()
 
                     elif "conceptMap-prior" in os.path.basename(filename):
                         subject.cmap_prior_data = data
@@ -405,7 +406,7 @@ class ResultAnalyzer():
                         out.append(s)
         return out
 
-    def getDataFrame(self, subjects=None, option="default", columns=None, invertSIB=False, excludeHV=True):
+    def getDataFrame(self, subjects=None, option="default", columns=None, invertSIB=False, excludeHV=True, adjustIGDUsingEntropy=False):
         if subjects is None:
             subjects = self.subjects
 
@@ -434,6 +435,7 @@ class ResultAnalyzer():
                         "numDesigns",
                         "DS_numDesignViewed",
                         "DS_numDesignEvaluated",
+                        "entropy",
                         ]
 
         colNames_selfAssessment = ["selfAssessment"]
@@ -462,7 +464,8 @@ class ResultAnalyzer():
                         "HV","adjustedHV",
                         "numDesigns",
                         "selfAssessment",
-                        "selfAssessmentExclude1"]
+                        "selfAssessmentExclude1",
+                        "entropy"]
             else:
                 raise ValueError("Option not recognized")
 
@@ -593,6 +596,10 @@ class ResultAnalyzer():
                     val = s.design_HV
                     val = round(val, 3)
 
+                elif col == "entropy":
+                    val = s.design_entropy
+                    val = round(val, 3)
+
                 ###### Self learning assessment ######
                 elif col == "selfAssessment":
                     val = np.mean(s.learning_self_assessment_data)
@@ -612,7 +619,7 @@ class ResultAnalyzer():
         if "meanIGD" in colNames and "normalizedIGD" in colNames:
             out = self.normalizeIGD(out)
         if "numDesigns" in colNames and "normalizedIGD" in colNames:
-            out = self.adjustIGD(out)
+            out = self.adjustIGD(out, useEntropy=adjustIGDUsingEntropy)
         if "numDesigns" in colNames and "HV" in colNames:
             out = self.adjustHV(out)
         return out
@@ -716,7 +723,7 @@ class ResultAnalyzer():
 
     """ Computes IGD
     """             
-    def computeIGD(self, dataFilePath, getShortedDistance=False):    
+    def computeIGD(self, dataFilePath, useShortestDistance=False):    
         indexTotal = []
         classLabel = []
         scienceTotal = []
@@ -759,7 +766,6 @@ class ResultAnalyzer():
         numTargetDesigns = len(targetScience)
 
         for s in self.subjects:
-
             # create variable with the subject's design info
             subDesigns = s.design_synthesis_task_data['designs_evaluated']
             numDesigns = len(subDesigns)
@@ -784,19 +790,25 @@ class ResultAnalyzer():
                 # add min of the distances to an array    
                 minDistList.append(minDist)
             
-            if getShortedDistance:
+            if useShortestDistance:
                 s.design_IGD = min(minDistList)
             else:
                 # sum and average  
                 s.design_IGD = np.mean(minDistList)
 
-    def adjustIGD(self, dataframe):
+    def adjustIGD(self, dataframe, useEntropy=False):
         normalizedIGD = dataframe["normalizedIGD"].values
         numDesigns = dataframe["numDesigns"].values
+        if useEntropy:
+            entropies = dataframe["entropy"].values
 
         adjustedIGD = []
         for i in range(len(normalizedIGD)):
-            val = normalizedIGD[i] / numDesigns[i]
+            val = None
+            if useEntropy:
+                val = normalizedIGD[i] / entropies[i]
+            else:
+                val = normalizedIGD[i] / numDesigns[i]
             adjustedIGD.append(val)
 
         minVal = min(adjustedIGD) 
