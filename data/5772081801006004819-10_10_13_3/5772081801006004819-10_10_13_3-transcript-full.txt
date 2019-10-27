@@ -1,9 +1,294 @@
-
-
-Learning Task
-
-[START]
-I'm trying to look at 
-
-
-[END]
+5772081801006004819-10_10_13_3
+BEGIN learning task
+[Start]
+I’m trying to look at the ones that already have high coverage or close to what we want and low specificity and I’m trying to also keep to those that are already not too complex. I’m starting to start from something that has high coverage but not much complexity. 
+And use auto search to see where we can go from there.
+Ok, those are good coverage but not very specific, so we still have a lot of pink dots.
+And again, increase the complexity now and try to go to new generalization later to simplify.
+[experimenter tells subject they can zoom in/out of feature analysis plot]
+Oh nice. Actually, a very good feature.
+See that there is most of the common features that certain instruments are not placed in certain orbits. Looks like quite a common feature.
+[inaudible]
+And it’s not great coverage. So, I’ll try to go from here.
+[inaudible]
+Go from the number of initial condition and go to, go a little bit back on coverage. [inaudible] And move towards low coverage.
+[inaudible] requirements for the task.
+That didn’t give good improvement. And so, I’ll work on this one. Not generalization.
+Ok… so the spectral imagery can be modified with just light increase and coverage and specificity. Or may generalize to… 
+[inaudible]
+A slight improvement.
+So, it looks like it captures a little bit. Good coverage but not enough specificity. And so, I will try to see if I can start a dot with more coverage.
+[inaudible]
+See if I can go from high coverage and try and make it a little more specific.
+Looks like on this one we can increase specificity at the cost of coverage. Or we can increase the coverage slightly by decreasing specificity.
+[inaudible]
+So, these dots where SAR_ALTIM is present, we saw that… good coverage but very low in specificity.
+So now I want a little more complexity to make it a little more specific.
+All of these generalizations will do about the same.
+[inaudible]
+[experimenter tells subject they can generalize feature by right clicking and reminds subject to use think aloud protocol]
+I’m not thinking anything to be honest.
+But of course, we are working on the pareto front and I have no idea what would be a good value of coverage and specificity because the task only says a coverage of above 0.7.  
+Not sure what would be a good specificity. So, I’m trying to keep it [inaudible].
+And so, I’m just trying to explore, not even thinking about what are the common features. Just trying to figure out when I want to stop and select a specific design or specific group of features and then say let’s start from that and then look at which features are common and map them in the concept map. If that makes sense.
+So, there were a lot not in orbit in all of these architectures. The 600 AM and the 800 DD.
+[inaudible]
+There’s no way to just click back right?
+[inaudible]
+[glitch]
+…
+This is the one where it was. But not generalized. Perfect.
+So, we were looking at features of some of the designs similar specificity and coverage. So, coverage is above the requirement, but it is also not too widespread. So, there is some specificity.
+The SAR_ALTIM is present, CPR_RAD is not present.
+I can add a new relation in the concept map.
+This is positive.
+And then the concept of what should not be put in orbits was complicated, so I just copy pasted text.
+From there it looks like most of this is common along this pareto front.
+Now I will try again, to generalize some of the features.
+So, I will start with left most.
+[Inaudible]
+I can increase specificity a little bit. Actually, let’s start something that will increase specificity slightly, and is just instead VEG_INSAR is not used in two orbits and is just generalized to is not used except in when assigned to specific orbits.
+Let’s see if this generalization of this works.
+Ok, my generalization there. Let me… [inaudible]
+Ok. So, I’m gonna see what happens wen you deactivate something. And that became much less specific.
+If I deactivate some of the features, it would just increase the number of total designs and be slightly more coverage but will lose even more specificity. 
+Let’s look at features that have a little more specificity but still have those features of this is not in orbit. Did I already copy it? And then present ALTIM.
+Deactivation of this feature actually doesn’t…
+It’s just a little off specificity…
+So, I can record this as fundamental features to find the common features. 
+[inaudible]
+This I don’t. separate AERO_POL and SAR_ALTIM.
+[inaudible]
+END learning task
+BEGIN problem solving task
+[F_cl1_1]
+SAR_ALTIM, and I was looking at what the HIRES_SOUND has in common with the SAR_ALTIM 
+[inaudible]
+I put false that there would be a mode of 70% of the design we’re looking for, but with low confidence because I don’t have any explicit information for that.
+[F_cl1_2]
+And I have therefore one that I did not generalize.
+[inaudible]
+And I got… AERO_LID, HYP_ERB, I think those two are connected to VEG_INSAR…
+Yes, it does. It looks like most of them are in the one that should not be assigned.
+True, somewhat confident that some of them were not there.
+[F_cl1_3]
+Is not assigned to dawn dusk. Only the 600 and 800. 
+Not assigned to dawn dusk. True.
+[inaudible]
+[F_cl1_4]
+If SS… sun synchronous is not empty… [inaudible] SAR_ALTIM.
+So, I didn’t look much as signs of a single orbit, unless there was a lot of information. I just don’t know what I had. What instruments would be in which orbit.
+It just tells me that there’s a long set of instrument not assigned to SSO-800-DD.
+But not all of the candidates, not all of the instruments are not assigned.
+[inaudible]
+It looks like the given instruments are not, or should not be there. So, I will say true with high confidence.
+[F_cl1_5]
+At least one of the active instrument is assigned to dawn dusk. 
+I had many not assigned, but there wasn’t specific assignments.
+And we know this is just separate from AERO_POL.
+The other instruments were mostly passive except for the AERO_LID. Not assigned to LEO-600.
+[inaudible]
+And I’m using information only from the concept math, I didn’t use previous information because I was able to just see the concept the active instruments were used at certain times.
+[inaudible]
+Using the information from the concept map… [inaudible]
+[F_cl1_6]
+SSO-600-DD is empty. 
+I know that three of the instruments are not assigned there. Some are separate but…
+[inaudible] sun synchronous 600
+[F_cl1_7]
+AERO_POL and SAR_ALTIM are separate.
+Yes, one that I got. With high confidence.
+[F_cl1_8]
+AERO_POL not assigned to 600 AM. 
+[inaudible]
+I can’t guarantee that it’s not assigned but... It’s not been captured there.
+[F_cl1_9]
+[inaudible]
+VEG_INSAR if used, assigned to LEO-600-polar.
+It is not assigned to sun synchronous AM or DD. Unless there was in the afternoon, it seems like it would be yes.
+[F_pwc_1]
+Which of the two features better describes the target region?
+AERO_POL and SAR_ALTIM should be separate.
+[F_pwc_2]
+SSO-600-DD is not empty, it only contains CHEM_UVSPEC and or SAR_ALTIM or VEG_LID and or SAR_ALTIM.
+[inaudible]
+Other instruments that are not assigned there.
+So, I have one where SAR_ALTIM is used, but not information like this.
+[F_pwc_3]
+Which of the two features better describes the orbit? Two radars not assigned to the same orbit or lidars and radars not assigned to the same orbit.
+Looks like you could, I don’t have much generalization. Low confidence.
+[F_pwc_4]
+Two atmospheric chemistry instruments assigned together in the same orbit or two topographic assigned together in the same orbit.
+Mm, I don’t have information for this.
+[inaudible]
+But still, low confidence.
+[F_pwc_5]
+I know that SAR_ALTIM is used. Very high confidence.
+[F_pwc_6]
+Active instruments are not assigned to dawn dusk or high-power instruments are not assigned to dawn dusk.
+These are my high-power. And active. 
+[inaudible]
+HIRES_SOUND and HYP_ERB not assigned to 800.
+High power, but not much confidence again.
+[F_pwc_7]
+If AERO_POL is used, it is assigned to sun synchronous 600 AM.
+Which might beat VEG_INSAR is in 600-LEO-polar.
+[inaudible]
+[F_pwc_8]
+At least one of the vegetation instruments is assigned to LEO-600-polar. At lease one of the aerosol instruments is assigned to LEO-600-polar.
+I only know that I have AERO_LID and HIRES not assigned.
+[inaudible]
+So not much confidence. 
+[F_pwc_9]
+Which of the two features better described the target region?
+OCE_SPEC is not assigned to SSO. 
+And CHEM_SWIRSPEC is not assigned.
+[inaudible]
+[D_cl_1]
+[inaudible]
+…
+[D_cl_2]
+[inaudible]
+Now I’m checking the orbits. LEO polar.
+[inaudible]
+So, I’m gonna say no.
+[inaudible]
+[D_cl_3]
+AERO_POL and SAR_ALTIM are not separate. 
+And then…
+[inaudible]
+… one of the major generalizations. So, I’ll say no. Just one [inaudible], so not extremely high confidence but...
+[D_cl_4]
+SAR_ALTIM is there. [inaudible] LEO-600-polar.
+600 AM and 800 DD.
+[inaudible]
+[D_cl_5]
+SSO-600-AM
+[inaudible]
+[D_cl_6]
+SAR_ALTIM is there, separate from AERO_POL, in LEO-600-polar.
+SSO-600-DD. CPR_RAD most of the target region don’t have.
+[inaudible]
+HYP_IMAG and HIRES_SOUND should not be assigned. 
+Say no, with high confidence.
+[D_cl_7]
+And then LEO-600-polar… [inaudible]
+[D_cl_8]
+Yes.
+[inaudible]
+A possible violation.
+[D_cl_9]
+That’s a lot of instruments…
+AERO_POL, [inaudible], SAR_ALTIM 
+[inaudible]
+CPR_RAD and then LEO-600-polar was AERO_LID.
+600-AM was… [inaudible]
+[inaudible]… violation of a lot of the instruments.
+[D_pwc_1]
+Which do you think is closer to the target region?
+Both have the SAR_ALTIM, this doesn’t have it separate from AERO_POL. And then LEO-600-polar… 
+[inaudible]
+AERO_POL and HYP_IMAG, let’s just say the bottom with high confidence.
+[D_pwc_2]
+Which one is closer?
+SAR_ALTIM not separate from AERO_POL in the bottom, and then let’s see… 
+[inaudible]
+600-DD. 800-DD AERO_POL and AERO_LID. That’s in violation of… [inaudible]
+[D_pwc_3]
+Ok, SAR_ALTIM separate. Two instruments in 600-AM. 600-polar.
+[inaudible]
+600-DD… 800-DD… not in violation.
+[D_pwc_4]
+And again, which of the following designs is closer to the target region?
+Top one doesn’t have SAR_ALTIM. 
+[inaudible] 
+And then they both have HIRES_SOUND in 600-AM and then 800-DD… AERO_POL and VEG_INSAR…
+[inaudible]
+I’m going to say the bottom with high confidence.
+[D_pwc_5]
+[inaudible]
+…and 600-poalr for the bottom and 600-AM on top. I think it could be top.
+Total guess.
+[D_pwc_6]
+[inaudible]
+600-polar… [inaudible]
+600-AM… 600-DD… and 800-DD, and then the bottom has CPR_RAD… [inaudible]
+So, I will… top, that’s based on one assumption.
+[D_pwc_7]
+Bottom has SAR_ALTIM not separate from AERO_POL. CPR_RAD, and then LEO-600-polar. 
+[inaudible]
+600-AM, HYP_ERB on the bottom.
+I will go confidently with the top.
+[D_pwc_8]
+[inaudible]
+… SAR_ALTIM, go with instruments… [inaudible]
+600-DD, lidar on the bottom one, VEG_INSAR on the top. No… [inaudible]
+[D_pwc_9]
+[inaudible]
+And the bottom looks good, just one assumption. Confident, but not extremely confident. 
+END problem solving task
+BEGIN feature synthesis task
+So, I can see feature analysis but not that so…
+This is a feature that I liked a lot. A lot of them have that.
+I started with a feature that was shared by most of it, which is SAR_ALTIM is present.
+And this also had separate SAR_ALTIM and AERO_POL that looks like… only one.
+[experimenter explains how to add child nodes to subject]
+Ok, better. That looks like we lost a little bit of coverage, but it looks like most of the specificity came from more complex options. I could still add the simple one which would be… CPR_RAD was not present.
+Our specificity went a lot up. Complex information, that might be missing… [inaudible]
+SSO-800-DD orbit, exception, I want to see if I can like plus and see what happens.
+[inaudible]… that one only.
+My mistake, I forgot to add.
+[experimenter shows subject how to recover a feature]
+Good suggestion.
+I want to make an orbit exception. And active instruments… [inaudible]
+Ah, actually lost a lot.
+[inaudible]
+Trying to figure out what is a good combination of instrument that will get more specificity.
+[inaudible]
+The generalization didn’t work. They’re both for high power instrument, but not for a active.
+[inaudible]
+Ok, lidar is an exception.
+END feature synthesis task
+BEGIN design synthesis task
+So, you just have to create as many architectures as possible? Do I need to save them at some point, or every time I add instruments it counts as a different architecture? 
+Ok, these are notes.
+…
+[experimenter reminds subject to use think aloud protocol]
+Oh yeah, since I don’t have that page… actually I can do that. I wasn’t looking at the cost, but, I don’t think there is cost here.
+[inaudible]… generate high science with low cost and just now trying to add instruments trying to figure out what instrument increases the cost and how they increase science and then all of those information that I got assigned in that region. Which I have a lot of not what to use, but not much on what to use so.
+The process now is literally trial and error.
+Increase cost without doing much.
+I know it will be better by using less orbits.
+Even though I’m decreasing my science…
+Let’s see… [inaudible]
+Lidar in 600-polar. Still not doing much.
+Hm, nothing changed, the cost actually increased. Now start going back to three orbits.
+Let’s see what… 
+[inaudible]
+Try lower orbit.
+A lot of cost but some science.
+[inaudible]
+END design synthesis task
+BEGIN survey
+[1]
+If the following two features have equivalent coverage and specificity, which do you think contains more useful information?
+I like to see the instrument names.
+[2]
+And this one a little different because it has instruments that measure ocean color requires to actually go to concept map and see what they are. So I prefer this.
+[3]
+Atmospheric chemistry instruments are assigned together or HIRES_SOUND and HYP_IMG. I like when the number of instruments is small, like a few instruments.
+[4]
+Instead when there is a lot of information like this, I prefer the exception. Oh 800-DD is empty except when it contains those.
+[5]
+VEG_INSAR is not used, except when assigned to LEO-600-polar. Go with the top, more straightforward.
+[6]
+Radars and lidars are not assigned together, except when VEG_LID and VEG_INSAR are assigned together, or AERO_LID and CPR_RAD not assigned together in the same orbit… [inaudible]
+Well both contain some useful information because there’s more, much more information. [inaudible] It’s just one full out combination.
+[7]
+AERO_POL and SAR_ALTIM not assigned together… CHEM_UVSPEC…
+Ok… when you tell me they are assigned together that is more clear and contains more information.
+[8]
+One is assigned and one is not assigned. Put the positive, is assigned.
+[9]
+[inaudible]
+END survey

@@ -7,6 +7,7 @@ import traceback
 import csv
 import math
 from subject import Subject
+import traceback
 
 # Column numbers: problems
 COLNUM_PARTICIPANT_ID = 19 - 1
@@ -404,7 +405,7 @@ class ResultAnalyzer():
                         out.append(s)
         return out
 
-    def getDataFrame(self, subjects=None, option="default", columns=None, invertSIB=True):
+    def getDataFrame(self, subjects=None, option="default", columns=None, invertSIB=False, excludeHV=True):
         if subjects is None:
             subjects = self.subjects
 
@@ -422,12 +423,14 @@ class ResultAnalyzer():
                             ]
 
         colNames_featureSynthesis = ["meanDist2UP",
+                        "normalizedDist2UP",
                         "FS_numFeatureViewed",
                         "FS_numFilterUsed",
                         "FS_numFeatureTested"]
 
 
-        colNames_designSynthesis = ["meanIGD",
+        colNames_designSynthesis = ["meanIGD","normalizedIGD","adjustedIGD",
+                        "HV","adjustedHV",
                         "numDesigns",
                         "DS_numDesignViewed",
                         "DS_numDesignEvaluated",
@@ -453,8 +456,11 @@ class ResultAnalyzer():
                         "FScore","DScore",
                         "PScore","NScore",
                         "HScore","LScore",
-                        "meanDist2UP","meanIGD","numDesigns",
                         "totalScore",
+                        "meanDist2UP","normalizedDist2UP",
+                        "meanIGD","normalizedIGD","adjustedIGD",
+                        "HV","adjustedHV",
+                        "numDesigns",
                         "selfAssessment",
                         "selfAssessmentExclude1"]
             else:
@@ -467,6 +473,13 @@ class ResultAnalyzer():
             columns = tempColumns + columns
         else:
             columns = tempColumns
+
+        # Remove HV
+        if excludeHV:
+            if "HV" in columns:
+                columns.remove("HV")
+            if "adjustedHV" in columns:
+                columns.remove("adjustedHV")
 
         dat = []
         for i, s in enumerate(subjects):
@@ -541,6 +554,10 @@ class ResultAnalyzer():
                     val = s.getDist2Utopia()
                     if invertSIB:
                         val = - val
+                    val = round(val, 3)
+
+                elif col == "normalizedDist2UP":
+                    val = -1
 
                 elif col == "FS_numFeatureViewed":
                     val = s.feature_synthesis_task_data['counter_feature_viewed']
@@ -558,6 +575,10 @@ class ResultAnalyzer():
                     val = s.design_IGD
                     if invertSIB:
                         val = - val
+                    val = round(val, 3)
+
+                elif col == "normalizedIGD":
+                    val = -1
 
                 elif col == "numDesigns":
                     val = len(s.design_synthesis_task_data['designs_evaluated'])
@@ -568,17 +589,32 @@ class ResultAnalyzer():
                 elif col == "DS_numDesignEvaluated":
                     val = s.design_synthesis_task_data['counter_design_evaluated']
 
+                elif col == "HV":
+                    val = s.design_HV
+                    val = round(val, 3)
+
                 ###### Self learning assessment ######
                 elif col == "selfAssessment":
                     val = np.mean(s.learning_self_assessment_data)
 
                 elif col == "selfAssessmentExclude1":
                     val = np.mean(s.learning_self_assessment_data[1:])
+                    val = round(val, 3)
 
                 rowData.append(val)
             dat.append(rowData)
 
         out = pd.DataFrame(data=dat, index=None, columns=colNames)
+
+        # Normalize the specified columns
+        if "meanDist2UP" in colNames and "normalizedDist2UP" in colNames:
+            out = self.normalizeDist2UP(out)
+        if "meanIGD" in colNames and "normalizedIGD" in colNames:
+            out = self.normalizeIGD(out)
+        if "numDesigns" in colNames and "normalizedIGD" in colNames:
+            out = self.adjustIGD(out)
+        if "numDesigns" in colNames and "HV" in colNames:
+            out = self.adjustHV(out)
         return out
 
     def getComments(self, subjects, type, targetKeyword, displayCondition=False, displayParticipantID=False, displayKeyword=False):
@@ -618,7 +654,7 @@ class ResultAnalyzer():
                     tag.append(GROUP_LABEL_MAP[s.condition])
                 if displayParticipantID:
                     tag.append(s.participant_id)
-                
+
                 if s.transcript_survey is not None:
                     for key in s.transcript_survey:
                         if targetKeyword in key:
@@ -636,9 +672,51 @@ class ResultAnalyzer():
                             out.append(message)
         return out
 
+    """ Computes HV
+    """             
+    def computeHV(self, dataFilePath): 
+        from moeaAnalysis import computeHV as _computeHV    
+
+        scienceTotal = []
+        costTotal = []
+
+        # load in csv
+        with open(dataFilePath) as csvfile:
+            readCSV = csv.reader(csvfile, delimiter = ',')
+
+            for row in readCSV:
+                index = row[0]
+                targetVal = row[1]
+                science = row[3]
+                cost = row[4]
+                scienceTotal.append(float(science))
+                costTotal.append(float(cost))
+
+        # find min and max for cost for normalization
+        costMax = max(costTotal)
+        costMin = min(costTotal)
+        sciMax = max(scienceTotal)
+        sciMin = min(scienceTotal)
+        costDiff = costMax - costMin
+        sciDiff = sciMax - sciMin
+
+        for s in self.subjects:
+            # create variable with the subject's design info
+            designs = s.design_synthesis_task_data['designs_evaluated']
+            numDesigns = len(designs)
+            
+            solutions = []
+            for d in designs:
+                nSci = 1 - (d['outputs'][0] - sciMin) / sciDiff
+                nCost = (d['outputs'][1] - costMin) / costDiff
+                solutions.append([nSci, nCost])
+
+            hv = _computeHV(solutions, num_objectives=2, ref_point=None)
+            s.design_HV = hv
+
     """ Computes IGD
     """             
-    def computeIGD(self, dataFilePath):    
+    def computeIGD(self, dataFilePath, getShortedDistance=False):    
         indexTotal = []
         classLabel = []
         scienceTotal = []
@@ -692,7 +770,7 @@ class ResultAnalyzer():
             for i in range(numTargetDesigns):
                 tSci = (targetScience[i] - sciMin) / sciDiff
                 tCost = (targetCost[i] - costMin) / costDiff       
-                
+                 
                 # iterate through the subject's solutions, get science and cost. compute
                 # distance, keeping target solution the same and changing subject soln
                 minDist = 10
@@ -706,15 +784,66 @@ class ResultAnalyzer():
                 # add min of the distances to an array    
                 minDistList.append(minDist)
             
-            # sum and average  
-            s.design_IGD = np.mean(minDistList)
-        
+            if getShortedDistance:
+                s.design_IGD = min(minDistList)
+            else:
+                # sum and average  
+                s.design_IGD = np.mean(minDistList)
+
+    def adjustIGD(self, dataframe):
+        normalizedIGD = dataframe["normalizedIGD"].values
+        numDesigns = dataframe["numDesigns"].values
+
+        adjustedIGD = []
+        for i in range(len(normalizedIGD)):
+            val = normalizedIGD[i] / numDesigns[i]
+            adjustedIGD.append(val)
+
+        minVal = min(adjustedIGD) 
+        maxVal = max(adjustedIGD)
+        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in adjustedIGD]
+        dataframe["adjustedIGD"] = normalized
+        return dataframe
+
+    def adjustHV(self, dataframe):
+        HVs = dataframe["HV"].values
+        numDesigns = dataframe["numDesigns"].values
+
+        adjustedHVs = []
+        for i in range(len(HVs)):
+            val = HVs[i] / numDesigns[i]
+            adjustedHVs.append(val)
+
+        minVal = min(adjustedHVs) 
+        maxVal = max(adjustedHVs)
+        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in adjustedHVs]
+        dataframe["adjustedHV"] = normalized
+        return dataframe
+
+    def normalizeIGD(self, dataframe):
+        IGDList = dataframe["meanIGD"].values
+        if IGDList[0] > 0:
+            IGDList = [-x for x in IGDList]
+        minVal = min(IGDList) 
+        maxVal = max(IGDList)
+        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in IGDList]
+        dataframe["normalizedIGD"] = normalized
+        return dataframe
+
+    def normalizeDist2UP(self, dataframe):
+        dist2UPList = dataframe["meanDist2UP"].values
+        if dist2UPList[0] > 0:
+            dist2UPList = [-x for x in dist2UPList]
+        minVal = min(dist2UPList) 
+        maxVal = max(dist2UPList)
+        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in dist2UPList]
+        dataframe["normalizedDist2UP"] = normalized
+        return dataframe
 
     # def saveCSV(self, filename=None):
     #     if filename is None:
     #         filename = "/Users/bang/workspace/iFEED_experiment_result_analysis_2018/data.csv"
     #     header = ["id","gender","major","pretestScore","condition1","condition2","condition3","order","score","time","confidence"]
-
     #     out = []
     #     out.append(",".join(header))
     #     # For each subject
@@ -728,6 +857,7 @@ class ResultAnalyzer():
 
     #     with open(filename, "w+") as file:
     #         file.write("\n".join(out))
+
 
 
 
