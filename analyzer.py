@@ -417,6 +417,8 @@ class ResultAnalyzer():
                         "HScore","LScore",
                         "totalScore"]
 
+        colNames_confidences = ["conf_fcl","conf_fpwc","conf_dcl","conf_dpwc"]
+
         colNames_learning = ["LT_numDesignViewed",
                             "LT_numFeatureViewed",
                             "LT_numFilterUsed",
@@ -438,11 +440,14 @@ class ResultAnalyzer():
                         "entropy",
                         ]
 
-        colNames_selfAssessment = ["selfAssessment"]
+        colNames_selfAssessment = ["selfAssessment", "normalizedSA"]
 
         if option is not None:
             if option == "scores":
                 tempColumns = colNames_scores
+
+            elif option == "confidence":
+                tempColumns = colNames_confidences
 
             elif option == "learningTask":
                 tempColumns = colNames_learning
@@ -465,7 +470,13 @@ class ResultAnalyzer():
                         "numDesigns",
                         "selfAssessment",
                         "selfAssessmentExclude1",
+                        "normalizedSA",
                         "entropy"]
+
+            elif option == "all":
+                tempColumns = colNames_scores + colNames_learning + colNames_confidences + colNames_featureSynthesis + colNames_designSynthesis + colNames_selfAssessment
+                tempColumns = list(set(tempColumns))
+
             else:
                 raise ValueError("Option not recognized")
 
@@ -517,6 +528,22 @@ class ResultAnalyzer():
 
                 elif col == "dpwc":
                     val = s.design_comparison_score
+
+                elif col == "conf_fcl":
+                    val = np.mean(s.feature_classification_confidence) / 100
+                    val = round(val, 3)
+
+                elif col == "conf_fpwc":
+                    val = np.mean(s.feature_comparison_confidence) / 100
+                    val = round(val, 3)
+
+                elif col == "conf_dcl":
+                    val = np.mean(s.design_classification_confidence) / 100
+                    val = round(val, 3)
+
+                elif col == "conf_dpwc":
+                    val = np.mean(s.design_comparison_confidence) / 100
+                    val = round(val, 3)
 
                 elif col == "FScore":
                     val = s.getAggregateScore(combineFandD=False)[0]
@@ -608,6 +635,9 @@ class ResultAnalyzer():
                     val = np.mean(s.learning_self_assessment_data[1:])
                     val = round(val, 3)
 
+                elif col == "normalizedSA":
+                    val = -1
+
                 rowData.append(val)
             dat.append(rowData)
 
@@ -622,6 +652,8 @@ class ResultAnalyzer():
             out = self.adjustIGD(out, useEntropy=adjustIGDUsingEntropy)
         if "numDesigns" in colNames and "HV" in colNames:
             out = self.adjustHV(out)
+        if "selfAssessment" in colNames and "normalizedSA" in colNames:
+            out = self.normalizeSA(out)
         return out
 
     def getComments(self, subjects, type, targetKeyword, displayCondition=False, displayParticipantID=False, displayKeyword=False):
@@ -830,6 +862,14 @@ class ResultAnalyzer():
         maxVal = max(adjustedHVs)
         normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in adjustedHVs]
         dataframe["adjustedHV"] = normalized
+        return dataframe
+
+    def normalizeSA(self, dataframe):
+        SAList = dataframe["selfAssessment"].values
+        minVal = min(SAList) 
+        maxVal = max(SAList)
+        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in SAList]
+        dataframe["normalizedSA"] = normalized
         return dataframe
 
     def normalizeIGD(self, dataframe):

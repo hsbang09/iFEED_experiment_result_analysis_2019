@@ -76,8 +76,23 @@ class Visualizer():
             for x, val, clevel in zip(xs, vals, clevels):
                 ax[i].scatter(x, val, alpha=0.4)
 
-    def parallelCoordinates(self, columns, figsize=(13,6), colors=None, legend=None, grid=False, dataFrame=None):
-        fig, ax = plt.subplots(figsize=figsize)
+    def parallelCoordinateVariablePairs(self, varPairList=None, nrows=1, ncols=1, sharex=False, sharey=False, colors=None, figsize=(10,6), removeLegend=False, grid=False, groupBy="condition", dataFrame=None, **kwds):
+        fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
+
+        if dataFrame is None:
+            dataFrame = self.dataFrame
+
+        for i, varPair in enumerate(varPairList):
+            self.parallelCoordinates(columns=varPair, axis=ax[i], figsize=None, colors=colors, grid=grid, groupBy=groupBy, removeLegend=removeLegend, dataFrame=dataFrame, **kwds)
+        plt.show()
+
+    def parallelCoordinates(self, columns, axis=None, figsize=(13,6), colors=None, grid=False, dataFrame=None, removeLegend=False, groupBy="condition", **kwds):
+        if axis is None:
+            fig, ax = plt.subplots(figsize=figsize)
+        else:
+            ax = axis
+
+        collapseGroups = False
 
         if dataFrame is None:
             dataFrame = self.dataFrame
@@ -90,19 +105,24 @@ class Visualizer():
         if columns is None:
             columns = ['fcl','fpwc', 'dcl','dpwc','FScore','DScore','PScore','NScore','totalScore']
 
+        if groupBy is None:
+            groupBy = "condition"
+            colors = [colors[0]] * 10
+            collapseGroups = True
+
         pd.plotting.parallel_coordinates(frame=dataFrame, 
-                class_column='condition', 
+                class_column=groupBy, 
                 ax=ax,
                 cols=columns,
-                color=colors)
+                color=colors,
+                **kwds)
 
-        if legend is not None:
-            ax.legend(legend)
         ax.grid(grid)
-        # ax.set_xlabel(xLabel)
-        # ax.set_ylabel(yLabel)
-        # plt.colorbar(sc)
-        plt.show()
+        if collapseGroups or removeLegend:
+            ax.get_legend().remove()
+
+        if axis is None:
+            plt.show()
 
     def setSubjectGroups(self, groups, groupNames=None):
         self.groups = groups
