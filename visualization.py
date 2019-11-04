@@ -43,16 +43,25 @@ class Visualizer():
                             grid=grid,
                             layout=layout)
 
-    def boxPlot(self, columns, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False, grid=False, displayPoints=False, dataFrame=None):
+    def boxPlot(self, columns, conditions=None, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False, grid=False, displayPoints=False, dataFrame=None):
         fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
 
         if dataFrame is None:
             dataFrame = self.dataFrame
 
+        if conditions is None:
+            conds = dataFrame["condition"].values
+            naming1 = ["manual", "automated", "interactive"]
+            naming2 = ["MKE", "AKE", "IKE"]
+            if conds[0] in naming1:
+                conditions = naming1
+            elif conds[0] in naming2:
+                conditions = naming2
+
         grouped = dataFrame.groupby("condition")
 
         groupedReordered = []
-        for targetName in ["manual","automated","interactive"]:
+        for targetName in conditions:
             for (name, subdf) in grouped:
                 if name == targetName:
                     groupedReordered.append((name, subdf))
@@ -272,13 +281,29 @@ class Visualizer():
             plt.show()
             return None
 
-    def barPlot(self, columns=None, showError=False, nrows=1, ncols=1, figsize=(10,6), width=0.8, sharex=False, sharey=False, grid=False, title=None, displayPoints=False, dataFrame=None):
+    def barPlot(self, columns=None, conditions=None, showError=False, nrows=1, ncols=1, figsize=(10,6), width=0.8, sharex=False, sharey=False, grid=False, title=None, displayPoints=False, dataFrame=None, subplotsAdjust=None, subplotsHide=None, tightLayout=False):
         fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
+
+        if tightLayout:
+            fig.tight_layout()
+
+        if len(np.shape(ax)) == 1: # 1D
+            pass
+        elif len(np.shape(ax)) == 2: # 2D
+            ax = ax.flatten()
 
         if dataFrame is None:
             dataFrame = self.dataFrame
 
-        conditions = ["manual", "automated", "interactive"]
+        if conditions is None:
+            conds = dataFrame["condition"].values
+            naming1 = ["manual", "automated", "interactive"]
+            naming2 = ["MKE", "AKE", "IKE"]
+            if conds[0] in naming1:
+                conditions = naming1
+            elif conds[0] in naming2:
+                conditions = naming2
+
         grouped = dataFrame.groupby("condition")
 
         groupedReordered = []
@@ -331,6 +356,19 @@ class Visualizer():
         
         if title is not None:
             plt.title(title)
+
+        if subplotsAdjust is not None:
+            plt.subplots_adjust(**subplotsAdjust)
+            # left  = 0.125  # the left side of the subplots of the figure
+            # right = 0.9    # the right side of the subplots of the figure
+            # bottom = 0.1   # the bottom of the subplots of the figure
+            # top = 0.9      # the top of the subplots of the figure
+            # wspace = 0.2   # the amount of width reserved for blank space between subplots
+            # hspace = 0.2   # the amount of height reserved for white space between subplots
+
+        if subplotsHide is not None:
+            for index in subplotsHide:
+                ax[index].axis('off')
         plt.show()
 
     def catBarPlot(self, data, groupNames, errData=None, ax=None, axisIndex=None, xLabel=None, yLabel=None, title=None, colors=None, barWidth=0.2, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False):

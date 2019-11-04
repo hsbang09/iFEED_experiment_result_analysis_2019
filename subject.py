@@ -19,10 +19,10 @@ class Subject():
         self.design_synthesis_task_data = dict()
         self.feature_synthesis_task_data = dict()
         
-
         # Concept map data
         self.cmap_prior_data = dict()
         self.cmap_learning_data = dict()
+        self.cmap_learning_data_extended = dict()
 
         # Problem answers
         self.feature_classification_answer = []
@@ -62,6 +62,7 @@ class Subject():
         # IDG and distance to utopia
         self.feature_synthesis_dist2UP = dict()
         self.design_IGD = dict()
+        self.design_HV = None
 
     def gradeAnswers(self, confidenceThreshold=None):
         self.feature_classification_score, self.feature_classification_graded_answers = self.grader.gradeAnswers("feature", "classification", self.feature_classification_answer, self.feature_classification_confidence, confidenceThreshold=confidenceThreshold)

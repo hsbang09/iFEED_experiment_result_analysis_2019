@@ -7,6 +7,7 @@ import traceback
 import csv
 import math
 from subject import Subject
+import cmapAnalysis as cma
 import traceback
 
 # Column numbers: problems
@@ -285,7 +286,10 @@ class ResultAnalyzer():
                     elif "conceptMap-prior" in os.path.basename(filename):
                         subject.cmap_prior_data = data
 
-                    elif "conceptMap-learning" in os.path.basename(filename):
+                    elif "conceptMap-learning_task_2" in os.path.basename(filename):
+                        subject.cmap_learning_data_extended = data
+
+                    elif "conceptMap-learning_task" in os.path.basename(filename):
                         subject.cmap_learning_data = data
 
                 except:
@@ -410,14 +414,14 @@ class ResultAnalyzer():
         if subjects is None:
             subjects = self.subjects
 
-        colNames_scores = ["fcl","fpwc",
-                        "dcl","dpwc",
+        colNames_scores = ["FID","FPWC",
+                        "DID","DPWC",
                         "FScore","DScore",
                         "PScore","NScore",
                         "HScore","LScore",
                         "totalScore"]
 
-        colNames_confidences = ["conf_fcl","conf_fpwc","conf_dcl","conf_dpwc"]
+        colNames_confidences = ["confFID","confFPWC","confDID","confDPWC"]
 
         colNames_learning = ["LT_numDesignViewed",
                             "LT_numFeatureViewed",
@@ -440,7 +444,11 @@ class ResultAnalyzer():
                         "entropy",
                         ]
 
-        colNames_selfAssessment = ["selfAssessment", "normalizedSA"]
+        colNames_cmapLearning = ["numNodes","numEdges","numHighLevelConcepts","numHighLevelEdges","normalizedCM"]
+
+        colNames_selfAssessment = ["selfAssessment", "normalizedSA",
+                                    "selfAssessmentQ1","normalizedSAQ1",
+                                    "selfAssessmentExclude1","normalizedSAExclude1"]
 
         if option is not None:
             if option == "scores":
@@ -459,7 +467,7 @@ class ResultAnalyzer():
                 tempColumns = colNames_designSynthesis
 
             elif option == "default":
-                tempColumns = ["fcl","fpwc","dcl","dpwc",
+                tempColumns = ["FID","FPWC","DID","DPWC",
                         "FScore","DScore",
                         "PScore","NScore",
                         "HScore","LScore",
@@ -474,7 +482,7 @@ class ResultAnalyzer():
                         "entropy"]
 
             elif option == "all":
-                tempColumns = colNames_scores + colNames_learning + colNames_confidences + colNames_featureSynthesis + colNames_designSynthesis + colNames_selfAssessment
+                tempColumns = colNames_scores + colNames_learning + colNames_confidences + colNames_featureSynthesis + colNames_designSynthesis + colNames_selfAssessment + colNames_cmapLearning
                 tempColumns = list(set(tempColumns))
 
             else:
@@ -506,42 +514,48 @@ class ResultAnalyzer():
                 knowledgeType = "implicit"
             rowData.append(knowledgeType)
 
+            interactionType = "userInteraction"
+            if s.condition == 5:
+                interactionType = "noInteraction"
+            rowData.append(interactionType)
+
             if i == 0:
                 colNames = []
                 colNames.append("id")
                 colNames.append("condition")
-                colNames.append("type")
+                colNames.append("type1")
+                colNames.append("type2")
                 colNames += columns
 
             for col in columns:
                 val = None
 
                 ###### Problem set scores ######
-                if col == "fcl":
+                if col == "FID":
                     val = s.feature_classification_score
 
-                elif col == "fpwc":
+                elif col == "FPWC":
                     val = s.feature_comparison_score
 
-                elif col == "dcl":
+                elif col == "DID":
                     val = s.design_classification_score
 
-                elif col == "dpwc":
+                elif col == "DPWC":
                     val = s.design_comparison_score
 
-                elif col == "conf_fcl":
+                elif col == "confFID":
                     val = np.mean(s.feature_classification_confidence) / 100
                     val = round(val, 3)
 
-                elif col == "conf_fpwc":
+                elif col == "confFPWC":
                     val = np.mean(s.feature_comparison_confidence) / 100
                     val = round(val, 3)
 
-                elif col == "conf_dcl":
+                elif col == "confDID":
                     val = np.mean(s.design_classification_confidence) / 100
                     val = round(val, 3)
 
-                elif col == "conf_dpwc":
+                elif col == "confDPWC":
                     val = np.mean(s.design_comparison_confidence) / 100
                     val = round(val, 3)
 
@@ -620,16 +634,54 @@ class ResultAnalyzer():
                     val = s.design_synthesis_task_data['counter_design_evaluated']
 
                 elif col == "HV":
-                    val = s.design_HV
-                    val = round(val, 3)
+                    if s.design_HV is not None:
+                        val = s.design_HV
+                        val = round(val, 3)
+                    else:
+                        val = -1
 
                 elif col == "entropy":
                     val = s.design_entropy
                     val = round(val, 3)
 
+                ###### Concept map data ######
+                elif col == "numNodes":
+                    if not (s.cmap_learning_data_extended):
+                        cmap = s.cmap_learning_data
+                    else:
+                        cmap = s.cmap_learning_data_extended
+                    val = cma.getNumNodes(cmap)
+
+                elif col == "numEdges":
+                    if not (s.cmap_learning_data_extended):
+                        cmap = s.cmap_learning_data
+                    else:
+                        cmap = s.cmap_learning_data_extended
+                    val = cma.getNumEdges(cmap)
+
+                elif col == "numHighLevelEdges":
+                    if not (s.cmap_learning_data_extended):
+                        cmap = s.cmap_learning_data
+                    else:
+                        cmap = s.cmap_learning_data_extended
+                    val = cma.getNumEdges2HighLevelFeatures(cmap)
+
+                elif col == "numHighLevelConcepts":
+                    if not (s.cmap_learning_data_extended):
+                        cmap = s.cmap_learning_data
+                    else:
+                        cmap = s.cmap_learning_data_extended
+                    val = cma.numHighLevelConceptUsed(cmap)
+
+                elif col == "normalizedCM":
+                    val = -1
+
                 ###### Self learning assessment ######
                 elif col == "selfAssessment":
                     val = np.mean(s.learning_self_assessment_data)
+
+                elif col == "selfAssessmentQ1":
+                    val = s.learning_self_assessment_data[0]
 
                 elif col == "selfAssessmentExclude1":
                     val = np.mean(s.learning_self_assessment_data[1:])
@@ -645,15 +697,28 @@ class ResultAnalyzer():
 
         # Normalize the specified columns
         if "meanDist2UP" in colNames and "normalizedDist2UP" in colNames:
-            out = self.normalizeDist2UP(out)
+            out = self.normalizeValues(out, "meanDist2UP", "normalizedDist2UP", decimal=3, invert=True)
+
         if "meanIGD" in colNames and "normalizedIGD" in colNames:
-            out = self.normalizeIGD(out)
+            out = self.normalizeValues(out, "meanIGD", "normalizedIGD", decimal=3, invert=True)
+
         if "numDesigns" in colNames and "normalizedIGD" in colNames:
             out = self.adjustIGD(out, useEntropy=adjustIGDUsingEntropy)
+
         if "numDesigns" in colNames and "HV" in colNames:
             out = self.adjustHV(out)
+
         if "selfAssessment" in colNames and "normalizedSA" in colNames:
-            out = self.normalizeSA(out)
+            out = self.normalizeValues(out, "selfAssessment", "normalizedSA", decimal=3)
+
+        if "selfAssessmentQ1" in colNames and "normalizedSAQ1" in colNames:
+            out = self.normalizeValues(out, "selfAssessmentQ1", "normalizedSAQ1", decimal=3)
+
+        if "selfAssessmentExclude1" in colNames and "normalizedSAExclude1" in colNames:
+            out = self.normalizeValues(out, "selfAssessmentExclude1", "normalizedSAExclude1", decimal=3)
+
+        if "normalizedCM" in colNames and "numEdges" in colNames:
+            out = self.normalizeValues(out, "numEdges", "normalizedCM", decimal=3)
         return out
 
     def getComments(self, subjects, type, targetKeyword, displayCondition=False, displayParticipantID=False, displayKeyword=False):
@@ -864,32 +929,14 @@ class ResultAnalyzer():
         dataframe["adjustedHV"] = normalized
         return dataframe
 
-    def normalizeSA(self, dataframe):
-        SAList = dataframe["selfAssessment"].values
-        minVal = min(SAList) 
-        maxVal = max(SAList)
-        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in SAList]
-        dataframe["normalizedSA"] = normalized
-        return dataframe
-
-    def normalizeIGD(self, dataframe):
-        IGDList = dataframe["meanIGD"].values
-        if IGDList[0] > 0:
-            IGDList = [-x for x in IGDList]
-        minVal = min(IGDList) 
-        maxVal = max(IGDList)
-        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in IGDList]
-        dataframe["normalizedIGD"] = normalized
-        return dataframe
-
-    def normalizeDist2UP(self, dataframe):
-        dist2UPList = dataframe["meanDist2UP"].values
-        if dist2UPList[0] > 0:
-            dist2UPList = [-x for x in dist2UPList]
-        minVal = min(dist2UPList) 
-        maxVal = max(dist2UPList)
-        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in dist2UPList]
-        dataframe["normalizedDist2UP"] = normalized
+    def normalizeValues(self, dataframe, originalName, newName, decimal=3, invert=False):
+        valList = dataframe[originalName].values
+        if invert:
+            valList = [-x for x in valList]
+        minVal = min(valList) 
+        maxVal = max(valList)
+        normalized = [ round((x - minVal) / (maxVal - minVal), decimal) for x in valList]
+        dataframe[newName] = normalized
         return dataframe
 
     # def saveCSV(self, filename=None):
@@ -909,6 +956,33 @@ class ResultAnalyzer():
 
     #     with open(filename, "w+") as file:
     #         file.write("\n".join(out))
+
+
+
+    # def plotECDF(scores1,scores2):
+        
+    #     import statsmodels.api as sm # recommended import according to the docs
+
+    #     sample = scores1
+    #     ecdf = sm.distributions.ECDF(scores1)
+    #     x = np.linspace(min(sample), max(sample))
+    #     y = ecdf(x)
+    #     plt.step(x, y)
+
+    #     sample2 = scores2
+    #     ecdf = sm.distributions.ECDF(sample2)
+    #     x = np.linspace(min(sample2), max(sample2))
+    #     y = ecdf(x)
+    #     plt.step(x, y)
+
+    #     plt.show()
+
+    # def writeToFile(data, header ,filePath = "/Users/bang/workspace/iFEED-experiment-201711-result/data/data.csv"):
+    #     with open(filePath, 'w') as f:
+    #         f.write(header + "\n")
+    #         for row in data:
+    #             f.write(",".join(row) + "\n")
+        
 
 
 

@@ -11,8 +11,8 @@ FEATURE_CL_HIGH_LEVEL = [0, 1, 1, 0, 1, 0, 0, 0, 0]
 FEATURE_PWC_HIGH_LEVEL = [0, 0, 1, 1, 0, 1, 0, 1, 0] 
 
 class Grader():
-    def __init__(self):
-        pass
+    def __init__(self, decimal=3):
+        self.decimal = decimal
 
     def gradeAnswers(self, problemTopic, problemType, answers, confidence=None, parity=False, confidenceThreshold=None):
         """Grades the answers and outputs the total score in %, 
@@ -53,14 +53,18 @@ class Grader():
                 if correctAnswers[i] == 1: # Correct answer: TRUE / YES
                     if answers[i] == 1: # User answered: TRUE / YES
                         graded.append(1)
-                    else:  # User answered: False / NO
+                    elif answers[i] == 2:  # User answered: False / NO
                         graded.append(0)
+                    else:
+                        raise ValueError()
 
                 else: # Correct answer: FALSE / NO
                     if answers[i] == 1: # User answered: TRUE / YES
                         graded.append(0)
-                    else:  # User answered: False / NO
+                    elif answers[i] == 2:  # User answered: False / NO
                         graded.append(1)
+                    else:
+                        raise ValueError()
 
         elif problemType == "comparison":
             for i in range(len(answers)):
@@ -73,21 +77,25 @@ class Grader():
                 if correctAnswers[i] == 0: # Correct answer: 1st item
                     if answers[i] == 1: # User answered: 1st item
                         graded.append(1)
-                    else:  # User answered: 2nd item
+                    elif answers[i] == 2:  # User answered: 2nd item
                         graded.append(0)
+                    else:
+                        raise ValueError()
 
                 else: # Correct answer: 2nd item
                     if answers[i] == 1: # User answered: 1st item
                         graded.append(0)
-                    else:  # User answered: 2nd item
+                    elif answers[i] == 2:  # User answered: 2nd item
                         graded.append(1)
+                    else:
+                        raise ValueError()
 
         total = 0
         for g in graded:
             if g == 1:
                 total += 1
 
-        score = round(total / len(graded), 2)
+        score = round(total / len(graded), self.decimal)
         return score, graded
 
     def gradeHighVsLowLevelFeatures(self, featureGradedCL, featureGradedPWC, highLevel=True):
@@ -123,7 +131,7 @@ class Grader():
             if g == 1:
                 total += 1
 
-        score = round(total / len(graded), 2)
+        score = round(total / len(graded), self.decimal)
         return score, graded
 
     def gradePositiveOrNegativeFeatures(self, featureGradedCL, featureGradedPWC, positive=True):
@@ -165,6 +173,6 @@ class Grader():
             if g == 1:
                 total += 1
 
-        score = round(total / len(graded), 2)
+        score = round(total / len(graded), self.decimal)
         return score, graded
 
