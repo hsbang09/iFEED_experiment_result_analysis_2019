@@ -88,7 +88,7 @@ class Grader():
                     elif answers[i] == 2:  # User answered: 2nd item
                         graded.append(1)
                     else:
-                        raise ValueError()
+                        raise ValueError("{0}, {1}, {2}".format(problemTopic, problemType, str(i)))
 
         total = 0
         for g in graded:

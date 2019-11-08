@@ -97,6 +97,9 @@ def pearsonr_ci(x,y,alpha=0.05):
     ''' calculate Pearson correlation along with the confidence interval using scipy and numpy
     source: https://zhiyzuo.github.io/Pearson-Correlation-CI-in-Python/
 
+    also refer to:
+    https://en.wikipedia.org/wiki/Fisher_transformation
+
     Parameters
     ----------
     x, y : iterable object such as a list or np.array

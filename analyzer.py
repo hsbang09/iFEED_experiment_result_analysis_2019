@@ -11,24 +11,24 @@ import cmapAnalysis as cma
 import traceback
 
 # Column numbers: problems
-COLNUM_PARTICIPANT_ID = 19 - 1
-COLNUM_FEATURE_CL_QUESTION = 20 - 1
-COLNUM_FEATURE_PWC_QUESTION = 38 - 1
-COLNUM_DESIGN_CL_QUESTION = 56 - 1
-COLNUM_DESIGN_PWC_QUESTION = 74 - 1
+COLNUM_PARTICIPANT_ID = 20 - 1
+COLNUM_FEATURE_CL_QUESTION = 21 - 1
+COLNUM_FEATURE_PWC_QUESTION = 39 - 1
+COLNUM_DESIGN_CL_QUESTION = 57 - 1
+COLNUM_DESIGN_PWC_QUESTION = 75 - 1
 
 # Column numbers: Other survey
-COLNUM_FEATURE_PREFERENCE = 92 - 1
-COLNUM_SELF_ASSESSMENT = 101 - 1
+COLNUM_FEATURE_PREFERENCE = 93 - 1
+COLNUM_SELF_ASSESSMENT = 102 - 1
 
 # Column numbers: Demographic info
-COLNUM_AGE = 105 - 1
-COLNUM_GENDER = 106 - 1
-COLNUM_EDUCATION = 107 - 1
-COLNUM_MAJOR = 108 - 1
-COLNUM_EMPLOYER_TYPE = 109 - 1
-COLNUM_PRIOR_EXPERIENCE = 110 - 1
-COLNUM_COMMENTS = 122
+COLNUM_AGE = 106 - 1
+COLNUM_GENDER = 107 - 1
+COLNUM_EDUCATION = 108 - 1
+COLNUM_MAJOR = 109 - 1
+COLNUM_EMPLOYER_TYPE = 110 - 1
+COLNUM_PRIOR_EXPERIENCE = 111 - 1
+COLNUM_COMMENTS = 123
 
 # Number of questions
 NUM_FEATURE_CL_QUESTION = 9
@@ -410,7 +410,12 @@ class ResultAnalyzer():
                         out.append(s)
         return out
 
-    def getDataFrame(self, subjects=None, option="default", columns=None, invertSIB=False, excludeHV=True, adjustIGDUsingEntropy=False):
+    def getDataFrame(self, subjects=None, option="default", columns=None, 
+                    invertSIB=False, 
+                    excludeHV=True, 
+                    adjustIGDUsingEntropy=False,
+                    adjustIGDUsingEntireNumDesigns=True):
+
         if subjects is None:
             subjects = self.subjects
 
@@ -438,7 +443,7 @@ class ResultAnalyzer():
 
         colNames_designSynthesis = ["meanIGD","normalizedIGD","adjustedIGD",
                         "HV","adjustedHV",
-                        "numDesigns",
+                        "numDesigns","numDesignsToShortestDist",
                         "DS_numDesignViewed",
                         "DS_numDesignEvaluated",
                         "entropy",
@@ -582,113 +587,146 @@ class ResultAnalyzer():
 
                 ###### Learning task logged data ######
                 elif col == "LT_numDesignViewed":
-                    val = s.learning_task_data['counter_design_viewed']
+                    if s.learning_task_data:
+                        val = s.learning_task_data['counter_design_viewed']
 
                 elif col == "LT_numFeatureViewed":
-                    val = s.learning_task_data['counter_feature_viewed']
+                    if s.learning_task_data:
+                        val = s.learning_task_data['counter_feature_viewed']
 
                 elif col == "LT_numFilterUsed":
-                    val = s.learning_task_data['counter_filter_used']
+                    if s.learning_task_data:
+                        val = s.learning_task_data['counter_filter_used']
 
                 elif col == "LT_numFeatureFound":
-                    val = len(s.learning_task_data['features_found'])
+                    if s.learning_task_data:
+                        val = len(s.learning_task_data['features_found'])
 
                 ###### Feature synthesis task data ######
                 elif col == "meanDist2UP":
-                    val = s.getDist2Utopia()
-                    if invertSIB:
-                        val = - val
-                    val = round(val, 3)
+                    if s.feature_synthesis_task_data:
+                        val = s.getDist2Utopia()
+                        if invertSIB:
+                            val = - val
+                        val = round(val, 3)
 
                 elif col == "normalizedDist2UP":
-                    val = -1
+                    pass
 
                 elif col == "FS_numFeatureViewed":
-                    val = s.feature_synthesis_task_data['counter_feature_viewed']
+                    if s.feature_synthesis_task_data:
+                        val = s.feature_synthesis_task_data['counter_feature_viewed']
 
                 elif col == "FS_numFilterUsed":
-                    val = s.feature_synthesis_task_data['counter_filter_used']
+                    if s.feature_synthesis_task_data:
+                        val = s.feature_synthesis_task_data['counter_filter_used']
 
                 elif col == "FS_numFeatureTested":
-                    val = len(s.feature_synthesis_task_data['features_found'])
+                    if s.feature_synthesis_task_data:
+                        val = len(s.feature_synthesis_task_data['features_found'])
 
                 ###### Design synthesis task data ######
                 elif col == "meanIGD":
                     if s.design_IGD is None:
-                        raise ValueError("IGD was not computed")
-                    val = s.design_IGD
-                    if invertSIB:
-                        val = - val
-                    val = round(val, 3)
+                        pass
+                    else:
+                        val = s.design_IGD
+                        if invertSIB:
+                            val = - val
+                        val = round(val, 3)
 
                 elif col == "normalizedIGD":
-                    val = -1
+                    pass
 
                 elif col == "numDesigns":
-                    val = len(s.design_synthesis_task_data['designs_evaluated'])
+                    if s.design_synthesis_task_data:
+                        val = len(s.design_synthesis_task_data['designs_evaluated'])
+
+                elif col == "numDesignsToShortestDist":
+                    val = s.design_num_designs_to_shortest_dist
 
                 elif col == "DS_numDesignViewed":
-                    val = s.design_synthesis_task_data['counter_design_viewed']
+                    if s.design_synthesis_task_data:
+                        val = s.design_synthesis_task_data['counter_design_viewed']
 
                 elif col == "DS_numDesignEvaluated":
-                    val = s.design_synthesis_task_data['counter_design_evaluated']
+                    if s.design_synthesis_task_data:
+                        val = s.design_synthesis_task_data['counter_design_evaluated']
 
                 elif col == "HV":
                     if s.design_HV is not None:
                         val = s.design_HV
                         val = round(val, 3)
-                    else:
-                        val = -1
 
                 elif col == "entropy":
-                    val = s.design_entropy
-                    val = round(val, 3)
+                    if s.design_entropy:
+                        val = s.design_entropy
+                        val = round(val, 3)
 
                 ###### Concept map data ######
                 elif col == "numNodes":
-                    if not (s.cmap_learning_data_extended):
+                    if s.cmap_learning_data_extended:
+                        cmap = s.cmap_learning_data_extended
+                    elif s.cmap_learning_data:
                         cmap = s.cmap_learning_data
                     else:
-                        cmap = s.cmap_learning_data_extended
-                    val = cma.getNumNodes(cmap)
+                        cmap = None
+                    
+                    if cmap is not None:
+                        val = cma.getNumNodes(cmap)
 
                 elif col == "numEdges":
-                    if not (s.cmap_learning_data_extended):
+                    if s.cmap_learning_data_extended:
+                        cmap = s.cmap_learning_data_extended
+                    elif s.cmap_learning_data:
                         cmap = s.cmap_learning_data
                     else:
-                        cmap = s.cmap_learning_data_extended
-                    val = cma.getNumEdges(cmap)
+                        cmap = None
+
+                    if cmap is not None:
+                        val = cma.getNumEdges(cmap)
 
                 elif col == "numHighLevelEdges":
-                    if not (s.cmap_learning_data_extended):
+                    if s.cmap_learning_data_extended:
+                        cmap = s.cmap_learning_data_extended
+                    elif s.cmap_learning_data:
                         cmap = s.cmap_learning_data
                     else:
-                        cmap = s.cmap_learning_data_extended
-                    val = cma.getNumEdges2HighLevelFeatures(cmap)
+                        cmap = None
+
+                    if cmap is not None:
+                        val = cma.getNumEdges2HighLevelFeatures(cmap)
 
                 elif col == "numHighLevelConcepts":
-                    if not (s.cmap_learning_data_extended):
+                    if s.cmap_learning_data_extended:
+                        cmap = s.cmap_learning_data_extended
+                    elif s.cmap_learning_data:
                         cmap = s.cmap_learning_data
                     else:
-                        cmap = s.cmap_learning_data_extended
-                    val = cma.numHighLevelConceptUsed(cmap)
+                        cmap = None
+
+                    if cmap is not None:
+                        val = cma.numHighLevelConceptUsed(cmap)
 
                 elif col == "normalizedCM":
-                    val = -1
+                    pass
 
                 ###### Self learning assessment ######
                 elif col == "selfAssessment":
-                    val = np.mean(s.learning_self_assessment_data)
+                    if s.learning_self_assessment_data:
+                        val = np.mean(s.learning_self_assessment_data)
 
                 elif col == "selfAssessmentQ1":
-                    val = s.learning_self_assessment_data[0]
+                    if s.learning_self_assessment_data:
+                        val = s.learning_self_assessment_data[0]
 
                 elif col == "selfAssessmentExclude1":
-                    val = np.mean(s.learning_self_assessment_data[1:])
-                    val = round(val, 3)
+                    if s.learning_self_assessment_data:
+                        val = np.mean(s.learning_self_assessment_data[1:])
+                        val = round(val, 3)
 
                 elif col == "normalizedSA":
-                    val = -1
+                    pass
 
                 rowData.append(val)
             dat.append(rowData)
@@ -703,7 +741,7 @@ class ResultAnalyzer():
             out = self.normalizeValues(out, "meanIGD", "normalizedIGD", decimal=3, invert=True)
 
         if "numDesigns" in colNames and "normalizedIGD" in colNames:
-            out = self.adjustIGD(out, useEntropy=adjustIGDUsingEntropy)
+            out = self.adjustIGD(out, useEntropy=adjustIGDUsingEntropy, useEntireNumDesigns=adjustIGDUsingEntireNumDesigns)
 
         if "numDesigns" in colNames and "HV" in colNames:
             out = self.adjustHV(out)
@@ -864,9 +902,13 @@ class ResultAnalyzer():
 
         for s in self.subjects:
             # create variable with the subject's design info
+            if not s.design_synthesis_task_data:
+                s.design_IGD = None
+                s.design_num_designs_to_shortest_dist = None
+                continue
+
             subDesigns = s.design_synthesis_task_data['designs_evaluated']
             numDesigns = len(subDesigns)
-            
             minDistList = []
 
             # iterate through target solutions, get science and cost for each solution
@@ -886,26 +928,52 @@ class ResultAnalyzer():
                 
                 # add min of the distances to an array    
                 minDistList.append(minDist)
-            
+
             if useShortestDistance:
                 s.design_IGD = min(minDistList)
+                s.design_num_designs_to_shortest_dist = -1
+
+                # iterate through target solutions, get science and cost for each solution
+                for i in range(numTargetDesigns):
+                    tSci = (targetScience[i] - sciMin) / sciDiff
+                    tCost = (targetCost[i] - costMin) / costDiff       
+                    
+                    # iterate through the subject's solutions, get science and cost. compute
+                    # distance, keeping target solution the same and changing subject soln
+                    for n, design in enumerate(subDesigns):
+                        sSci = (design['outputs'][0] - sciMin) / sciDiff
+                        sCost = (design['outputs'][1] - costMin) / costDiff
+                        dist = math.sqrt((sCost - tCost)**2 + (sSci - tSci)**2)
+                        if dist == s.design_IGD:
+                            s.design_num_designs_to_shortest_dist = n
+                            break
+
+                    if s.design_num_designs_to_shortest_dist != -1:
+                        break
+
             else:
                 # sum and average  
                 s.design_IGD = np.mean(minDistList)
 
-    def adjustIGD(self, dataframe, useEntropy=False):
+    def adjustIGD(self, dataframe, useEntropy=False, useEntireNumDesigns=True):
         normalizedIGD = dataframe["normalizedIGD"].values
         numDesigns = dataframe["numDesigns"].values
+
         if useEntropy:
             entropies = dataframe["entropy"].values
+        else:
+            if not useEntireNumDesigns:
+                numDesignsToShortestDist = dataframe["numDesignsToShortestDist"].values
 
         adjustedIGD = []
         for i in range(len(normalizedIGD)):
             val = None
             if useEntropy:
                 val = normalizedIGD[i] / entropies[i]
-            else:
+            elif useEntireNumDesigns:
                 val = normalizedIGD[i] / numDesigns[i]
+            else:
+                val = normalizedIGD[i] / numDesignsToShortestDist[i]
             adjustedIGD.append(val)
 
         minVal = min(adjustedIGD) 
@@ -930,12 +998,14 @@ class ResultAnalyzer():
         return dataframe
 
     def normalizeValues(self, dataframe, originalName, newName, decimal=3, invert=False):
-        valList = dataframe[originalName].values
+        vals = dataframe[originalName].values
+
         if invert:
-            valList = [-x for x in valList]
-        minVal = min(valList) 
-        maxVal = max(valList)
-        normalized = [ round((x - minVal) / (maxVal - minVal), decimal) for x in valList]
+            vals = [-x for x in vals]
+
+        minVal = min(vals) 
+        maxVal = max(vals)
+        normalized = [ round((x - minVal) / (maxVal - minVal), decimal) for x in vals]
         dataframe[newName] = normalized
         return dataframe
 

@@ -62,7 +62,10 @@ class Subject():
         # IDG and distance to utopia
         self.feature_synthesis_dist2UP = dict()
         self.design_IGD = dict()
+        self.design_num_designs_to_shortest_dist = -1
+
         self.design_HV = None
+        self.design_entropy = None
 
     def gradeAnswers(self, confidenceThreshold=None):
         self.feature_classification_score, self.feature_classification_graded_answers = self.grader.gradeAnswers("feature", "classification", self.feature_classification_answer, self.feature_classification_confidence, confidenceThreshold=confidenceThreshold)

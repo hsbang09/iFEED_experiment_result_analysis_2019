@@ -1,0 +1,64 @@
+
+I’m trying to look at the ones that already have high coverage or close to what we want and low specificity and I’m trying to also keep to those that are already not too complex. I’m starting to start from something that has high coverage but not much complexity. 
+And use auto search to see where we can go from there.
+Ok, those are good coverage but not very specific, so we still have a lot of pink dots.
+And again, increase the complexity now and try to go to new generalization later to simplify.
+[experimenter tells subject they can zoom in/out of feature analysis plot]
+Oh nice. Actually, a very good feature.
+See that there is most of the common features that certain instruments are not placed in certain orbits. Looks like quite a common feature.
+[inaudible]
+And it’s not great coverage. So, I’ll try to go from here.
+[inaudible]
+Go from the number of initial condition and go to, go a little bit back on coverage. [inaudible] And move towards low coverage.
+[inaudible] requirements for the task.
+That didn’t give good improvement. And so, I’ll work on this one. Not generalization.
+
+
+
+Ok… so the spectral imagery can be modified with just light increase and coverage and specificity. Or may generalize to… 
+[inaudible]
+A slight improvement.
+So, it looks like it captures a little bit. Good coverage but not enough specificity. And so, I will try to see if I can start a dot with more coverage.
+[inaudible]
+See if I can go from high coverage and try and make it a little more specific.
+Looks like on this one we can increase specificity at the cost of coverage. Or we can increase the coverage slightly by decreasing specificity.
+[inaudible]
+So, these dots where SAR_ALTIM is present, we saw that… good coverage but very low in specificity.
+So now I want a little more complexity to make it a little more specific.
+All of these generalizations will do about the same.
+[inaudible]
+[experimenter tells subject they can generalize feature by right clicking and reminds subject to use think aloud protocol]
+I’m not thinking anything to be honest.
+But of course, we are working on the pareto front and I have no idea what would be a good value of coverage and specificity because the task only says a coverage of above 0.7.  
+Not sure what would be a good specificity. So, I’m trying to keep it [inaudible].
+And so, I’m just trying to explore, not even thinking about what are the common features. Just trying to figure out when I want to stop and select a specific design or specific group of features and then say let’s start from that and then look at which features are common and map them in the concept map. If that makes sense.
+So, there were a lot not in orbit in all of these architectures. The 600 AM and the 800 DD.
+[inaudible]
+There’s no way to just click back right?
+[inaudible]
+[glitch]
+…
+This is the one where it was. But not generalized. Perfect.
+So, we were looking at features of some of the designs similar specificity and coverage. So, coverage is above the requirement, but it is also not too widespread. So, there is some specificity.
+The SAR_ALTIM is present, CPR_RAD is not present.
+I can add a new relation in the concept map.
+This is positive.
+And then the concept of what should not be put in orbits was complicated, so I just copy pasted text.
+From there it looks like most of this is common along this pareto front.
+Now I will try again, to generalize some of the features.
+So, I will start with left most.
+[Inaudible]
+I can increase specificity a little bit. Actually, let’s start something that will increase specificity slightly, and is just instead VEG_INSAR is not used in two orbits and is just generalized to is not used except in when assigned to specific orbits.
+Let’s see if this generalization of this works.
+Ok, my generalization there. Let me… [inaudible]
+Ok. So, I’m gonna see what happens wen you deactivate something. And that became much less specific.
+If I deactivate some of the features, it would just increase the number of total designs and be slightly more coverage but will lose even more specificity. 
+Let’s look at features that have a little more specificity but still have those features of this is not in orbit. Did I already copy it? And then present ALTIM.
+Deactivation of this feature actually doesn’t…
+It’s just a little off specificity…
+So, I can record this as fundamental features to find the common features. 
+[inaudible]
+This I don’t. separate AERO_POL and SAR_ALTIM.
+[inaudible]
+
+
