@@ -203,6 +203,10 @@ Ok, this…
 [D_pwc_9]
 Ok, so… alright, I like this because the 800 PM looks a little better.
 END problem solving task
+
+
+
+
 Begin feature synthesis task
 Ok so, features…
 Oh man… oh boy…
@@ -221,6 +225,13 @@ Let’s say and… let’s see how, I’m trying to remember how…
 Ok, that’s still better. Nice.
 I think that’s about as good as I’m gonna get in the time left. 
 END feature synthesis task
+
+
+
+
+
+
+
 BEGIN design synthesis task
 Alright. 
 Oh, that’s a bummer.
@@ -255,6 +266,11 @@ Ah, let’s try this over here.
 Well…
 Alright, I’m finding my intuition about [inaudible] day versus night, about geometry and thermal isn’t quite what I thought it was.
 END design synthesis task
+
+
+
+
+
 BEGIN survey task
 [1]
 Which do you think contains more useful information? Equivalent coverage…

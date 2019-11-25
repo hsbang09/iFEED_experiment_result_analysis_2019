@@ -184,6 +184,98 @@ class Visualizer():
                                 alpha=alpha, 
                                 returnAxis=returnAxis)
 
+    def designSynthesisScatterDF(self, dataFrame, 
+                cColumn=None, 
+                useDesignNum=False, targetDesignFilePath=None, 
+                targetDesignAlpha=1.0, targetDesignColor=None, targetDesignMarker='o',
+                cmap="Blues", figsize=(13,6), alpha=1.0, colorbar=True):
+
+        x = []
+        y = []
+        c = []
+
+        df = dataFrame
+        for s in self.subjects:
+            designs = s.design_synthesis_task_data['designs_evaluated']
+            designObjective_science = []
+            designObjective_cost = []
+            for j, d in enumerate(designs):
+                designObjective_science.append(d['outputs'][0])
+                designObjective_cost.append(d['outputs'][1])
+            x += designObjective_science
+            y += designObjective_cost
+
+            if useDesignNum:
+                for i in range(len(designObjective_science)):
+                    c.append(i)
+
+            elif cColumn is not None:
+                for i in range(len(designObjective_science)):
+                    c.append(df.loc[df.id == s.participant_id][cColumn].values[0])
+
+        returnAxis = False
+        if targetDesignFilePath:
+            returnAxis = True
+
+        ax = self.scatterPlot(x, y, 
+                            c=c,
+                            marker='o', 
+                            legend=None,
+                            xLabel="Science", 
+                            yLabel="Cost", 
+                            figsize=figsize, 
+                            alpha=alpha, 
+                            cmap=cmap,
+                            returnAxis=returnAxis,
+                            colorbar=colorbar)
+
+        if targetDesignFilePath:
+            indexTotal = []
+            classLabel = []
+            scienceTotal = []
+            costTotal = []
+
+            # load in csv
+            with open(targetDesignFilePath) as csvfile:
+                readCSV = csv.reader(csvfile, delimiter = ',')
+
+                for row in readCSV:
+                    index = row[0]
+                    targetVal = row[1]
+                    science = row[3]
+                    cost = row[4]
+                    indexTotal.append(int(index))
+                    classLabel.append(int(targetVal))
+                    scienceTotal.append(float(science))
+                    costTotal.append(float(cost))
+
+            # initialize empty arrays
+            targetScience = []
+            targetCost = []
+            numTargetDesigns = 0
+
+            # iterate through the column that contains a 0 or 1 describing if 
+            # design is a target. if Yes (targetbool = 1), append science and cost
+            # to array
+            for i, label in enumerate(classLabel):
+                if label == 1:
+                    targetScience.append(scienceTotal[i])
+                    targetCost.append(costTotal[i])
+            numTargetDesigns = len(targetScience)
+
+            ax = self.scatterPlot(targetScience, targetCost, 
+                    c=targetDesignColor,
+                    axis=ax,
+                    marker=targetDesignMarker, 
+                    legend=None,
+                    xLabel="Science", 
+                    yLabel="Cost", 
+                    figsize=figsize, 
+                    alpha=targetDesignAlpha, 
+                    cmap=cmap,
+                    returnAxis=False,
+                    colorbar=False)
+
     def featureSynthesisScatter(self, useLearningTaskData=False, markers=None, figsize=(13,6), alpha=1.0):
         if self.groups is None:
             raise ValueError("")
@@ -226,7 +318,42 @@ class Visualizer():
                                 alpha=alpha, 
                                 returnAxis=returnAxis)
 
-    def scatterPlot(self, x, y, c=None, marker=None, legend=None, label=None, axis=None, xLabel=None, yLabel=None, figsize=(13,6), alpha=1.0, grid=False, returnAxis=False):
+    def featureSynthesisScatterDF(self, dataFrame, useLearningTaskData=False, cColumn=None, cmap="Blues", figsize=(13,6), alpha=1.0, colorbar=True):
+        x = []
+        y = []
+        c = []
+
+        df = dataFrame
+        for s in self.subjects:
+            if useLearningTaskData:
+                features = s.learning_task_data['features_found']
+            else:
+                features = s.feature_synthesis_task_data['features_found']
+            precisions = []
+            recalls = []
+            for j, f in enumerate(features):
+                precisions.append(f['metrics'][2])
+                recalls.append(f['metrics'][3])
+
+            x += precisions
+            y += recalls
+            if cColumn is not None:
+                for i in range(len(precisions)):
+                    c.append(df.loc[df.id == s.participant_id][cColumn].values[0])
+
+        ax = self.scatterPlot(x, y, 
+                            c=c,
+                            marker='o', 
+                            legend=None,
+                            xLabel="Precision", 
+                            yLabel="Recall", 
+                            figsize=figsize, 
+                            alpha=alpha, 
+                            cmap=cmap,
+                            returnAxis=False,
+                            colorbar=colorbar)
+
+    def scatterPlot(self, x, y, s=None, c=None, cmap="coolwarm", marker=None, legend=None, label=None, axis=None, xLabel=None, yLabel=None, figsize=(13,6), alpha=1.0, grid=False, returnAxis=False, colorbar=False):
         if axis is None:
             fig, ax = plt.subplots(figsize=figsize)
         else:
@@ -235,11 +362,15 @@ class Visualizer():
         sc = ax.scatter(
                    x, 
                    y, 
+                   s=s,
                    c=c, 
                    marker=marker, 
-                   cmap="coolwarm", 
+                   cmap=cmap, 
                    label=label, 
                    alpha=alpha)
+
+        if colorbar:
+            plt.colorbar(sc)
 
         if returnAxis:
             return ax
@@ -252,11 +383,10 @@ class Visualizer():
                 ax.set_xlabel(xLabel)
             if yLabel:
                 ax.set_ylabel(yLabel)
-            # plt.colorbar(sc)
             plt.show()
             return None
 
-    def linePlot(self, x, y, c=None, axis=None, figsize=(13,6), xLabel=None, yLabel=None, legend=None, grid=False, returnAxis=False):
+    def linePlot(self, x, y, c=None, axis=None, linestyle=None, figsize=(13,6), xLabel=None, yLabel=None, legend=None, grid=False, returnAxis=False):
         if axis is None:
             fig, ax = plt.subplots(figsize=figsize)
         else:
@@ -266,7 +396,7 @@ class Visualizer():
            x, 
            y, 
            c=c, 
-           marker=None)
+           linestyle=linestyle)
 
         if returnAxis:
             return ax
@@ -280,6 +410,70 @@ class Visualizer():
                 ax.set_ylabel(yLabel)
             plt.show()
             return None
+
+    def designSynthesisLinePlot(self, 
+                subjects=None,
+                subjectGroups=None,
+                subjectGroupNames=None,
+                conditions=None,
+                figsize=(13,6), 
+                alpha=1.0, 
+                colors=None,
+                linestyles=None,):
+
+        if colors is None:
+            colors = []
+            for i in range(10):
+                colors.append(COLORS[i])
+
+        if linestyles is None:
+            linestyles = ['-'] * 10
+
+        # initialize groups
+        groups = []
+        groupNames = []
+        if subjects is not None:
+            for s in subjects:
+                groups.append([s])
+                groupNames.append([s.participant_id])
+
+        elif subjectGroups is not None:
+            if subjectGroupNames is None:
+                raise ValueError("")
+            groups = subjectGroups
+            groupNames = subjectGroupNames
+
+        else:
+            groups = self.groups
+            groupNames = self.groupNames
+
+        ax = None
+        for i, group in enumerate(groups):
+            for j, subject in enumerate(group):
+                # designs = subject.design_synthesis_task_data['designs_evaluated']
+                # x = []
+                # y = []
+                # for j, d in enumerate(designs):
+                #     x.append(d['outputs'][0]) # science
+                #     y.append(d['outputs'][1]) # cost
+
+                y = subject.design_synthesis_task_data["minDistList"]
+                x = [index + 1 for index in range(len(y))]
+
+                returnAxis = True
+                if i == len(groups) - 1 and j == len(group) - 1:
+                    returnAxis = False
+
+                ax = self.linePlot(x, y, 
+                                    c=colors[i], 
+                                    linestyle=linestyles[i],
+                                    legend=groupNames,
+                                    axis=ax, 
+                                    xLabel="Trials", 
+                                    yLabel="Distance to target", 
+                                    figsize=figsize, 
+                                    # alpha=alpha, 
+                                    returnAxis=returnAxis)
 
     def barplot_annotate_brackets(self, num1, num2, data, center, height, yerr=None, dh=.05, barh=.05, fs=None, maxasterix=None):
         """ Source: https://stackoverflow.com/questions/11517986/indicating-the-statistically-significant-difference-in-bar-graph
@@ -354,7 +548,22 @@ class Visualizer():
 
         plt.text(*mid, text, **kwargs)
 
-    def barPlot(self, columns=None, conditions=None, showError=False, nrows=1, ncols=1, figsize=(10,6), width=0.8, sharex=False, sharey=False, grid=False, title=None, displayPoints=False, dataFrame=None, subplotsAdjust=None, subplotsHide=None, tightLayout=False):
+    def barPlot(self, columns=None, 
+                    conditions=None, 
+                    showError=False, 
+                    nrows=1, ncols=1, 
+                    figsize=(10,6), 
+                    width=0.8, 
+                    sharex=False, 
+                    sharey=False, 
+                    grid=False, 
+                    title=None, 
+                    displayPoints=False, 
+                    dataFrame=None, 
+                    subplotsAdjust=None, 
+                    subplotsHide=None, 
+                    tightLayout=False):
+
         fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
 
         if tightLayout:
@@ -424,8 +633,9 @@ class Visualizer():
             clevels = np.linspace(0., 1., ngroup)
             ax[i].set_title(col)
 
-            for x, val, clevel in zip(xs, vals, clevels):
-                ax[i].scatter(x, val, color="black", alpha=0.5, zorder=1)
+            if displayPoints:
+                for x, val, clevel in zip(xs, vals, clevels):
+                    ax[i].scatter(x, val, color="black", alpha=0.5, zorder=1)
         
         if title is not None:
             plt.title(title)
@@ -444,7 +654,83 @@ class Visualizer():
                 ax[index].axis('off')
         plt.show()
 
+    def barPlotSingle(self, columns=None, 
+                    conditions=None, 
+                    showError=False, 
+                    figsize=(10,6), 
+                    width=0.8, 
+                    grid=False, 
+                    title=None, 
+                    displayPoints=False, 
+                    dataFrame=None,
+                    returnAxis=False,
+                    axis=None,
+                    columnAlias=None):
+        
+        if axis is None:
+            fig, ax = plt.subplots(figsize=figsize)
+        else:
+            ax = axis
+
+        if dataFrame is None:
+            dataFrame = self.dataFrame
+
+        if type(columns) is not list:
+            columns = [columns]
+
+        names, vals, xs = [], [] ,[]
+        if columnAlias:
+            names = columnAlias
+        else:
+            names = columns
+
+        for i, col in enumerate(columns):
+            vals.append(dataFrame[col].tolist())
+
+            tempX = np.random.normal(i+1, 0.06, dataFrame.shape[0])
+            tempXOffset = []
+            for x in tempX:
+                if np.random.randint(2) == 1:
+                    x += 0.15
+                else:
+                    x -= 0.15
+                tempXOffset.append(x)
+            xs.append(tempXOffset)
+
+        if showError:
+            stdErr = [stats.sem(val) for val in vals]
+            capsize = 10
+        else:
+            stdErr = None
+            capsize = None
+
+        x_pos = np.arange(len(columns))
+        x_pos = [x + 1 for x in x_pos]
+        heights = [np.mean(val) for val in vals]
+
+        ax.bar(x_pos, heights, yerr=stdErr, capsize=capsize, width=width, color="white", edgecolor="black", align='center', alpha=1.0, zorder=0)
+        ax.set_xticks(x_pos)
+        ax.set_xticklabels(names)
+
+        ngroup = len(vals)
+        clevels = np.linspace(0., 1., ngroup)
+        
+        if displayPoints:
+            for x, val, clevel in zip(xs, vals, clevels):
+                ax.scatter(x, val, color="black", alpha=0.5, zorder=1)
+        
+        if title is not None:
+            ax.set_title(title)
+            # plt.title(title)
+
+        if returnAxis:
+            return ax
+        else:
+            plt.show()
+
     def catBarPlot(self, data, groupNames, errData=None, ax=None, axisIndex=None, xLabel=None, yLabel=None, title=None, colors=None, barWidth=0.2, nrows=1, ncols=1, figsize=(10,6), sharex=False, sharey=False):
+        # Categorical data
+
         if ax is None:
             fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey, figsize=figsize)
 

@@ -227,6 +227,9 @@ I will go confidently with the top.
 [inaudible]
 And the bottom looks good, just one assumption. Confident, but not extremely confident. 
 END problem solving task
+
+
+
 BEGIN feature synthesis task
 So, I can see feature analysis but not that so…
 This is a feature that I liked a lot. A lot of them have that.
@@ -249,6 +252,10 @@ The generalization didn’t work. They’re both for high power instrument, but 
 [inaudible]
 Ok, lidar is an exception.
 END feature synthesis task
+
+
+
+
 BEGIN design synthesis task
 So, you just have to create as many architectures as possible? Do I need to save them at some point, or every time I add instruments it counts as a different architecture? 
 Ok, these are notes.

@@ -23,6 +23,9 @@ So, it looks like it captures a little bit. Good coverage but not enough specifi
 See if I can go from high coverage and try and make it a little more specific.
 Looks like on this one we can increase specificity at the cost of coverage. Or we can increase the coverage slightly by decreasing specificity.
 [inaudible]
+
+
+
 So, these dots where SAR_ALTIM is present, we saw that… good coverage but very low in specificity.
 So now I want a little more complexity to make it a little more specific.
 All of these generalizations will do about the same.

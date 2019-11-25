@@ -29,8 +29,12 @@ def calculate_pearsonr(df, decimal=2):
                 ciHigh[r][c] = 0
             else:
                 lo, hi = getCorrelationConfidenceInterval(rho, len(df[r].values))
-                ciLow[r][c] = round(lo, decimal)
-                ciHigh[r][c] = round(hi, decimal)
+                if lo is None or hi is None:
+                    ciLow[r][c] = 0
+                    ciHigh[r][c] = 0
+                else:
+                    ciLow[r][c] = round(lo, decimal)
+                    ciHigh[r][c] = round(hi, decimal)
     return rmat, pmat, ciLow, ciHigh
 
 def calculate_spearmanr(df, decimal=2):
@@ -57,11 +61,15 @@ def calculate_spearmanr(df, decimal=2):
 
 def getCorrelationConfidenceInterval(r, N, alpha=0.95):
     #https://stats.stackexchange.com/questions/18887/how-to-calculate-a-confidence-interval-for-spearmans-rank-correlation
-
-    stderr = 1 / math.sqrt(N - 3)
-    z = stats.norm.ppf(1 - alpha / 2)
-    lo = math.tanh(math.atanh(r) - z * stderr)
-    hi = math.tanh(math.atanh(r) + z * stderr)
+    try:
+        stderr = 1 / math.sqrt(N - 3)
+        z = stats.norm.ppf(1 - alpha / 2)
+        lo = math.tanh(math.atanh(r) - z * stderr)
+        hi = math.tanh(math.atanh(r) + z * stderr)
+    except:
+        print("Error in calling getCorrelationConfidenceInterval()")
+        lo = None
+        hi = None
     return lo, hi
 
 def spearmanr_ci(x,y,alpha=0.05):

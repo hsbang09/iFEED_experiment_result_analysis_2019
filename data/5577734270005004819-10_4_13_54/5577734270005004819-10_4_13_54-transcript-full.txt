@@ -358,6 +358,14 @@ Mhm.
 Ok, let me make sure, I don’t know how long, how long do you think you still have? 
 Oh ok, yeah, yeah, yeah, ok
 Ok, so next… ok…
+
+
+
+
+
+
+
+
 BEGIN feature synthesis task
 Ok, design feature, that’s interesting.
 Ok, let me just make sure that – so I want this. 70% coverage. Ok, but now, it doesn’t have to be low complexity? I guess maybe, the ones I had picked were a little too complex, not sure.
@@ -410,6 +418,9 @@ Ok.
 END feature synthesis task
 Mhm
 Ok
+
+
+
 
 
 

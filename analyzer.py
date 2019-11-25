@@ -859,35 +859,32 @@ class ResultAnalyzer():
     """ Computes IGD
     """             
     def computeIGD(self, dataFilePath, useShortestDistance=False):    
-        indexTotal = []
         classLabel = []
-        scienceTotal = []
-        costTotal = []
+        allSci = []
+        allCost = []
 
         # load in csv
         with open(dataFilePath) as csvfile:
             readCSV = csv.reader(csvfile, delimiter = ',')
-
             for row in readCSV:
                 index = row[0]
                 targetVal = row[1]
                 science = row[3]
                 cost = row[4]
-                indexTotal.append(int(index))
                 classLabel.append(int(targetVal))
-                scienceTotal.append(float(science))
-                costTotal.append(float(cost))
+                allSci.append(float(science))
+                allCost.append(float(cost))
 
         # initialize empty arrays
-        targetScience = []
-        targetCost = []
-        numTargetDesigns = 0
+        tSci = []
+        tCost = []
+        numTargets = 0
 
         # find min and max for cost for normalization
-        costMax = max(costTotal)
-        costMin = min(costTotal)
-        sciMax = max(scienceTotal)
-        sciMin = min(scienceTotal)
+        costMax = max(allCost)
+        costMin = min(allCost)
+        sciMax = max(allSci)
+        sciMin = min(allSci)
         costDiff = costMax - costMin
         sciDiff = sciMax - sciMin
 
@@ -896,9 +893,9 @@ class ResultAnalyzer():
         # to array
         for i, label in enumerate(classLabel):
             if label == 1:
-                targetScience.append(scienceTotal[i])
-                targetCost.append(costTotal[i])
-        numTargetDesigns = len(targetScience)
+                tSci.append( (allSci[i] - sciMin) / sciDiff )
+                tCost.append( (allCost[i] - costMin) / costDiff )
+        numTargets = len(tSci)
 
         for s in self.subjects:
             # create variable with the subject's design info
@@ -911,51 +908,37 @@ class ResultAnalyzer():
             numDesigns = len(subDesigns)
             minDistList = []
 
-            # iterate through target solutions, get science and cost for each solution
-            for i in range(numTargetDesigns):
-                tSci = (targetScience[i] - sciMin) / sciDiff
-                tCost = (targetCost[i] - costMin) / costDiff       
+            # iterate through each subject's solutions, get the min distance to the target region
+            for sDesign in subDesigns:
+                sSci = (sDesign['outputs'][0] - sciMin) / sciDiff
+                sCost = (sDesign['outputs'][1] - costMin) / costDiff       
                  
-                # iterate through the subject's solutions, get science and cost. compute
-                # distance, keeping target solution the same and changing subject soln
+                # iterate through target solutions get the min distance
                 minDist = 10
-                for design in subDesigns:
-                    sSci = (design['outputs'][0] - sciMin) / sciDiff
-                    sCost = (design['outputs'][1] - costMin) / costDiff
-                    dist = math.sqrt((sCost - tCost)**2 + (sSci - tSci)**2)
+                for i in range(numTargets):
+                    dist = math.sqrt((sCost - tCost[i])**2 + (sSci - tSci[i])**2)
                     if dist < minDist:
                         minDist = dist
                 
                 # add min of the distances to an array    
                 minDistList.append(minDist)
 
+            s.design_synthesis_task_data["minDistList"] = minDistList
+
             if useShortestDistance:
-                s.design_IGD = min(minDistList)
+                minDist = min(minDistList)
+                s.design_IGD = minDist
                 s.design_num_designs_to_shortest_dist = -1
 
-                # iterate through target solutions, get science and cost for each solution
-                for i in range(numTargetDesigns):
-                    tSci = (targetScience[i] - sciMin) / sciDiff
-                    tCost = (targetCost[i] - costMin) / costDiff       
-                    
-                    # iterate through the subject's solutions, get science and cost. compute
-                    # distance, keeping target solution the same and changing subject soln
-                    for n, design in enumerate(subDesigns):
-                        sSci = (design['outputs'][0] - sciMin) / sciDiff
-                        sCost = (design['outputs'][1] - costMin) / costDiff
-                        dist = math.sqrt((sCost - tCost)**2 + (sSci - tSci)**2)
-                        if dist == s.design_IGD:
-                            s.design_num_designs_to_shortest_dist = n
-                            break
-
-                    if s.design_num_designs_to_shortest_dist != -1:
+                for i in range(len(minDistList)):
+                    if minDistList[i] == minDist:
+                        s.design_num_designs_to_shortest_dist = i+1
                         break
-
             else:
                 # sum and average  
                 s.design_IGD = np.mean(minDistList)
 
-    def adjustIGD(self, dataframe, useEntropy=False, useEntireNumDesigns=True):
+    def adjustIGD(self, dataframe, useEntropy=False, useEntireNumDesigns=True, decimal=3):
         normalizedIGD = dataframe["normalizedIGD"].values
         numDesigns = dataframe["numDesigns"].values
 
@@ -978,11 +961,11 @@ class ResultAnalyzer():
 
         minVal = min(adjustedIGD) 
         maxVal = max(adjustedIGD)
-        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in adjustedIGD]
+        normalized = [ round((x - minVal) / (maxVal - minVal), decimal) for x in adjustedIGD]
         dataframe["adjustedIGD"] = normalized
         return dataframe
 
-    def adjustHV(self, dataframe):
+    def adjustHV(self, dataframe, decimal=3):
         HVs = dataframe["HV"].values
         numDesigns = dataframe["numDesigns"].values
 
@@ -993,7 +976,7 @@ class ResultAnalyzer():
 
         minVal = min(adjustedHVs) 
         maxVal = max(adjustedHVs)
-        normalized = [ round((x - minVal) / (maxVal - minVal), 3) for x in adjustedHVs]
+        normalized = [ round((x - minVal) / (maxVal - minVal), decimal) for x in adjustedHVs]
         dataframe["adjustedHV"] = normalized
         return dataframe
 
